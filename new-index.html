@@ -1161,6 +1161,215 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 }
 
 /* ══════════════════════════════
+   SECTION 4B — OFFER STACK / BUSINESS PACKAGE
+══════════════════════════════ */
+#territory-package {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #070707;
+  padding: 108px clamp(24px, 5vw, 80px) 0;
+  border-top: 1px solid rgba(8,7,5,0.72);
+  border-bottom: 1px solid rgba(200,146,58,0.10);
+}
+#territory-package::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 64% 44% at 50% 0%, rgba(200,146,58,0.13) 0%, rgba(200,146,58,0.045) 42%, transparent 72%),
+    radial-gradient(ellipse 46% 52% at 92% 34%, rgba(170,70,50,0.055) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 58% at 2% 76%, rgba(200,146,58,0.052) 0%, transparent 72%),
+    linear-gradient(180deg, #070707 0%, #0a0908 48%, #070707 100%);
+}
+#territory-package::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.026;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.package-wrap { width: 100%; max-width: 1260px; margin: 0 auto; position: relative; z-index: 1; }
+.package-top { max-width: 1040px; margin: 0 auto 54px; text-align: center; }
+.package-kicker {
+  display: flex; align-items: center; justify-content: center; gap: 18px;
+  margin: 0 auto 24px; font-family: var(--fb); font-size: clamp(12px, 1vw, 16px);
+  font-weight: 900; letter-spacing: .30em; text-transform: uppercase; color: rgba(200,146,58,.92);
+}
+.package-kicker::before, .package-kicker::after { content: ''; display: block; width: min(92px, 14vw); height: 1px; background: linear-gradient(90deg, transparent, rgba(200,146,58,.58)); }
+.package-kicker::after { background: linear-gradient(90deg, rgba(200,146,58,.58), transparent); }
+.package-headline { font-family: var(--fd); font-size: clamp(40px, 4.8vw, 76px); line-height: 1.02; letter-spacing: -0.05em; font-weight: 900; color: var(--white); margin: 0 0 22px; }
+.package-headline span { display: block; background: linear-gradient(90deg, #C8923A 0%, #F2C84A 50%, #C8923A 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.package-intro { max-width: 1000px; margin: 0 auto; font-family: var(--fb); font-size: clamp(17px, 1.35vw, 21px); line-height: 1.68; color: rgba(245,244,240,.72); }
+.package-frame { position: relative; padding: 0; background: transparent; border: none; border-radius: 0; box-shadow: none; overflow: visible; }
+.package-frame::before { display: none; }
+.package-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.package-card {
+  position: relative; min-height: 214px; border: 1px solid rgba(245,244,240,0.08); border-radius: 18px;
+  background: radial-gradient(ellipse 90% 70% at 50% 0%, rgba(255,255,255,0.045), transparent 72%), linear-gradient(180deg, rgba(18,18,16,0.96), rgba(9,9,8,0.98));
+  padding: 24px 22px 23px; overflow: hidden; box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 18px 42px rgba(0,0,0,0.25); cursor: default;
+}
+.package-card::before { content: ''; position: absolute; left: 22px; right: 22px; top: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(200,146,58,0.58), transparent); opacity: .68; }
+.package-bloom { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(280px circle at var(--mx,50%) var(--my,50%), rgba(242,200,74,0.11) 0%, rgba(200,146,58,0.055) 36%, transparent 70%); opacity: 0; transition: opacity 220ms var(--ease-out-strong); }
+.package-card > *:not(.package-bloom) { position: relative; z-index: 1; }
+.package-num { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(200,146,58,.45); background: rgba(200,146,58,.08); color: rgba(242,200,74,.96); font-family: var(--fd); font-size: 20px; line-height: 1; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 24px; box-shadow: 0 0 0 6px rgba(200,146,58,0.035); }
+.package-card h3 { font-family: var(--fd); font-size: clamp(23px, 1.85vw, 30px); line-height: 1.02; letter-spacing: -0.038em; color: var(--white); margin: 0 0 12px; }
+.package-card p { font-family: var(--fb); font-size: 14.5px; line-height: 1.55; color: rgba(245,244,240,0.66); margin: 0; }
+.package-closer {
+  position: relative; max-width: none; margin: 74px calc(50% - 50vw) 0; padding: 66px clamp(24px, 5vw, 80px) 70px;
+  text-align: center; overflow: hidden; isolation: isolate;
+  background: radial-gradient(ellipse 72% 48% at 50% 4%, rgba(255,236,158,0.32) 0%, rgba(242,200,74,0.17) 38%, transparent 72%), radial-gradient(ellipse 90% 64% at 50% 100%, rgba(42,25,6,0.42) 0%, rgba(76,49,13,0.16) 44%, transparent 76%), linear-gradient(180deg, #c49332 0%, #d7aa42 46%, #9f7427 100%);
+  border-top: 1px solid rgba(255,232,143,0.28); border-bottom: 1px solid rgba(8,7,5,0.24); box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), inset 0 -1px 0 rgba(0,0,0,0.24);
+}
+.package-closer::before { display: none; }
+.package-closer::after { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0.048; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.package-closer p { max-width: 1080px; margin: 0 auto; font-family: var(--fd); font-size: clamp(24px, 3.35vw, 35px); line-height: 1.08; letter-spacing: -0.046em; font-weight: 900; color: rgba(9,8,5,.88); text-shadow: 0 1px 0 rgba(255,255,255,0.12); }
+.package-closer span { display: inline; color: #070605; font-weight: 900; background: none; -webkit-text-fill-color: currentColor; text-decoration-line: underline; text-decoration-thickness: 0.075em; text-underline-offset: 0.12em; text-decoration-color: rgba(8,7,5,0.42); }
+@media (hover:hover) and (pointer:fine) {
+  .package-card { transition: transform 220ms var(--ease-out-strong), border-color 220ms var(--ease-out-strong), box-shadow 220ms var(--ease-out-strong), background 220ms var(--ease-out-strong); }
+  .package-card:hover { transform: translateY(-5px); border-color: rgba(242,200,74,0.45); background: radial-gradient(ellipse 90% 70% at 50% 0%, rgba(242,200,74,0.07), transparent 72%), linear-gradient(180deg, rgba(22,21,18,0.99), rgba(10,10,9,0.98)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 28px 80px rgba(0,0,0,0.42), 0 0 48px rgba(200,146,58,0.10); }
+  .package-card:hover .package-bloom { opacity: 1; }
+  .package-card:hover .package-num { border-color: rgba(242,200,74,.75); background: rgba(200,146,58,.13); }
+}
+@media (max-width: 1120px) { .package-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .package-card { min-height: 196px; } }
+@media (max-width: 720px) {
+  #territory-package { padding: 82px 20px 0; }
+  .package-top { text-align: left; margin-bottom: 38px; }
+  .package-kicker { justify-content: flex-start; gap: 14px; letter-spacing: .20em; }
+  .package-kicker::before { display: none; }
+  .package-kicker::after { width: 64px; }
+  .package-headline { font-size: clamp(36px, 9vw, 50px); }
+  .package-intro { font-size: 16px; line-height: 1.65; }
+  .package-grid { grid-template-columns: 1fr; gap: 12px; }
+  .package-card { min-height: auto; padding: 24px 22px; }
+  .package-card h3 { font-size: 29px; }
+  .package-card p { font-size: 15px; }
+  .package-closer { margin: 58px calc(50% - 50vw) 0; padding: 58px 20px 56px; }
+}
+@media (max-width: 480px) { #territory-package { padding: 76px 18px 0; } .package-card h3 { font-size: 27px; } .package-num { width: 36px; height: 36px; margin-bottom: 20px; } }
+
+/* ══════════════════════════════
+   SECTION 4C — PROOF & CREDIBILITY STACK
+══════════════════════════════ */
+#proof-stack {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #070707;
+  padding: 112px clamp(24px, 5vw, 80px) 118px;
+  border-top: 1px solid rgba(200,146,58,0.10);
+  border-bottom: 1px solid rgba(200,146,58,0.10);
+}
+#proof-stack::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 58% 42% at 50% 0%, rgba(200,146,58,0.13) 0%, rgba(200,146,58,0.045) 46%, transparent 74%),
+    radial-gradient(ellipse 42% 48% at 4% 52%, rgba(200,146,58,0.052) 0%, transparent 72%),
+    radial-gradient(ellipse 44% 50% at 98% 54%, rgba(130,53,39,0.085) 0%, transparent 72%),
+    linear-gradient(180deg, #090908 0%, #070707 56%, #090806 100%);
+}
+#proof-stack::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.026;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.proof-stack-wrap { width: 100%; max-width: 1260px; margin: 0 auto; position: relative; z-index: 1; }
+.proof-stack-top { max-width: 1080px; margin: 0 auto 58px; text-align: center; }
+.proof-stack-kicker { display: flex; align-items: center; justify-content: center; gap: 18px; margin: 0 auto 24px; font-family: var(--fb); font-size: clamp(12px, 1vw, 15px); font-weight: 900; letter-spacing: .30em; text-transform: uppercase; color: rgba(200,146,58,.92); }
+.proof-stack-kicker::before, .proof-stack-kicker::after { content: ''; display: block; width: min(92px, 14vw); height: 1px; background: linear-gradient(90deg, transparent, rgba(200,146,58,.58)); }
+.proof-stack-kicker::after { background: linear-gradient(90deg, rgba(200,146,58,.58), transparent); }
+.proof-stack-headline { font-family: var(--fd); font-size: clamp(42px, 5vw, 78px); line-height: 1; letter-spacing: -0.052em; font-weight: 900; color: var(--white); margin: 0 0 24px; }
+.proof-stack-headline span { display: block; background: linear-gradient(90deg, #C8923A 0%, #F2C84A 52%, #C8923A 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.proof-stack-intro { max-width: 930px; margin: 0 auto; font-family: var(--fb); font-size: clamp(16px, 1.36vw, 20px); line-height: 1.72; color: rgba(245,244,240,.73); }
+.proof-stack-panels { display: grid; gap: 42px; margin: 0 auto 62px; }
+.proof-stack-panel {
+  position: relative; overflow: hidden; isolation: isolate; min-height: 540px;
+  border-radius: 24px; border: 1px solid rgba(245,244,240,0.085);
+  background: radial-gradient(ellipse 80% 70% at 50% 0%, rgba(255,255,255,0.046), transparent 72%), linear-gradient(180deg, rgba(16,16,14,.97), rgba(8,8,7,.98));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.045), 0 34px 100px rgba(0,0,0,.48);
+  display: grid; grid-template-columns: minmax(320px, .44fr) minmax(0, .56fr); align-items: stretch;
+}
+.proof-stack-panel.medical { grid-template-columns: minmax(0, .56fr) minmax(320px, .44fr); }
+.proof-stack-panel::before { content: ''; position: absolute; left: 34px; right: 34px; top: 0; height: 1px; z-index: 4; background: linear-gradient(90deg, transparent, rgba(242,200,74,.66), transparent); opacity: .78; }
+.proof-stack-bloom { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(460px circle at var(--mx,50%) var(--my,50%), rgba(242,200,74,.12) 0%, rgba(200,146,58,.058) 38%, transparent 70%); opacity: 0; transition: opacity 220ms var(--ease-out-strong); }
+.proof-stack-photo { position: relative; z-index: 1; min-height: 540px; overflow: hidden; background: #0b0907; }
+.proof-stack-photo img { width: 100%; height: 100%; min-height: 540px; object-fit: cover; display: block; filter: contrast(1.04) saturate(.98); }
+.proof-stack-panel.business .proof-stack-photo img { object-position: 54% 24%; }
+.proof-stack-panel.medical .proof-stack-photo img { object-position: 50% 24%; }
+.proof-stack-photo::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, transparent 48%, rgba(8,8,7,.82) 100%), radial-gradient(ellipse 80% 72% at 50% 38%, transparent 42%, rgba(0,0,0,.18) 100%); }
+.proof-stack-panel.medical .proof-stack-photo::after { background: linear-gradient(270deg, transparent 48%, rgba(8,8,7,.82) 100%), radial-gradient(ellipse 80% 72% at 50% 38%, transparent 42%, rgba(0,0,0,.16) 100%); }
+.proof-stack-copy { position: relative; z-index: 2; padding: clamp(38px, 4.6vw, 58px); display: flex; flex-direction: column; justify-content: center; }
+.proof-stack-role { display: flex; align-items: center; gap: 13px; margin-bottom: 18px; font-family: var(--fb); font-size: 10.5px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; color: rgba(200,146,58,.86); }
+.proof-stack-role::before { content: ''; width: 32px; height: 1px; background: linear-gradient(90deg, rgba(200,146,58,.78), transparent); }
+.proof-stack-name { font-family: var(--fd); font-size: clamp(46px, 4.7vw, 74px); line-height: .92; letter-spacing: -.056em; font-weight: 900; color: #fff; margin: 0 0 14px; }
+.proof-stack-title { font-family: var(--fd); font-size: clamp(25px, 2.3vw, 36px); line-height: 1.05; letter-spacing: -.04em; color: rgba(245,244,240,.92); margin-bottom: 20px; }
+.proof-stack-title span { background: linear-gradient(90deg, #C8923A 0%, #F2C84A 80%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.proof-stack-body { font-family: var(--fb); font-size: clamp(15.5px, 1.2vw, 18px); line-height: 1.66; color: rgba(245,244,240,.72); max-width: 640px; margin-bottom: 26px; }
+.proof-stack-body strong { color: #fff; font-weight: 800; }
+.proof-stack-list { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin-bottom: 26px; }
+.proof-stack-list li { position: relative; min-height: 86px; border: 1px solid rgba(245,244,240,0.075); border-radius: 15px; background: rgba(255,255,255,0.026); padding: 18px 18px 17px 46px; font-family: var(--fb); font-size: 13.5px; line-height: 1.42; color: rgba(245,244,240,.72); box-shadow: inset 0 1px 0 rgba(255,255,255,.025); }
+.proof-stack-list li::before { content: '✓'; position: absolute; left: 17px; top: 18px; width: 20px; height: 20px; border-radius: 50%; border: 1px solid rgba(200,146,58,.46); background: rgba(200,146,58,.08); color: var(--gold-light); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; }
+.proof-stack-takeaway { position: relative; border-left: 2px solid rgba(242,200,74,.70); background: rgba(242,200,74,.075); border-radius: 0 14px 14px 0; padding: 18px 20px; font-family: var(--fb); font-size: clamp(15px, 1.12vw, 17px); line-height: 1.55; color: rgba(245,244,240,.84); }
+.proof-stack-takeaway strong { display: block; margin-bottom: 5px; font-size: 10px; line-height: 1; letter-spacing: .20em; text-transform: uppercase; color: rgba(242,200,74,.88); }
+.proof-stack-license { position: relative; overflow: hidden; max-width: 1120px; margin: 48px auto 0; border-radius: 24px; border: 1px solid rgba(200,146,58,.22); background: radial-gradient(ellipse 70% 75% at 50% 0%, rgba(242,200,74,.12), transparent 72%), linear-gradient(180deg, rgba(16,15,12,.96), rgba(8,8,7,.98)); box-shadow: inset 0 1px 0 rgba(255,255,255,.045), 0 32px 86px rgba(0,0,0,.42); padding: 44px clamp(24px, 4vw, 52px); display: grid; grid-template-columns: minmax(0,.68fr) minmax(260px,.32fr); gap: 34px; align-items: center; }
+.proof-stack-license h3 { font-family: var(--fd); font-size: clamp(34px, 3.6vw, 58px); line-height: 1; letter-spacing: -.05em; color: #fff; margin-bottom: 18px; }
+.proof-stack-license h3 span { background: linear-gradient(90deg, #C8923A 0%, #F2C84A 70%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.proof-stack-license p { font-family: var(--fb); font-size: clamp(15.5px, 1.2vw, 18px); line-height: 1.68; color: rgba(245,244,240,.72); max-width: 760px; }
+.proof-stack-license-side { display: grid; gap: 11px; }
+.proof-stack-mini { border: 1px solid rgba(245,244,240,.075); border-radius: 15px; padding: 17px 18px; background: rgba(255,255,255,.026); font-family: var(--fb); font-size: 13px; line-height: 1.35; color: rgba(245,244,240,.70); }
+.proof-stack-mini strong { display: block; margin-bottom: 5px; font-family: var(--fd); font-size: 22px; line-height: 1; letter-spacing: -.035em; color: #fff; }
+.proof-stack-cta { text-align: center; margin: 46px auto 0; }
+.proof-stack-cta h3 { font-family: var(--fd); font-size: clamp(34px, 3.9vw, 60px); line-height: 1; letter-spacing: -.05em; color: #fff; margin-bottom: 14px; }
+.proof-stack-cta p { max-width: 690px; margin: 0 auto 25px; font-family: var(--fb); font-size: clamp(15px, 1.2vw, 18px); line-height: 1.62; color: rgba(245,244,240,.68); }
+.proof-stack-button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 18px 42px; border-radius: 100px; background: linear-gradient(135deg, #F2C84A 0%, #C8923A 55%, #9E6B1E 100%); box-shadow: 0 4px 24px rgba(200,146,58,.36), inset 0 1px 0 rgba(255,255,255,.20); color: #0a0800; font-family: var(--fb); font-size: 12px; font-weight: 900; letter-spacing: .10em; text-transform: uppercase; text-decoration: none; }
+.proof-stack-note { display: block; margin-top: 15px; font-family: var(--fb); font-size: 13px; color: rgba(245,244,240,.48); }
+@media (hover:hover) and (pointer:fine) {
+  .proof-stack-panel, .proof-stack-list li, .proof-stack-mini, .proof-stack-button { transition: transform 220ms var(--ease-out-strong), border-color 220ms var(--ease-out-strong), box-shadow 220ms var(--ease-out-strong), filter 220ms var(--ease-out-strong); }
+  .proof-stack-panel:hover { transform: translateY(-4px); border-color: rgba(200,146,58,.35); box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 38px 112px rgba(0,0,0,.52), 0 0 62px rgba(200,146,58,.07); }
+  .proof-stack-panel:hover .proof-stack-bloom { opacity: 1; }
+  .proof-stack-list li:hover, .proof-stack-mini:hover { border-color: rgba(200,146,58,.28); transform: translateY(-2px); }
+  .proof-stack-button:hover { filter: brightness(1.08); transform: translateY(-2px); box-shadow: 0 6px 36px rgba(200,146,58,.52), inset 0 1px 0 rgba(255,255,255,.22); }
+}
+@media (max-width: 1080px) {
+  .proof-stack-panel, .proof-stack-panel.medical { grid-template-columns: 1fr; min-height: auto; }
+  .proof-stack-panel.medical .proof-stack-copy { order: 2; }
+  .proof-stack-panel.medical .proof-stack-photo { order: 1; }
+  .proof-stack-photo, .proof-stack-photo img { min-height: 430px; }
+  .proof-stack-photo::after, .proof-stack-panel.medical .proof-stack-photo::after { background: linear-gradient(180deg, transparent 48%, rgba(8,8,7,.86) 100%); }
+  .proof-stack-license { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  #proof-stack { padding: 102px 20px 90px; }
+  .proof-stack-top { text-align: left; margin-bottom: 38px; }
+  .proof-stack-kicker { justify-content: flex-start; letter-spacing: .20em; gap: 14px; }
+  .proof-stack-kicker::before { display: none; }
+  .proof-stack-kicker::after { width: 64px; }
+  .proof-stack-headline { font-size: clamp(36px, 9vw, 52px); }
+  .proof-stack-list { grid-template-columns: 1fr; gap: 10px; }
+  .proof-stack-list li { min-height: auto; }
+  .proof-stack-copy { padding: 30px 24px 28px; }
+  .proof-stack-button { width: 100%; padding: 16px 22px; font-size: 11px; }
+}
+@media (max-width: 480px) {
+  #proof-stack { padding: 96px 18px 82px; }
+  .proof-stack-photo, .proof-stack-photo img { min-height: 310px; }
+  .proof-stack-copy { padding: 28px 21px 26px; }
+  .proof-stack-license { padding: 30px 21px; }
+}
+
+/* ══════════════════════════════
    SECTION 4A — FILTER / OPERATOR FIT
 ══════════════════════════════ */
 #operator-filter {
@@ -1956,6 +2165,89 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 }
 
 /* ══════════════════════════════
+   MID-PAGE CTA
+══════════════════════════════ */
+.mid-cta-wrap {
+  background: #070707;
+  padding: 0 clamp(24px, 5vw, 80px) 80px;
+}
+.mid-cta-card {
+  position: relative;
+  max-width: 1120px;
+  margin: 0 auto;
+  border: 1px solid rgba(245,244,240,0.10);
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse 70% 80% at 50% 0%, rgba(200,146,58,0.11), transparent 70%),
+    linear-gradient(180deg, rgba(18,17,14,0.98), rgba(8,8,7,0.98));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 32px 96px rgba(0,0,0,0.40);
+  padding: clamp(48px, 6vw, 80px) clamp(32px, 5vw, 80px);
+  text-align: center;
+  overflow: hidden;
+}
+.mid-cta-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(242,200,74,0.55), transparent);
+}
+.mid-cta-headline {
+  font-family: var(--fd);
+  font-size: clamp(36px, 4.2vw, 64px);
+  line-height: 1.04;
+  letter-spacing: -0.042em;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.mid-cta-body {
+  max-width: 680px;
+  margin: 0 auto 36px;
+  font-family: var(--fb);
+  font-size: clamp(16px, 1.3vw, 19px);
+  line-height: 1.68;
+  color: rgba(245,244,240,0.62);
+}
+.mid-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 48px;
+  border-radius: 100px;
+  background: linear-gradient(135deg, #F2C84A 0%, #C8923A 55%, #9E6B1E 100%);
+  border: none;
+  box-shadow: 0 4px 24px rgba(200,146,58,0.34), inset 0 1px 0 rgba(255,255,255,0.18);
+  color: #0a0800;
+  font-family: var(--fb);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: box-shadow 0.25s ease, transform 0.15s ease, filter 0.25s ease;
+  margin-bottom: 16px;
+}
+.mid-cta-note {
+  font-family: var(--fb);
+  font-size: 13px;
+  color: rgba(245,244,240,0.38);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+@media (hover:hover) and (pointer:fine) {
+  .mid-cta-btn:hover { filter: brightness(1.08); box-shadow: 0 6px 36px rgba(200,146,58,0.50), inset 0 1px 0 rgba(255,255,255,0.22); transform: translateY(-2px); }
+  .mid-cta-btn:active { transform: scale(0.97); filter: brightness(0.96); transition-duration: 80ms; }
+}
+@media (max-width: 640px) {
+  .mid-cta-wrap { padding-bottom: 64px; }
+  .mid-cta-btn { width: 100%; }
+}
+
+/* ══════════════════════════════
    REDUCED MOTION
 ══════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
@@ -2299,6 +2591,126 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   </div>
 </section>
 
+<!-- ═══════════ MID-PAGE CTA ═══════════ -->
+<div class="mid-cta-wrap">
+  <div class="mid-cta-card">
+    <h2 class="mid-cta-headline">Your Market Is Either Available —<br>Or It Isn't.</h2>
+    <p class="mid-cta-body">Check territory availability. Takes 15 minutes. No obligation. We simply confirm whether your preferred market is still open and whether the model fits your situation.</p>
+    <a class="mid-cta-btn" href="#book">
+      Check My Territory
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <p class="mid-cta-note">Only one approved operator per protected market.</p>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION 4B: OFFER STACK / BUSINESS PACKAGE ═══════════ -->
+<section id="territory-package" aria-label="Got Stem Cells business package offer stack">
+  <div class="package-wrap">
+    <div class="package-top">
+      <div class="package-kicker">The Offer Stack</div>
+      <h2 class="package-headline">The GOT Stem Cells <span>Business Package</span></h2>
+      <p class="package-intro">This is the operating infrastructure behind the business — the rights, systems, training, clinical support, follow-up engine, and brand credibility packaged together so you are not building from scratch.</p>
+    </div>
+    <div class="package-frame">
+      <div class="package-grid">
+        <article class="package-card"><div class="package-bloom" aria-hidden="true"></div><div class="package-num">01</div><h3>Protected Territory Rights</h3><p>Exclusive market positioning so you can build local authority without another GSC operator competing inside your territory.</p></article>
+        <article class="package-card"><div class="package-bloom" aria-hidden="true"></div><div class="package-num">02</div><h3>The Complete Dinner Seminar Engine</h3><p>The education-first event model, room flow, positioning, scripts, follow-up structure, and launch process that drives consult demand.</p></article>
+        <article class="package-card"><div class="package-bloom" aria-hidden="true"></div><div class="package-num">03</div><h3>Live Event Support & In-Room Training</h3><p>Hands-on support around your first events so your team can see the room, the close, and the patient conversation executed live.</p></article>
+        <article class="package-card"><div class="package-bloom" aria-hidden="true"></div><div class="package-num">04</div><h3>NP Training & Clinical Onboarding</h3><p>Your provider side is prepared before the room fills, with clinical onboarding aligned to the protocols and treatment delivery model.</p></article>
+        <article class="package-card"><div class="package-bloom" aria-hidden="true"></div><div class="package-num">05</div><h3>Ava — AI Practice Assistant</h3><p>Ava helps keep prospects moving through RSVP, confirmation, follow-up, and re-engagement before interest goes cold.</p></article>
+        <article class="package-card"><div class="package-bloom" aria-hidden="true"></div><div class="package-num">06</div><h3>Sales Training & Ongoing Live Calls</h3><p>Live coaching, objection handling, call review, and practical sales support from people who understand this exact offer.</p></article>
+        <article class="package-card"><div class="package-bloom" aria-hidden="true"></div><div class="package-num">07</div><h3>Full CRM & Follow-Up Infrastructure</h3><p>The funnels, automations, lead tracking, booked-call workflows, reminders, and post-event follow-up foundation are already mapped.</p></article>
+        <article class="package-card"><div class="package-bloom" aria-hidden="true"></div><div class="package-num">08</div><h3>The GSC Brand & Clinical Credibility</h3><p>Operate under a brand built for patient education, supported by clinical authority and the credibility needed to earn trust locally.</p></article>
+      </div>
+    </div>
+    <div class="package-closer">
+      <p>Put it all together and you have everything needed to add a <span>seven-figure revenue stream</span> — without a second location, without new staff from scratch, and without building any of it yourself.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 4C: PROOF & CREDIBILITY STACK ═══════════ -->
+<section id="proof-stack" aria-label="Proof and credibility stack">
+  <div class="proof-stack-wrap">
+    <div class="proof-stack-top">
+      <div class="proof-stack-kicker">Proof & Credibility Stack</div>
+      <h2 class="proof-stack-headline">The Business Side and the Clinical Side <span>Are Already Built In.</span></h2>
+      <p class="proof-stack-intro">Most people entering regenerative medicine have to solve two difficult problems at once: how to generate patient demand, and how to support it with credible clinical infrastructure. With GSC, both sides are already part of the license.</p>
+    </div>
+
+    <div class="proof-stack-panels">
+      <article class="proof-stack-panel business">
+        <div class="proof-stack-bloom" aria-hidden="true"></div>
+        <div class="proof-stack-photo">
+          <img src="https://raw.githubusercontent.com/PimpMyGHL/GSC/main/images/seth-berge-restaurant-brand-auth.jpg" alt="Seth Berge, Founder of GOT Stem Cells" loading="lazy" decoding="async">
+        </div>
+        <div class="proof-stack-copy">
+          <div class="proof-stack-role">Business Architecture</div>
+          <h3 class="proof-stack-name">Seth Berge</h3>
+          <div class="proof-stack-title">The operator who built the <span>growth engine.</span></div>
+          <p class="proof-stack-body">Seth is not here as a generic founder photo. He is the business architect behind the model: the seminar system, scripts, room flow, sales training, follow-up, Ava infrastructure, and market launch process that helped generate <strong>$100M+ in annual therapy sales last year alone.</strong></p>
+          <ul class="proof-stack-list">
+            <li>Built the GSC business system from the seminar room backward.</li>
+            <li>Scaled regenerative medicine sales to $100M+ annually.</li>
+            <li>Developed the marketing, presentation, pre-close, close, and follow-up model.</li>
+            <li>Trains operators to launch without inventing the business from scratch.</li>
+          </ul>
+          <div class="proof-stack-takeaway">
+            <strong>What that means for you</strong>
+            You are not licensing theory. You are stepping into the system built by the operator who already scaled it.
+          </div>
+        </div>
+      </article>
+
+      <article class="proof-stack-panel medical">
+        <div class="proof-stack-bloom" aria-hidden="true"></div>
+        <div class="proof-stack-copy">
+          <div class="proof-stack-role">Clinical Infrastructure</div>
+          <h3 class="proof-stack-name">Dr. Sean Arora</h3>
+          <div class="proof-stack-title">Medical direction is <span>included in the model.</span></div>
+          <p class="proof-stack-body">Regenerative medicine is not just a marketing business. Prospects need to know there is credible medical direction, clinical protocol structure, provider onboarding, and patient-care support behind the offer. Dr. Arora helps bring that clinical foundation into every territory license.</p>
+          <ul class="proof-stack-list">
+            <li>Medical direction included with every territory license.</li>
+            <li>Clinical protocol framework already established.</li>
+            <li>NP onboarding and treatment delivery support included.</li>
+            <li>Clinical credibility built into the patient education model.</li>
+          </ul>
+          <div class="proof-stack-takeaway">
+            <strong>What that means for you</strong>
+            You do not have to source, convince, and structure a medical director relationship from scratch. The clinical credibility is already part of the stack.
+          </div>
+        </div>
+        <div class="proof-stack-photo">
+          <img src="https://raw.githubusercontent.com/PimpMyGHL/GSC/main/images/Dr-Sean-Arora.jpg" alt="Dr. Sean Arora" loading="lazy" decoding="async">
+        </div>
+      </article>
+    </div>
+
+    <div class="proof-stack-license">
+      <div>
+        <h3>What This Means <span>For the Operator</span></h3>
+        <p>You are not trying to bolt together a regenerative medicine business from disconnected vendors. The business growth system, clinical framework, medical credibility, provider support, CRM, Ava, training, and launch model are already connected before you enter the market.</p>
+      </div>
+      <div class="proof-stack-license-side">
+        <div class="proof-stack-mini"><strong>Business</strong>Demand, events, scripts, sales training, follow-up, and launch structure.</div>
+        <div class="proof-stack-mini"><strong>Clinical</strong>Medical direction, protocol framework, NP onboarding, and care delivery support.</div>
+        <div class="proof-stack-mini"><strong>Market</strong>Protected territory positioning with one approved operator per market.</div>
+      </div>
+    </div>
+
+    <div class="proof-stack-cta" id="book">
+      <h3>Check Territory Availability</h3>
+      <p>Takes 15 minutes. No obligation. We simply confirm whether your preferred market is still open and whether the model fits your situation.</p>
+      <a class="proof-stack-button" href="#hero">
+        Check My Territory
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <span class="proof-stack-note">Only one approved operator per protected market.</span>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════ SECTION 4: MARKET TIMING WINDOW ═══════════ -->
 <section id="why-now" aria-label="Market timing window">
   <div class="why-now-inner">
@@ -2457,6 +2869,44 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
       scrub: 1.5,
     }
   });
+})();
+</script>
+
+<!-- proof stack mouse tracking + reveal animation -->
+<script>
+(function(){
+  document.querySelectorAll('.proof-stack-panel').forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+      card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+    });
+    card.addEventListener('mouseleave', function(){ card.style.setProperty('--mx','50%'); card.style.setProperty('--my','50%'); });
+  });
+  if(typeof gsap==='undefined') return;
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  gsap.from('.proof-stack-kicker, .proof-stack-headline, .proof-stack-intro', { scrollTrigger:{ trigger:'#proof-stack', start:'top 78%' }, opacity:0, y: reducedMotion ? 0 : 16, duration: reducedMotion ? 0.15 : 0.48, stagger: reducedMotion ? 0 : 0.07, ease:'power3.out', clearProps:'transform,opacity' });
+  gsap.from('.proof-stack-panel', { scrollTrigger:{ trigger:'.proof-stack-panels', start:'top 80%' }, opacity:0, y: reducedMotion ? 0 : 24, duration: reducedMotion ? 0.15 : 0.56, stagger: reducedMotion ? 0 : 0.10, ease:'power3.out', clearProps:'transform,opacity' });
+  gsap.from('.proof-stack-license, .proof-stack-cta', { scrollTrigger:{ trigger:'.proof-stack-license', start:'top 84%' }, opacity:0, y: reducedMotion ? 0 : 18, duration: reducedMotion ? 0.15 : 0.50, stagger: reducedMotion ? 0 : 0.08, ease:'power3.out', clearProps:'transform,opacity' });
+})();
+</script>
+
+<!-- territory package mouse tracking + reveal -->
+<script>
+(function(){
+  document.querySelectorAll('.package-card').forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+      card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+    });
+    card.addEventListener('mouseleave', function(){ card.style.setProperty('--mx','50%'); card.style.setProperty('--my','50%'); });
+  });
+  if(typeof gsap==='undefined') return;
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  gsap.from('.package-kicker, .package-headline, .package-intro', { scrollTrigger:{ trigger:'#territory-package', start:'top 78%' }, opacity:0, y: reducedMotion ? 0 : 16, duration: reducedMotion ? 0.15 : 0.48, stagger: reducedMotion ? 0 : 0.07, ease:'power3.out', clearProps:'transform,opacity' });
+  gsap.from('.package-card', { scrollTrigger:{ trigger:'.package-grid', start:'top 82%' }, opacity:0, y: reducedMotion ? 0 : 22, duration: reducedMotion ? 0.15 : 0.52, stagger: reducedMotion ? 0 : 0.045, ease:'power3.out', clearProps:'transform,opacity' });
+  gsap.from('.package-closer', { scrollTrigger:{ trigger:'.package-closer', start:'top 84%' }, opacity:0, y: reducedMotion ? 0 : 18, duration: reducedMotion ? 0.15 : 0.52, ease:'power3.out', clearProps:'transform,opacity' });
 })();
 </script>
 
