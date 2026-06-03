@@ -2069,39 +2069,55 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 }
 .hiw-bridge {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 28px;
+  gap: 0;
   padding: 88px clamp(24px, 5vw, 80px) 72px;
   background: #070707;
+  text-align: center;
+}
+.hiw-bridge-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: 6px;
 }
 .hiw-bridge-line {
-  flex: 1;
-  max-width: 120px;
+  width: 72px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22));
-}
-.hiw-bridge-line:last-child {
-  background: linear-gradient(90deg, rgba(255,255,255,0.22), transparent);
+  background: rgba(255,255,255,0.18);
+  flex-shrink: 0;
 }
 .hiw-bridge-text {
   font-family: var(--fd);
-  font-size: clamp(32px, 3.8vw, 58px);
   font-weight: 900;
-  line-height: 1.05;
+  line-height: 1;
   letter-spacing: -0.038em;
   text-align: center;
-  white-space: nowrap;
 }
-.hiw-bridge-white { color: #ffffff; }
+.hiw-bridge-white {
+  font-size: clamp(28px, 2.8vw, 42px);
+  color: rgba(255,255,255,0.72);
+  letter-spacing: -0.032em;
+}
 .hiw-bridge-gold {
-  background: linear-gradient(90deg, #F2C84A 0%, #C8923A 100%);
+  display: block;
+  font-size: clamp(48px, 5.2vw, 76px);
+  font-family: var(--fd);
+  font-weight: 900;
+  letter-spacing: -0.048em;
+  line-height: .96;
+  background: linear-gradient(90deg, #C8923A 0%, #F2C84A 48%, #C8923A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  margin-top: 8px;
 }
 @media (max-width: 640px) {
-  .hiw-bridge-text { white-space: normal; font-size: clamp(28px, 8vw, 38px); }
+  .hiw-bridge-white { font-size: clamp(22px, 6vw, 32px); }
+  .hiw-bridge-gold { font-size: clamp(36px, 10vw, 52px); }
   .hiw-bridge-line { display: none; }
   .hiw-bridge { padding: 52px 18px 36px; }
   .hiw-flow { padding: 20px 18px 0; }
@@ -3652,9 +3668,12 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   </div>
 
   <div class="hiw-bridge">
-    <span class="hiw-bridge-line"></span>
-    <span class="hiw-bridge-text"><span class="hiw-bridge-white">Here's How the Launch</span> <span class="hiw-bridge-gold">Actually Works</span></span>
-    <span class="hiw-bridge-line"></span>
+    <div class="hiw-bridge-top-row">
+      <span class="hiw-bridge-line"></span>
+      <span class="hiw-bridge-text hiw-bridge-white">Here's How the Launch</span>
+      <span class="hiw-bridge-line"></span>
+    </div>
+    <span class="hiw-bridge-gold">Actually Works</span>
   </div>
 
   <div class="hiw-flow">
