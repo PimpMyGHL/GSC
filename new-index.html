@@ -3315,7 +3315,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 .pp-arrow:hover{transform:translateY(-2px);background:#080806;color:#E9C56A}
 .pp-rail{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:8px clamp(20px,4vw,60px) 36px clamp(60px,7vw,120px);scrollbar-width:none}
 .pp-rail::-webkit-scrollbar{display:none}
-.partner-proof .partner-card{scroll-snap-align:start;position:relative;flex:0 0 clamp(280px,24vw,400px);height:480px;border-radius:22px;overflow:hidden;background:#ffffff00;border:2px solid rgb(255 255 255 / 62%);box-shadow:0 30px 70px rgba(50,38,18,.18),0 12px 28px rgba(255,255,255,.14) inset;isolation:isolate;transform:translateZ(0)}
+.partner-proof .partner-card{scroll-snap-align:start;position:relative;flex:0 0 clamp(280px,24vw,400px);height:480px;border-radius:22px;overflow:hidden;background:#ffffff00;border:2px solid rgb(255 255 255 / 62%);box-shadow:-1px 6px 70px rgb(50 38 18 / 22%),0 12px 28px rgba(255,255,255,.14) inset;isolation:isolate;transform:translateZ(0)}
 .partner-proof .partner-card::before{content:'';position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(0,0,0,.00) 0%,rgba(0,0,0,.04) 40%,rgba(0,0,0,.52) 65%,rgba(3,8,16,.88) 85%,rgba(3,8,16,.72) 100%)}
 .partner-proof .partner-card::after{content:'';position:absolute;inset:0;border-radius:23px;z-index:4;pointer-events:none;border:1px solid rgba(255,255,255,.18)}
 .pc-media{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(.98) contrast(1.02);transition:transform .7s cubic-bezier(.23,1,.32,1),filter .7s}
@@ -3342,18 +3342,22 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 #book::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(245,244,240,.020) 1px, transparent 1px), linear-gradient(90deg,rgba(245,244,240,.016) 1px,transparent 1px); background-size: 44px 44px; mask-image: radial-gradient(ellipse 70% 70% at 50% 45%, black 0%, transparent 78%); opacity: .5; pointer-events: none; }
 
 /* Scarcity bar */
-.cta-scarcity-bar { position: relative; z-index: 2; max-width: 1260px; margin: 0 auto 52px; display: flex; align-items: center; border: 1px solid rgba(200,146,58,.26); border-radius: 12px; background: linear-gradient(135deg,rgba(200,146,58,.10),rgba(245,244,240,.02)); overflow: hidden; }
-.csb-live-badge { display: flex; align-items: center; gap: 9px; padding: 18px 24px; flex-shrink: 0; border-right: 1px solid rgba(200,146,58,.18); }
-.csb-live-dot { width: 8px; height: 8px; border-radius: 50%; background: #C8923A; box-shadow: 0 0 12px rgba(200,146,58,.9); animation: pulse-gold 2s ease-in-out infinite; flex-shrink: 0; }
-.csb-live-badge span { font-family: var(--fb); font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #C8923A; white-space: nowrap; }
-.csb-divider { width: 1px; height: 40px; background: rgba(200,146,58,.18); flex-shrink: 0; }
-.csb-content { flex: 1; padding: 16px 28px; display: flex; flex-direction: column; gap: 4px; }
-.csb-content strong { font-family: var(--fd); font-size: 16px; font-weight: 800; color: var(--white); letter-spacing: -.02em; }
-.csb-content span { font-family: var(--fb); font-size: 13px; color: #C8923A; font-weight: 600; }
-.csb-pricing-block { padding: 16px 28px; text-align: right; flex-shrink: 0; border-left: 1px solid rgba(200,146,58,.18); }
-.csb-was { font-family: var(--fb); font-size: 11px; font-weight: 700; letter-spacing: .08em; color: rgba(245,244,240,.32); text-decoration: line-through; margin-bottom: 2px; }
-.csb-now { font-family: var(--fd); font-size: 30px; font-weight: 900; color: #C8923A; letter-spacing: -.045em; line-height: 1; }
-.csb-now-label { font-family: var(--fb); font-size: 10px; font-weight: 700; letter-spacing: .10em; text-transform: uppercase; color: rgba(200,146,58,.60); margin-top: 3px; }
+.csb-title-above { position: relative; z-index: 2; display: block; margin: 0 0 14px; font-family: var(--fb); font-size: clamp(11px,.92vw,15px); font-weight: 900; letter-spacing: .24em; text-transform: uppercase; color: rgba(242,200,74,.96); text-shadow: 0 0 18px rgba(200,146,58,.25), 0 1px 0 rgba(255,255,255,.06); }
+.csb-title-above::before, .csb-title-above::after { display: none; }
+.cta-scarcity-bar { position: relative; z-index: 2; max-width: 1260px; margin: 0 auto 58px; display: grid; grid-template-columns: minmax(0,1.58fr) 1px minmax(250px,.55fr); align-items: stretch; border: 1px solid rgba(232,176,96,.28); border-radius: 24px; background: rgba(22,21,18,.72); -webkit-backdrop-filter: blur(26px) saturate(1.18); backdrop-filter: blur(26px) saturate(1.18); box-shadow: 0 30px 95px rgba(0,0,0,.58), 0 0 0 1px rgba(255,255,255,.035) inset, 0 1px 0 rgba(255,255,255,.18) inset, 0 -1px 0 rgba(0,0,0,.55) inset, 0 0 46px rgba(200,146,58,.055); overflow: hidden; isolation: isolate; }
+.cta-scarcity-bar::before { content: ''; position: absolute; inset: 1px; z-index: -1; pointer-events: none; border-radius: 23px; background: linear-gradient(180deg, rgba(255,255,255,.105) 0%, rgba(255,255,255,.035) 16%, rgba(255,255,255,.010) 42%, rgba(0,0,0,.06) 100%), repeating-linear-gradient(90deg, rgba(255,255,255,.018) 0 1px, transparent 1px 3px); opacity: .64; }
+.cta-scarcity-bar::after { content: ''; position: absolute; left: 18px; right: 18px; top: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,232,166,.54), rgba(255,255,255,.22), rgba(255,232,166,.42), transparent); opacity: .78; pointer-events: none; }
+.csb-live-badge, .csb-live-dot { display: none; }
+.csb-divider { width: 1px; height: auto; align-self: stretch; background: linear-gradient(180deg, transparent, rgba(232,176,96,.28), rgba(255,255,255,.07), rgba(232,176,96,.20), transparent); flex-shrink: 0; }
+.csb-content { position: relative; flex: 1; padding: clamp(26px,2.3vw,36px) clamp(30px,3vw,48px); display: flex; flex-direction: column; justify-content: center; gap: 12px; min-width: 0; }
+.csb-content::before { display: none; }
+.csb-content strong { font-family: var(--fd); font-size: clamp(26px,2.55vw,39px); line-height: 1.08; font-weight: 900; color: var(--white); letter-spacing: -.045em; text-shadow: 0 10px 28px rgba(0,0,0,.35); max-width: 790px; }
+.csb-content span { font-family: var(--fb); font-size: clamp(15px,1.28vw,20px); line-height: 1.35; color: rgba(242,200,74,.92); font-weight: 800; letter-spacing: .015em; }
+.csb-pricing-block { position: relative; padding: 24px 38px; text-align: center; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 126px; background: transparent; box-shadow: inset 1px 0 0 rgba(255,255,255,.035); }
+.csb-pricing-block::before { display: none; }
+.csb-was { position: relative; z-index: 1; font-family: var(--fb); font-size: clamp(13px,1vw,16px); font-weight: 900; letter-spacing: .08em; color: rgba(245,244,240,.34); text-decoration: line-through; margin-bottom: 2px; }
+.csb-now { position: relative; z-index: 1; font-family: var(--fd); font-size: clamp(58px,4.8vw,78px); font-weight: 900; color: #D7A33E; letter-spacing: -.065em; line-height: .86; text-shadow: 0 1px 0 rgba(255,240,174,.22), 0 0 30px rgba(200,146,58,.18); }
+.csb-now-label { position: relative; z-index: 1; font-family: var(--fb); font-size: clamp(10px,.82vw,12px); font-weight: 900; letter-spacing: .18em; text-transform: uppercase; color: rgba(232,176,96,.76); margin-top: 11px; white-space: nowrap; }
 
 /* Inner grid */
 .cta-inner { position: relative; z-index: 2; max-width: 1260px; margin: 0 auto; display: grid; grid-template-columns: minmax(0,.92fr) minmax(400px,.78fr); gap: 68px; align-items: center; }
@@ -3408,11 +3412,14 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 @media (max-width: 768px) {
   #book { padding: 92px 20px 68px; }
   .cta-headline { font-size: clamp(44px,13vw,66px); }
-  .cta-scarcity-bar { flex-direction: column; align-items: flex-start; }
-  .csb-live-badge, .csb-pricing-block { border: none; width: 100%; }
-  .csb-divider { height: 1px; width: 100%; }
-  .csb-pricing-block { border-top: 1px solid rgba(200,146,58,.18); text-align: left; }
-  .csb-content { padding: 16px 24px; }
+  .cta-scarcity-bar { grid-template-columns: 1fr; }
+  .csb-content, .csb-pricing-block { width: 100%; }
+  .csb-divider { height: 1px; width: 100%; background: linear-gradient(90deg, transparent, rgba(232,176,96,.28), transparent); }
+  .csb-content { padding: 26px 24px; }
+  .csb-content strong { font-size: clamp(27px,7.4vw,38px); }
+  .csb-content span { font-size: clamp(15px,4.2vw,19px); }
+  .csb-pricing-block { padding: 24px 24px 28px; text-align: center; align-items: center; }
+  .csb-now { font-size: clamp(58px,16vw,76px); }
   .cta-actions { flex-direction: column; align-items: stretch; }
   .cta-btn { width: 100%; justify-content: center; padding: 0 22px; }
   .cta-microcopy { max-width: none; text-align: center; }
@@ -4558,18 +4565,14 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 
   <!-- Scarcity bar -->
   <div class="cta-scarcity-bar">
-    <div class="csb-live-badge">
-      <span class="csb-live-dot"></span>
-      <span>Founding Pricing Active</span>
-    </div>
-    <div class="csb-divider"></div>
     <div class="csb-content">
+      <div class="csb-title-above">Founding Pricing Active</div>
       <strong>3–6 territories per state · Some states have 1 remaining</strong>
       <span>Price increases to $250K once onboarding docs are finalized</span>
     </div>
     <div class="csb-divider"></div>
     <div class="csb-pricing-block">
-      <div class="csb-was">Was $250K</div>
+      <div class="csb-was">Soon $250K</div>
       <div class="csb-now">$100K</div>
       <div class="csb-now-label">Founding Operator Price</div>
     </div>
@@ -4578,7 +4581,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   <!-- Main grid -->
   <div class="cta-inner">
     <div>
-      <div class="cta-eyebrow"><span class="cta-eyebrow-dot"></span> Limited Territory License</div>
+      <div class="cta-eyebrow">Limited Territory License</div>
       <h2 class="cta-headline">Own Your Market<br>Before Someone<br><em>Else Does.</em></h2>
       <p class="cta-sub">The operator who moves first in a city becomes the local education authority — the reference point every competitor gets compared against. We confirm whether your market is still open, then walk through the full model before any decision is made.</p>
       <div class="cta-actions">
