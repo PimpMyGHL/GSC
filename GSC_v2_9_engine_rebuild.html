@@ -189,7 +189,7 @@ footer{flex-direction:column;align-items:flex-start;padding:40px 28px}
 .hero-scroll-indicator{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(245,244,240,0.2);font-size:10px;letter-spacing:0.2em}
 .hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollpulse 2s ease-in-out infinite}
 @keyframes scrollpulse{0%,100%{opacity:0.4}50%{opacity:1}}
-.why-now-section{padding:120px 48px;max-width:1400px;margin:0 auto}
+.why-now-section{padding:120px 48px;max-width:100%;width:100%;margin-left:auto;margin-right:auto;border-top:1px solid var(--border)}
 .why-now-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
 .why-now-headline{font-family:var(--font-display);font-weight:900;font-size:clamp(36px,4vw,56px);letter-spacing:-0.04em;line-height:0.97;color:var(--white);margin-bottom:28px}
 .why-now-fade{color:rgba(245,244,240,0.2)}
@@ -202,7 +202,7 @@ footer{flex-direction:column;align-items:flex-start;padding:40px 28px}
 .wn-num.wn-word{font-size:40px}
 .wn-label{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;position:relative;z-index:1}
 .wn-desc{font-size:13px;line-height:1.6;color:var(--white-dim);position:relative;z-index:1}
-.who-section{text-align:center}
+.who-section{text-align:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .who-headline{font-family:var(--font-display);font-weight:900;font-size:clamp(32px,4vw,56px);letter-spacing:-0.04em;line-height:0.97;color:var(--white);margin-bottom:20px}
 .who-headline em{font-style:normal;color:var(--gold)}
 .who-sub{margin:0 auto 56px}
@@ -467,7 +467,7 @@ section{padding-left:32px !important;padding-right:32px !important}
 .hero-desc{margin-left:auto !important;margin-right:auto !important}}
 @media (max-width:768px){.hero-pill-badge-centered{margin-bottom:34px !important}
 .hero-headline{font-size:clamp(34px,9vw,48px) !important}}
-.launch-timeline-section{position:relative;max-width:1400px;margin:0 auto;padding:118px 48px 124px;overflow:hidden}
+.launch-timeline-section{position:relative;max-width:100%;width:100%;margin-left:auto;margin-right:auto;padding:118px 48px 124px;overflow:hidden;border-top:1px solid var(--border)}
 .launch-timeline-section::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 42% at 50% 12%,rgba(200,146,58,0.075),transparent 68%),radial-gradient(ellipse 42% 50% at 12% 52%,rgba(200,146,58,0.04),transparent 70%);pointer-events:none}
 .launch-timeline-inner{position:relative;z-index:1}
 .launch-timeline-header{display:grid;grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr);gap:70px;align-items:end;margin-bottom:76px}
@@ -620,7 +620,7 @@ section{padding-left:32px !important;padding-right:32px !important}
 .launch-step-card>*{position:relative;z-index:2}
 .launch-step-card:hover .launch-step-title{color:#fff}
 .launch-step-card:hover .launch-step-pill{border-color:rgba(200,146,58,.45);background:rgba(200,146,58,.13);color:var(--gold-light)}
-.territory-dashboard-section{position:relative;padding-top:112px!important}
+.territory-dashboard-section{position:relative;padding-top:112px!important;border-top:1px solid var(--border)}
 .territory-dashboard-section::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 46% at 75% 18%,rgba(200,146,58,.08),transparent 64%),radial-gradient(ellipse 42% 40% at 12% 74%,rgba(200,146,58,.045),transparent 68%);pointer-events:none}
 .territory-header-row{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,430px);gap:56px;align-items:end}
 .territory-priority-card{border:1px solid var(--gold-border);background:linear-gradient(145deg,rgba(200,146,58,.11),rgba(245,244,240,.025));border-radius:12px;padding:28px 30px;box-shadow:0 24px 70px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.045);position:relative;overflow:hidden}
@@ -655,7 +655,7 @@ section{padding-left:32px !important;padding-right:32px !important}
 .trs-row p strong{color:var(--white)}
 .map-cta-card-v40{border-radius:10px!important;padding:22px!important;background:linear-gradient(145deg,rgba(200,146,58,.13),rgba(19,19,16,.96))!important;transition:border-color .4s cubic-bezier(.16,1,.3,1),box-shadow .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1)!important}
 .map-cta-card-v40:hover{border-color:rgba(200,146,58,.50)!important;transform:translateY(-2px);box-shadow:0 18px 54px rgba(0,0,0,.42),0 0 42px rgba(200,146,58,.075)!important}
-.team-authority-section{position:relative;padding-top:120px!important;overflow:hidden}
+.team-authority-section{position:relative;padding-top:120px!important;overflow:hidden;border-top:1px solid var(--border)}
 .team-authority-bg{position:absolute;inset:0;background:radial-gradient(ellipse 46% 30% at 22% 8%,rgba(200,146,58,.075),transparent 68%),radial-gradient(ellipse 52% 38% at 82% 58%,rgba(200,146,58,.055),transparent 70%);pointer-events:none}
 .team-authority-header{position:relative;display:grid;grid-template-columns:minmax(0,.95fr) minmax(420px,.74fr);gap:70px;align-items:end;margin-bottom:42px}
 .team-authority-header .section-sub{max-width:52ch}
@@ -827,7 +827,7 @@ section{padding-left:32px !important;padding-right:32px !important}
 @media (max-width:820px){.fit-signal-row,.operator-fit-main{grid-template-columns:1fr}
 .who-operator-fit-section{padding:80px 20px !important}
 .fit-category-card{min-height:auto;padding:26px 22px}}
-.calc-dashboard-section{position:relative;max-width:1400px;margin:0 auto;padding:120px 48px!important;overflow:hidden}
+.calc-dashboard-section{position:relative;max-width:100%;width:100%;margin-left:auto;margin-right:auto;padding:120px 48px!important;overflow:hidden;border-top:1px solid var(--border)}
 .calc-dashboard-bg{position:absolute;inset:0;background:radial-gradient(ellipse 50% 34% at 76% 10%,rgba(200,146,58,.08),transparent 66%),radial-gradient(ellipse 40% 44% at 12% 72%,rgba(200,146,58,.045),transparent 70%);pointer-events:none}
 .calc-dashboard-header{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,430px);gap:64px;align-items:end;margin-bottom:34px}
 .calc-dashboard-headline{font-family:var(--font-display);font-weight:900;font-size:clamp(44px,5vw,72px);letter-spacing:-.045em;line-height:.94;color:var(--white);margin-bottom:22px}
@@ -1447,7 +1447,7 @@ section{padding-left:32px !important;padding-right:32px !important}
 .hero-conversion-polish .hero-vsl-inner{min-height:210px !important;}
 .hero-conversion-polish .hero-vsl-kicker{display:none !important;}}
 :root{--black:#070707;--black2:#0d0d0d;--card:#12110f;--white:#f5f4f0;--dim:rgba(245,244,240,.66);--faint:rgba(245,244,240,.10);--gold:#C8923A;--gold2:#E8B060;--green:#22c55e;--blue:#58a6ff;--font-display:"Cabinet Grotesk",sans-serif;--font-body:"Satoshi",sans-serif}
-.ava-section{min-height:100vh;padding:95px 48px 105px;position:relative;overflow:hidden;background:radial-gradient(ellipse 70% 55% at 24% 42%,rgba(200,146,58,.11),transparent 67%),radial-gradient(ellipse 50% 45% at 86% 16%,rgba(200,146,58,.055),transparent 66%),linear-gradient(180deg,#070707,#050505)}
+.ava-section{min-height:100vh;padding:95px 48px 105px;position:relative;overflow:hidden;background:radial-gradient(ellipse 70% 55% at 24% 42%,rgba(200,146,58,.11),transparent 67%),radial-gradient(ellipse 50% 45% at 86% 16%,rgba(200,146,58,.055),transparent 66%),linear-gradient(180deg,#070707,#050505);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .ava-section:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(245,244,240,.027) 1px,transparent 1px),linear-gradient(90deg,rgba(245,244,240,.027) 1px,transparent 1px);background-size:42px 42px;mask-image:radial-gradient(ellipse at center,#000 25%,transparent 82%);pointer-events:none}
 .ava-inner{position:relative;z-index:1;max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(360px,.86fr) minmax(420px,1.14fr);gap:92px;align-items:center}
 @keyframes floatCard{0%,6%{opacity:0;transform:translate3d(0,14px,0) scale(.982)}10%,24%{opacity:1;transform:translate3d(0,0,0) scale(1)}30%,100%{opacity:0;transform:translate3d(0,-12px,0) scale(.99)}}
@@ -4996,7 +4996,7 @@ section.hero-conversion-polish.hero-new {
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* ── SECTION SHELL ── */
-.re-section{width:100%;max-width:100%;background:#070706;position:relative;overflow:hidden;padding:0 0 0}
+.re-section{width:100%;max-width:100%;background:#070706;position:relative;overflow:hidden;padding:0 0 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .re-section::before{content:"";position:absolute;inset:0;background:
   radial-gradient(ellipse 80% 60% at 50% -10%,rgba(200,146,58,.09),transparent 65%),
   radial-gradient(ellipse 40% 40% at 10% 80%,rgba(200,146,58,.04),transparent 60%);
@@ -5383,7 +5383,7 @@ section.hero-conversion-polish.hero-new {
 <style>
 
 /* v143 — Seth Brand Authority full-page integration */
-.brand-auth-section{position:relative;padding:118px 48px;overflow:hidden;background:radial-gradient(ellipse 52% 46% at 76% 16%,rgba(200,146,58,.085),transparent 66%),radial-gradient(ellipse 45% 42% at 12% 82%,rgba(200,146,58,.045),transparent 70%),#090909;max-width:100%;width:100%;margin:0 auto}
+.brand-auth-section{position:relative;padding:118px 48px;overflow:hidden;background:radial-gradient(ellipse 52% 46% at 76% 16%,rgba(200,146,58,.085),transparent 66%),radial-gradient(ellipse 45% 42% at 12% 82%,rgba(200,146,58,.045),transparent 70%),#090909;max-width:100%;width:100%;margin:0 auto;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .brand-auth-section:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(245,244,240,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(245,244,240,.014) 1px,transparent 1px);background-size:54px 54px;mask-image:radial-gradient(ellipse 72% 76% at 50% 44%,#000 0%,transparent 78%);opacity:.45;pointer-events:none}
 .brand-auth-inner{position:relative;max-width:1320px;margin:0 auto;border:1px solid rgba(200,146,58,.24);border-radius:18px;padding:34px;background:linear-gradient(145deg,rgba(245,244,240,.035),rgba(245,244,240,.012));box-shadow:0 38px 110px rgba(0,0,0,.48),inset 0 1px 0 rgba(255,255,255,.045);overflow:hidden;display:block;grid-template-columns:none;gap:0;align-items:initial}
 .brand-auth-inner:before{content:"";position:absolute;left:6%;right:6%;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(232,176,96,.72),transparent)}
@@ -6281,17 +6281,17 @@ section.hero-conversion-polish.hero-new {
 </section>
 
 <!-- PROOF -->
-<section class="proof-section proof-bridge-section" id="proof">
+<section class="proof-section" id="proof">
 <div class="proof-inner">
 <div>
 <div class="section-eyebrow proof-track-eyebrow">Track Record</div>
-<div class="proof-mega proof-mega-track"><span class="proof-money-tight"><span class="proof-dollar">$</span><span class="proof-gold-number" data-val="98" id="proof-num">98</span><span class="proof-money-m">M</span></span><br>generated<br>annually.</br></br></div>
-<p class="proof-body proof-body-track"><span class="proof-revenue-emphasis proof-revenue-emphasis-full">Our partners collectively generated <span class="proof-revenue-number">$98M+ in annual revenue last year alone</span></span> — through dinner events, the exact same model you're licensing.<br/>This isn't a startup. It's been operational since 2018 and still growing.</p>
-<div class="proof-since">Operating Since 2018</div><div class="proof-bridge-pills"><div class="proof-bridge-pill"><strong>Historical traction</strong><span>Real-world field activity behind the model.</span></div><div class="proof-bridge-pill"><strong>Built asset value</strong><span>Systems that would be expensive to assemble alone.</span></div><div class="proof-bridge-pill"><strong>Not a guarantee</strong><span>Individual results depend on market and execution.</span></div></div>
+<div class="proof-mega proof-mega-track"><span class="proof-money-tight"><span class="proof-dollar">$</span><span class="proof-gold-number" data-val="98" id="proof-num">98</span><span class="proof-money-m">M</span></span><br>generated<br>annually.</div>
+<p class="proof-body proof-body-track">Our partners collectively generated $98M+ in annual revenue last year alone — through dinner events, the exact same model you're licensing. This isn't a startup. It's been operational since 2018 and still growing.</p>
+<div class="proof-since"><span class="proof-since-dot"></span>Operating Since 2018</div>
 </div>
 <div>
 <div class="proof-stack-card">
-<div class="proof-stack-eyebrow">Platform Value If You Built It Yourself</div>
+<div class="proof-stack-eyebrow">What This Would Cost to Build Yourself</div>
 <div class="proof-stack-rows">
 <div class="proof-stack-row"><div class="psr-left"><span class="psr-label">AI Agent Development</span><span class="psr-note">Multi-channel HIPAA voice, SMS, video &amp; booking — healthcare AI: $70K–$250K</span></div><span class="psr-val">$75K+</span></div>
 <div class="proof-stack-row"><div class="psr-left"><span class="psr-label">CRM + Automation Build</span><span class="psr-note">Patient pipeline, follow-up &amp; reactivation workflows — custom: $45–100K</span></div><span class="psr-val">$45K+</span></div>
@@ -6321,10 +6321,11 @@ section.hero-conversion-polish.hero-new {
 </div>
 <div class="proof-stack-total-num">$500K+</div>
 </div>
-</div><p class="proof-disclaimer">Revenue figures are historical and illustrative. Individual operator results vary based on market, execution, attendance, pricing, follow-up, and local compliance requirements.</p>
+</div>
+<a href="#book" class="cta-btn" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;">Get It All for a Fraction <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
 </div>
 </div>
-</section><div class="mid-cta-strip mid-cta-proof"><div class="mid-cta-copy"><strong>Want to see if your market is open?</strong><span>Confirm availability first. Then review fit, territory protection, and whether the full operating model deserves a deeper look.</span></div><a class="btn-primary btn-primary-v35" href="#book">Check My Territory</a></div>
+</section>
 <!-- WHO IT'S FOR / OPERATOR FIT MATRIX -->
 <section class="who-section who-operator-fit-section" id="who">
 <div class="who-fit-bg"></div>
