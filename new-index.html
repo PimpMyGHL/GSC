@@ -3060,7 +3060,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   }
   .calc-dashboard-headline{
     font-family:var(--fd)!important;
-    font-size:clamp(62px,5.7vw,94px)!important;
+    font-size:clamp(62px,5.7vw,66px)!important;
     line-height:.96!important;
     letter-spacing:-.052em!important;
     margin-bottom:22px!important;
@@ -3085,6 +3085,16 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
     font-size:13px!important;
     line-height:1.5!important;
   }
+  /* restore key font sizes shrunk by global compact override block */
+  .calc-panel-title-row h3{font-size:34px!important;margin-top:8px!important;}
+  .calc-v5-val{font-size:18px!important;}
+  .calc-output-num{font-size:clamp(48px,5vw,76px)!important;}
+  .calc-output-card strong{font-size:clamp(24px,2.4vw,36px)!important;}
+  .calc-channel-left strong{font-size:16px!important;}
+  .calc-channel-num{font-size:24px!important;}
+  .csp-num{font-size:16px!important;}
+  .calc-stream-label-row strong{font-size:16px!important;}
+  .calc-insight-card strong{font-size:25px!important;}
 }
 
 /* ═══════════ TERRITORY MAP ═══════════ */
@@ -3302,7 +3312,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 .cta-seq-row:hover { border-color: rgba(200,146,58,.30); background: rgba(19,19,16,.95); transform: translateY(-2px); box-shadow: 0 14px 38px rgba(0,0,0,.36), 0 0 36px rgba(200,146,58,.05); }
 .cta-seq-num { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(200,146,58,.08); border: 1px solid rgba(200,146,58,.24); color: #C8923A; font-family: var(--fd); font-weight: 900; font-size: 11px; letter-spacing: .04em; align-self: center; }
 .cta-seq-row strong { display: block; font-family: var(--fd); color: var(--white); font-size: 17px; line-height: 1.1; letter-spacing: -.025em; margin-bottom: 7px; }
-.cta-seq-row p { font-family: var(--fb); margin: 0; color: rgba(245,244,240,.55); font-size: 13px; line-height: 1.58; }
+.cta-seq-row p { font-family: var(--fb); margin: 0; color: rgba(245,244,240,.55); font-size: 17px; line-height: 1.58; }
 
 /* Proof cards */
 .cta-proof-grid { position: relative; z-index: 2; max-width: 1260px; margin: 60px auto 0; display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
@@ -3311,10 +3321,10 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 .cta-proof-card:hover { border-color: rgba(200,146,58,.36); transform: translateY(-3px); box-shadow: 0 18px 46px rgba(0,0,0,.36), 0 0 36px rgba(200,146,58,.05); }
 .cta-proof-kicker { font-family: var(--fb); font-size: 9px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; color: #C8923A; margin-bottom: 12px; display: block; }
 .cta-proof-card strong { display: block; font-family: var(--fd); font-size: 20px; font-weight: 900; color: var(--white); margin-bottom: 10px; letter-spacing: -.02em; }
-.cta-proof-card span { font-family: var(--fb); font-size: 13px; line-height: 1.6; color: rgba(245,244,240,.56); }
+.cta-proof-card span { font-family: var(--fb); font-size: 16px; line-height: 1.6; color: rgba(245,244,240,.56); }
 
 /* Final note */
-.cta-final-note { position: relative; z-index: 2; max-width: 860px; margin: 32px auto 0; display: flex; align-items: center; justify-content: center; gap: 11px; text-align: center; font-family: var(--fb); color: rgba(245,244,240,.38); font-size: 13px; line-height: 1.55; }
+.cta-final-note { position: relative; z-index: 2; max-width: 860px; margin: 32px auto 0; display: flex; align-items: center; justify-content: center; gap: 11px; text-align: center; font-family: var(--fb); color: rgba(245,244,240,.38); font-size: 16px; line-height: 1.55; }
 .cta-final-note-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(200,146,58,.5); flex-shrink: 0; }
 
 @media (max-width: 1100px) {
