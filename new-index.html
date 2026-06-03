@@ -4581,6 +4581,31 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
+<!-- Hero entrance animation — page load stagger -->
+<script>
+(function(){
+  if(typeof gsap === 'undefined') return;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced) return;
+
+  var badge  = document.querySelector('.hero-badge');
+  var lines  = Array.from(document.querySelectorAll('.hero-hl-line'));
+  var sep    = document.querySelector('.hero-hl-sep');
+  var desc   = document.querySelector('.hero-desc');
+  var cta    = document.querySelector('.hero-cta');
+  var scroll = document.querySelector('.hero-scroll');
+
+  var all = [badge].concat(lines).concat([sep, desc, cta, scroll]).filter(Boolean);
+  gsap.set(all, { opacity: 0, y: 18 });
+
+  var tl = gsap.timeline({ delay: 0.15 });
+  tl.to(badge, { opacity: 1, y: 0, duration: 0.48, ease: 'power3.out' });
+  tl.to(lines, { opacity: 1, y: 0, duration: 0.52, ease: 'power3.out', stagger: 0.08 }, '-=0.2');
+  tl.to([desc, cta], { opacity: 1, y: 0, duration: 0.48, ease: 'power3.out', stagger: 0.08 }, '-=0.1');
+  tl.to(scroll, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, '-=0.1');
+})();
+</script>
+
 <!-- VSL scroll expansion — GSAP timeline + scrub, no pin -->
 <script>
 (function(){
