@@ -947,6 +947,18 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   color: rgba(245,244,240,0.78); margin-bottom: 22px;
 }
 .seth-letter-body strong { color: #fff; font-weight: 800; }
+.seth-letter-headshot {
+  display: flex;
+  justify-content: center;
+  margin: 48px auto 0;
+}
+.seth-letter-headshot img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
 .seth-letter-sig { max-width: 1040px; margin: 42px 0 0; }
 @media (max-width: 1120px) {
   .seth-section { min-height: auto; }
@@ -1149,6 +1161,393 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 }
 
 /* ══════════════════════════════
+   SECTION — HOW IT WORKS / OPERATING SEQUENCE
+══════════════════════════════ */
+#how-it-works {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #070707;
+  padding: 0 0 104px;
+  border-top: 1px solid rgba(8,7,5,0.14);
+  border-bottom: 1px solid rgba(200,146,58,0.09);
+}
+.hiw-top {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #c8922a;
+  padding: 96px clamp(24px, 5vw, 80px) 76px;
+}
+.hiw-top::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 38% at 50% 0%, rgba(242,200,74,0.30) 0%, rgba(200,146,58,0.20) 42%, transparent 72%),
+    radial-gradient(ellipse 110% 56% at 50% 100%, rgba(255,232,143,0.14) 0%, transparent 68%),
+    linear-gradient(180deg, #b9872c 0%, #d8aa41 100%);
+}
+.hiw-top::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.055;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hiw-top-inner,
+.hiw-wrap {
+  width: 100%;
+  max-width: 1260px;
+  margin: 0 auto;
+}
+.hiw-flow {
+  position: relative;
+  padding: 78px clamp(24px, 5vw, 80px) 0;
+  overflow: hidden;
+}
+.hiw-flow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.hiw-flow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.024;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hiw-flow .hiw-wrap { position: relative; z-index: 1; }
+.hiw-kicker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin: 0 auto 28px;
+  font-family: var(--fb);
+  font-size: clamp(12px, 1vw, 18px);
+  font-weight: 900;
+  letter-spacing: .30em;
+  text-transform: uppercase;
+  color: rgba(14,11,6,0.78);
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.12);
+}
+.hiw-kicker::before,
+.hiw-kicker::after {
+  content: '';
+  display: block;
+  width: min(84px, 14vw);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(20,15,8,.48));
+}
+.hiw-kicker::after { background: linear-gradient(90deg, rgba(20,15,8,.48), transparent); }
+.hiw-headline {
+  max-width: 1200px;
+  margin: 0 auto 28px;
+  text-align: center;
+  font-family: var(--fd);
+  font-size: clamp(40px, 4.8vw, 73px);
+  line-height: 1.02;
+  letter-spacing: -0.048em;
+  font-weight: 900;
+  color: #080705;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.14);
+}
+.hiw-headline span {
+  color: #080705;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+.hiw-intro {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: var(--fb);
+  font-size: clamp(17px, 1.42vw, 21px);
+  line-height: 1.76;
+  color: rgba(14,11,6,0.76);
+}
+.hiw-intro strong { color: #080705; font-weight: 900; }
+.hiw-timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.hiw-timeline::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(200,146,58,0), rgba(200,146,58,0.36) 12%, rgba(200,146,58,0.36) 88%, rgba(200,146,58,0));
+}
+.hiw-step {
+  position: relative;
+  width: calc(50% - 34px);
+  min-height: 252px;
+  border: 1px solid rgba(245,244,240,0.08);
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 0%, rgba(255,255,255,0.045), transparent 72%),
+    linear-gradient(180deg, rgba(17,17,15,0.96), rgba(10,10,9,0.94));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 24px 72px rgba(0,0,0,0.36);
+  padding: 28px 28px 26px;
+  overflow: hidden;
+  cursor: default;
+}
+.hiw-bloom {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(320px circle at var(--mx,50%) var(--my,50%), rgba(242,200,74,0.13) 0%, rgba(200,146,58,0.07) 34%, transparent 68%);
+  opacity: 0;
+  transition: opacity 220ms var(--ease-out-strong);
+}
+.hiw-step > *:not(.hiw-bloom) {
+  position: relative;
+  z-index: 1;
+}
+.hiw-step:nth-child(odd) { justify-self: start; }
+.hiw-step:nth-child(even) { justify-self: end; }
+.hiw-step::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 28px;
+  right: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(242,200,74,0.64), transparent);
+  opacity: .74;
+}
+.hiw-step::after {
+  content: '';
+  position: absolute;
+  top: 38px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #080705;
+  border: 2px solid rgba(242,200,74,0.92);
+  box-shadow: 0 0 0 7px rgba(200,146,58,0.11), 0 0 22px rgba(200,146,58,0.20);
+}
+.hiw-step:nth-child(odd)::after { right: -41px; }
+.hiw-step:nth-child(even)::after { left: -41px; }
+.hiw-num {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-family: var(--fb);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(232,176,96,.90);
+}
+.hiw-num span {
+  font-family: var(--fd);
+  font-size: 40px;
+  line-height: .82;
+  letter-spacing: -.05em;
+  background: linear-gradient(90deg, #C8923A 0%, #F2C84A 55%, #C8923A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hiw-step h3 {
+  font-family: var(--fd);
+  font-size: clamp(26px, 2.35vw, 34px);
+  line-height: 1.02;
+  letter-spacing: -0.038em;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+.hiw-step p {
+  font-family: var(--fb);
+  font-size: 15.5px;
+  line-height: 1.62;
+  color: rgba(245,244,240,0.72);
+  margin-bottom: 20px;
+}
+.hiw-step p strong { color: #fff; font-weight: 900; }
+.hiw-receive {
+  border-left: 2px solid rgba(242,200,74,.72);
+  background: rgba(242,200,74,.075);
+  border-radius: 0 12px 12px 0;
+  padding: 14px 16px 15px;
+}
+.hiw-receive-label {
+  display: block;
+  margin-bottom: 7px;
+  font-family: var(--fb);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(242,200,74,.92);
+}
+.hiw-receive-text {
+  font-family: var(--fb);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: rgba(245,244,240,.72);
+}
+.hiw-cta-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 54px;
+  text-align: center;
+}
+.hiw-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 44px;
+  border-radius: 100px;
+  background: linear-gradient(135deg, #F2C84A 0%, #C8923A 55%, #9E6B1E 100%);
+  border: none;
+  box-shadow: 0 4px 24px rgba(200,146,58,0.34), inset 0 1px 0 rgba(255,255,255,0.18);
+  color: #0a0800;
+  font-family: var(--fb);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: box-shadow 0.25s ease, transform 0.15s ease, filter 0.25s ease;
+}
+.hiw-bridge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 88px clamp(24px, 5vw, 80px) 72px;
+  background: #070707;
+}
+.hiw-bridge-line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22));
+}
+.hiw-bridge-line:last-child {
+  background: linear-gradient(90deg, rgba(255,255,255,0.22), transparent);
+}
+.hiw-bridge-text {
+  font-family: var(--fd);
+  font-size: clamp(32px, 3.8vw, 58px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.038em;
+  text-align: center;
+  white-space: nowrap;
+}
+.hiw-bridge-white { color: #ffffff; }
+.hiw-bridge-gold {
+  background: linear-gradient(90deg, #F2C84A 0%, #C8923A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+@media (max-width: 640px) {
+  .hiw-bridge-text { white-space: normal; font-size: clamp(28px, 8vw, 38px); }
+  .hiw-bridge-line { display: none; }
+}
+.hiw-cta-note {
+  max-width: 560px;
+  font-family: var(--fb);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: rgba(245,244,240,.58);
+}
+@media (hover:hover) and (pointer:fine) {
+  .hiw-step {
+    transition:
+      transform 220ms var(--ease-out-strong),
+      border-color 220ms var(--ease-out-strong),
+      box-shadow 220ms var(--ease-out-strong),
+      background 220ms var(--ease-out-strong);
+  }
+  .hiw-step:hover {
+    transform: translateY(-5px);
+    border-color: rgba(242,200,74,0.54);
+    background:
+      radial-gradient(ellipse 80% 70% at 50% 0%, rgba(242,200,74,0.08), transparent 72%),
+      linear-gradient(180deg, rgba(20,19,16,0.99), rgba(11,10,9,0.96));
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.07),
+      0 30px 86px rgba(0,0,0,0.48),
+      0 0 0 1px rgba(242,200,74,0.08),
+      0 0 54px rgba(200,146,58,0.12);
+  }
+  .hiw-step:hover::before { opacity: 1; }
+  .hiw-step:hover .hiw-bloom { opacity: 1; }
+  .hiw-step:hover .hiw-num span { filter: brightness(1.12); }
+  .hiw-step:hover h3 { color: #fff; }
+  .hiw-cta:hover { filter: brightness(1.08); box-shadow: 0 6px 36px rgba(200,146,58,0.50), inset 0 1px 0 rgba(255,255,255,0.22); transform: translateY(-2px); }
+}
+@media (max-width: 980px) {
+  #how-it-works { padding-bottom: 88px; }
+  .hiw-top { padding: 84px 20px 64px; }
+  .hiw-flow { padding: 54px 20px 0; }
+  .hiw-intro { text-align: left; }
+  .hiw-headline { text-align: left; }
+  .hiw-kicker { justify-content: flex-start; }
+  .hiw-kicker::before { display: none; }
+  .hiw-kicker::after { width: 64px; }
+  .hiw-timeline { gap: 16px; }
+  .hiw-timeline::before { left: 13px; top: 16px; bottom: 28px; transform: none; }
+  .hiw-step,
+  .hiw-step:nth-child(odd),
+  .hiw-step:nth-child(even) {
+    width: 100%;
+    justify-self: stretch;
+    min-height: auto;
+    padding: 24px 22px 24px 34px;
+    margin-left: 0;
+  }
+  .hiw-step::after,
+  .hiw-step:nth-child(odd)::after,
+  .hiw-step:nth-child(even)::after {
+    left: 7px;
+    right: auto;
+    top: 32px;
+    width: 12px;
+    height: 12px;
+  }
+}
+@media (max-width: 520px) {
+  #how-it-works { padding-bottom: 78px; }
+  .hiw-top { padding: 76px 18px 58px; }
+  .hiw-flow { padding: 46px 18px 0; }
+  .hiw-headline { font-size: clamp(34px, 9.5vw, 46px); }
+  .hiw-intro { font-size: 16px; line-height: 1.68; }
+  .hiw-step h3 { font-size: 28px; }
+  .hiw-step p { font-size: 15px; }
+  .hiw-cta { width: 100%; padding: 16px 24px; font-size: 11px; }
+}
+
+/* ══════════════════════════════
    REDUCED MOTION
 ══════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
@@ -1324,11 +1723,120 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
       runs this system in a protected market. And I want more of those operators in this network.
     </p>
 
+    <div class="seth-letter-headshot">
+      <img src="https://raw.githubusercontent.com/PimpMyGHL/GSC/main/images/seth%20bio%20photo.png" alt="Seth Berge, Founder of Got Stem Cells?" loading="lazy" decoding="async">
+    </div>
+
     <div class="seth-letter-sig">
       <span class="seth-letter-sig-name">Seth Berge</span>
       <span class="seth-letter-sig-title">Founder, Got Stem Cells?</span>
     </div>
 
+  </div>
+</section>
+
+<!-- ═══════════ SECTION: HOW IT WORKS / OPERATING SEQUENCE ═══════════ -->
+<section id="how-it-works" aria-label="How Got Stem Cells territory launch works">
+  <div class="hiw-top">
+    <div class="hiw-top-inner">
+      <div class="hiw-kicker">The Operating Sequence</div>
+      <h2 class="hiw-headline">
+        We Don't Hand You a Playbook.<br>
+        <span>We Build the Engine, Train Your Team, and Stand in the Room With You.</span>
+      </h2>
+      <p class="hiw-intro">
+        Most business opportunities hand you a login, a training portal, and a support number. This is different.
+        When you license a GOT Stem Cells territory, you are not buying information. You are plugging into a
+        <strong>complete operating system that has already generated $100M+ in annual therapy sales</strong> — then we help
+        replicate it inside your practice, step by step.
+      </p>
+    </div>
+  </div>
+
+  <div class="hiw-bridge">
+    <span class="hiw-bridge-line"></span>
+    <span class="hiw-bridge-text"><span class="hiw-bridge-white">Here's How the Launch</span> <span class="hiw-bridge-gold">Actually Works</span></span>
+    <span class="hiw-bridge-line"></span>
+  </div>
+
+  <div class="hiw-flow">
+    <div class="hiw-wrap">
+      <div class="hiw-timeline">
+        <article class="hiw-step">
+          <div class="hiw-bloom" aria-hidden="true"></div>
+          <div class="hiw-num"><span>01</span> Market Lock</div>
+          <h3>Your Market Gets Locked</h3>
+          <p>No other GSC licensee can operate inside your geographic market once your territory is confirmed.</p>
+          <div class="hiw-receive">
+            <span class="hiw-receive-label">You receive</span>
+            <div class="hiw-receive-text">Territory agreement · onboarding roadmap · access credentials</div>
+          </div>
+        </article>
+
+        <article class="hiw-step">
+          <div class="hiw-bloom" aria-hidden="true"></div>
+          <div class="hiw-num"><span>02</span> System Install</div>
+          <h3>We Install the System Inside Your Existing Practice</h3>
+          <p>No second location. No new lease. No separate buildout. The infrastructure is installed around the practice you already operate.</p>
+          <div class="hiw-receive">
+            <span class="hiw-receive-label">You receive</span>
+            <div class="hiw-receive-text">Full asset library · CRM login · Ava activation · personal GSC website</div>
+          </div>
+        </article>
+
+        <article class="hiw-step">
+          <div class="hiw-bloom" aria-hidden="true"></div>
+          <div class="hiw-num"><span>03</span> Live Training</div>
+          <h3>Your Team Gets Trained by People Who Have Actually Closed This Offer</h3>
+          <p>Live sessions with people who have run the rooms, handled the objections, and closed this exact model — not recorded content you watch alone.</p>
+          <div class="hiw-receive">
+            <span class="hiw-receive-label">You receive</span>
+            <div class="hiw-receive-text">Live training schedule · sales scripts · objection frameworks · seminar playbook</div>
+          </div>
+        </article>
+
+        <article class="hiw-step">
+          <div class="hiw-bloom" aria-hidden="true"></div>
+          <div class="hiw-num"><span>04</span> Launch Clock</div>
+          <h3>The Launch Clock Starts — Mailers Hit the Market</h3>
+          <p>Mailers take five weeks. That is not a delay. That is the launch runway. Everything is timed so training, campaigns, RSVP flow, Ava follow-up, and your first event converge together.</p>
+          <div class="hiw-receive">
+            <span class="hiw-receive-label">You receive</span>
+            <div class="hiw-receive-text">Direct mail deployment · digital campaign launch · RSVP tracking via Ava</div>
+          </div>
+        </article>
+
+        <article class="hiw-step">
+          <div class="hiw-bloom" aria-hidden="true"></div>
+          <div class="hiw-num"><span>05</span> Clinical Ready</div>
+          <h3>The Clinical Arm Is Ready Before the Room Fills</h3>
+          <p>Your NP is onboarded, protocols are aligned, and the treatment delivery framework is ready before your first seminar begins.</p>
+          <div class="hiw-receive">
+            <span class="hiw-receive-label">You receive</span>
+            <div class="hiw-receive-text">NP training completion · clinical protocol documentation · treatment delivery framework</div>
+          </div>
+        </article>
+
+        <article class="hiw-step">
+          <div class="hiw-bloom" aria-hidden="true"></div>
+          <div class="hiw-num"><span>06</span> Live Event Support</div>
+          <h3>First Live Events — We're In the Room With You</h3>
+          <p>You are not left to figure out your first event alone. You watch a <strong>$25,000–$75,000 Monday night</strong> happen in your own market, with your own patients, while our team helps guide the room, the close, and the post-event follow-up.</p>
+          <div class="hiw-receive">
+            <span class="hiw-receive-label">You receive</span>
+            <div class="hiw-receive-text">Live event support · real-time coaching · post-event debrief · close analysis</div>
+          </div>
+        </article>
+      </div>
+
+      <div class="hiw-cta-wrap">
+        <a class="hiw-cta" href="#book">
+          See If Your Territory Is Available
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <p class="hiw-cta-note">Territories are released one per market. Once confirmed, yours is locked.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1489,6 +1997,41 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
       end: 'bottom top',
       scrub: 1.5,
     }
+  });
+})();
+</script>
+
+<!-- How It Works reveal animation -->
+<script>
+(function(){
+  if(typeof gsap==='undefined') return;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  gsap.from('.hiw-kicker, .hiw-headline, .hiw-intro', {
+    scrollTrigger: { trigger: '#how-it-works', start: 'top 78%' },
+    opacity: 0, y: reduced ? 0 : 16, duration: reduced ? 0.15 : 0.5,
+    stagger: reduced ? 0 : 0.07, ease: 'power3.out', clearProps: 'transform,opacity'
+  });
+  gsap.from('.hiw-step', {
+    scrollTrigger: { trigger: '.hiw-timeline', start: 'top 78%' },
+    opacity: 0, y: reduced ? 0 : 22, duration: reduced ? 0.15 : 0.55,
+    stagger: reduced ? 0 : 0.085, ease: 'power3.out', clearProps: 'transform,opacity'
+  });
+})();
+</script>
+
+<!-- hiw-step mouse tracking for bloom effect -->
+<script>
+(function(){
+  document.querySelectorAll('.hiw-step').forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+      card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+    });
+    card.addEventListener('mouseleave', function(){
+      card.style.setProperty('--mx','50%');
+      card.style.setProperty('--my','50%');
+    });
   });
 })();
 </script>
