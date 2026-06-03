@@ -2454,6 +2454,196 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   .seth-engine-card { transition-duration: 50ms; }
 }
 
+/* ═══════════ TERRITORY MAP ═══════════ */
+#territory-map { position: relative; padding: 120px clamp(24px,5vw,80px) 110px; overflow: hidden; }
+#territory-map::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 46% at 75% 18%, rgba(200,146,58,.08), transparent 64%), radial-gradient(ellipse 42% 40% at 12% 74%, rgba(200,146,58,.045), transparent 68%); pointer-events: none; }
+.tm-inner { max-width: 1320px; margin: 0 auto; }
+.tm-header { display: grid; grid-template-columns: 1fr minmax(340px,400px); gap: 52px; align-items: end; margin-bottom: 40px; }
+.tm-header h2 { font-family: var(--fd); font-size: clamp(42px,5vw,72px); font-weight: 900; line-height: 1; letter-spacing: -.04em; color: var(--white); margin: 16px 0 16px; }
+.tm-header h2 em { font-style: normal; background: linear-gradient(90deg,#C8923A,#F2C84A 52%,#C8923A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.tm-header-sub { font-family: var(--fb); font-size: clamp(16px,1.3vw,18px); line-height: 1.65; color: rgba(245,244,240,.62); }
+.tm-priority-card { border: 1px solid rgba(200,146,58,.32); background: linear-gradient(145deg,rgba(200,146,58,.11),rgba(245,244,240,.025)); border-radius: 12px; padding: 26px 28px; box-shadow: 0 24px 70px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.04); position: relative; overflow: hidden; }
+.tm-priority-kicker { display: flex; align-items: center; gap: 9px; font-family: var(--fb); font-size: 10px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; color: #C8923A; margin-bottom: 14px; }
+.tm-priority-dot { width: 7px; height: 7px; border-radius: 50%; background: #C8923A; box-shadow: 0 0 8px rgba(200,146,58,.8); animation: pulse-gold 2s ease-in-out infinite; }
+.tm-priority-card strong { display: block; font-family: var(--fd); font-size: 22px; line-height: 1.1; letter-spacing: -.03em; color: var(--white); margin-bottom: 12px; }
+.tm-priority-card p { font-family: var(--fb); font-size: 14px; line-height: 1.65; color: rgba(245,244,240,.60); margin: 0; }
+
+.tm-control-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-bottom: 20px; }
+.tm-control-card { padding: 22px; border: 1px solid rgba(245,244,240,.07); background: linear-gradient(180deg,rgba(245,244,240,.04),rgba(245,244,240,.016)); border-radius: 8px; position: relative; overflow: hidden; isolation: isolate; transition: border-color .4s, background .4s, transform .4s, box-shadow .4s; }
+.tm-control-card::after { content: ''; position: absolute; inset: 0; background: radial-gradient(340px circle at var(--mx,50%) var(--my,50%), rgba(200,146,58,.11), transparent 66%); opacity: 0; transition: opacity .35s; pointer-events: none; }
+.tm-control-card:hover::after { opacity: 1; }
+.tm-control-card:hover { border-color: rgba(200,146,58,.38); background: rgba(19,19,16,.95); transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,.4), 0 0 38px rgba(200,146,58,.055); }
+.tm-control-num { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(200,146,58,.08); border: 1px solid rgba(200,146,58,.24); color: #C8923A; font-family: var(--fd); font-size: 11px; font-weight: 900; margin-bottom: 18px; position: relative; z-index: 1; }
+.tm-control-card strong { display: block; font-family: var(--fb); font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 8px; position: relative; z-index: 1; }
+.tm-control-card p { font-family: var(--fb); font-size: 13px; line-height: 1.6; color: rgba(245,244,240,.52); margin: 0; position: relative; z-index: 1; }
+
+.tm-shell { border: 1px solid rgba(200,146,58,.24); border-radius: 14px; background: linear-gradient(180deg,rgba(245,244,240,.032),rgba(245,244,240,.014)); box-shadow: 0 34px 100px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.04); overflow: hidden; }
+.tm-topbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 22px; border-bottom: 1px solid rgba(245,244,240,.08); background: rgba(10,10,10,.48); }
+.tm-topbar-left { display: flex; align-items: center; gap: 12px; }
+.tm-topbar-live { width: 7px; height: 7px; border-radius: 50%; background: #C8923A; box-shadow: 0 0 8px rgba(200,146,58,.8); animation: pulse-gold 2s ease-in-out infinite; flex-shrink: 0; }
+.tm-topbar-left strong { font-family: var(--fd); font-size: 17px; font-weight: 900; letter-spacing: -.02em; color: var(--white); }
+.tm-topbar-left small { font-family: var(--fb); color: rgba(245,244,240,.42); font-size: 12px; }
+.tm-topbar-right { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(200,146,58,.28); background: rgba(200,146,58,.07); border-radius: 999px; padding: 7px 13px; }
+.tm-topbar-right span { font-family: var(--fb); color: rgba(245,244,240,.52); font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.tm-topbar-right b { color: #C8923A; font-family: var(--fd); font-size: 18px; line-height: 1; }
+.tm-layout { display: grid; grid-template-columns: minmax(0,1.65fr) minmax(300px,.82fr); gap: 18px; padding: 18px; }
+.tm-map-col { }
+.tm-map-label { display: inline-flex; align-items: center; gap: 8px; font-family: var(--fb); font-size: 10px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; color: #C8923A; border: 1px solid rgba(200,146,58,.24); background: rgba(200,146,58,.07); border-radius: 999px; padding: 7px 12px; margin-bottom: 14px; }
+.tm-map-wrap { background: linear-gradient(180deg,rgba(8,8,8,.92),rgba(14,14,12,.96)); border-radius: 10px; padding: 20px; min-height: 480px; }
+#map-container { width: 100%; }
+#map-container svg { width: 100%; height: auto; display: block; }
+.map-loading { display: flex; align-items: center; justify-content: center; height: 340px; font-family: var(--fb); font-size: 13px; color: rgba(245,244,240,.36); letter-spacing: .06em; }
+.tm-map-legend { display: flex; gap: 20px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(245,244,240,.06); flex-wrap: wrap; }
+.tm-legend-item { display: flex; align-items: center; gap: 8px; font-family: var(--fb); font-size: 12px; color: rgba(245,244,240,.48); }
+.tm-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.tm-legend-dot.claimed { background: #C8923A; box-shadow: 0 0 5px rgba(200,146,58,.5); }
+.tm-legend-dot.available { background: #2a2a2a; border: 1px solid #3a3a3a; }
+.tm-legend-dot.review { background: rgba(200,146,58,.16); border: 1px dashed rgba(200,146,58,.5); }
+.tm-sidebar { display: flex; flex-direction: column; gap: 12px; }
+.tm-market-card { background: rgba(255,255,255,.03); border: 1px solid rgba(245,244,240,.07); border-radius: 8px; overflow: hidden; }
+.tm-market-head { padding: 14px 16px 12px; border-bottom: 1px solid rgba(245,244,240,.06); display: flex; align-items: center; justify-content: space-between; }
+.tm-market-title { font-family: var(--fb); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #C8923A; }
+.tm-market-count { font-family: var(--fd); font-weight: 800; font-size: 13px; color: var(--white); background: rgba(200,146,58,.08); border: 1px solid rgba(200,146,58,.22); border-radius: 3px; padding: 2px 8px; }
+.tm-market-sub { font-family: var(--fb); color: rgba(245,244,240,.35); font-size: 11px; margin-top: 2px; }
+.tm-grid-scroll { max-height: 220px; overflow-y: auto; padding: 12px; scrollbar-width: thin; scrollbar-color: rgba(200,146,58,.3) transparent; }
+.tm-grid-scroll::-webkit-scrollbar { width: 4px; }
+.tm-grid-scroll::-webkit-scrollbar-thumb { background: rgba(200,146,58,.3); border-radius: 2px; }
+.tm-t-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.t-card { background: rgba(255,255,255,.025); border: 1px solid rgba(245,244,240,.07); border-radius: 5px; padding: 10px 12px; cursor: pointer; transition: all .2s; position: relative; overflow: hidden; }
+.t-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1.5px; background: #C8923A; opacity: 0; transition: opacity .2s; }
+.t-card:hover, .t-card.active { border-color: rgba(200,146,58,.3); background: rgba(24,21,16,.9); }
+.t-card:hover::before, .t-card.active::before { opacity: 1; }
+.tc-top { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+.tc-dot { width: 6px; height: 6px; border-radius: 50%; background: #C8923A; box-shadow: 0 0 4px rgba(200,146,58,.6); animation: pulse-gold 2.4s ease-in-out infinite; }
+.tc-badge { font-family: var(--fb); font-size: 9px; font-weight: 700; letter-spacing: .10em; text-transform: uppercase; color: #C8923A; background: rgba(200,146,58,.08); border: 1px solid rgba(200,146,58,.22); border-radius: 2px; padding: 1px 5px; margin-left: auto; }
+.tc-city { font-family: var(--fd); font-weight: 700; font-size: 12px; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color .2s; }
+.t-card:hover .tc-city, .t-card.active .tc-city { color: #F2C84A; }
+.tc-state { font-family: var(--fb); font-size: 10px; color: rgba(245,244,240,.40); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tm-stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tm-stat-card { background: rgba(255,255,255,.03); border: 1px solid rgba(245,244,240,.07); border-radius: 6px; padding: 16px 18px; transition: border-color .2s; }
+.tm-stat-card:hover { border-color: rgba(200,146,58,.28); }
+.tm-stat-num { font-family: var(--fd); font-weight: 900; font-size: 30px; letter-spacing: -.04em; color: var(--white); line-height: 1; margin-bottom: 6px; }
+.tm-stat-num span { color: #C8923A; }
+.tm-stat-label { font-family: var(--fb); font-size: 10px; font-weight: 600; letter-spacing: .10em; text-transform: uppercase; color: rgba(245,244,240,.40); line-height: 1.4; }
+.tm-review-steps { display: flex; flex-direction: column; gap: 8px; }
+.tm-review-step { display: flex; gap: 12px; align-items: flex-start; border: 1px solid rgba(245,244,240,.07); background: rgba(245,244,240,.025); border-radius: 7px; padding: 13px 14px; }
+.tm-review-step-num { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(200,146,58,.08); border: 1px solid rgba(200,146,58,.24); color: #C8923A; font-family: var(--fd); font-size: 11px; font-weight: 900; flex-shrink: 0; }
+.tm-review-step p { font-family: var(--fb); margin: 0; color: rgba(245,244,240,.60); font-size: 12px; line-height: 1.5; }
+.tm-review-step p strong { color: var(--white); }
+.tm-sidebar-cta { border: 1px solid rgba(200,146,58,.28); border-radius: 10px; padding: 22px; background: linear-gradient(145deg,rgba(200,146,58,.12),rgba(19,19,16,.96)); transition: border-color .4s, transform .4s, box-shadow .4s; }
+.tm-sidebar-cta:hover { border-color: rgba(200,146,58,.48); transform: translateY(-2px); box-shadow: 0 18px 54px rgba(0,0,0,.42), 0 0 42px rgba(200,146,58,.07); }
+.tm-sidebar-cta-title { font-family: var(--fb); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #C8923A; margin-bottom: 10px; }
+.tm-sidebar-cta-body { font-family: var(--fb); font-size: 13px; color: rgba(245,244,240,.60); line-height: 1.6; margin-bottom: 16px; }
+.tm-sidebar-cta-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 13px 20px; background: linear-gradient(135deg,#C8923A,#F2C84A); color: #070605; font-family: var(--fb); font-size: 12px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; border-radius: 6px; transition: filter .2s, transform .2s; }
+.tm-sidebar-cta-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.tm-sidebar-cta-btn svg { width: 13px; height: 13px; stroke: #070605; }
+
+/* Map tooltip */
+#map-tip { position: fixed; pointer-events: none; z-index: 999; background: rgba(14,12,10,.94); border: 1px solid rgba(200,146,58,.30); border-radius: 6px; padding: 14px 18px; min-width: 210px; opacity: 0; transform: translateY(6px); transition: opacity .15s, transform .15s; backdrop-filter: blur(10px); }
+#map-tip.show { opacity: 1; transform: translateY(0); }
+.tt-city { font-family: var(--fd); font-weight: 900; font-size: 16px; color: var(--white); letter-spacing: -.02em; margin-bottom: 2px; }
+.tt-state { font-family: var(--fb); font-size: 11px; color: rgba(245,244,240,.50); margin-bottom: 10px; }
+.tt-detail { font-family: var(--fb); font-size: 12px; color: rgba(245,244,240,.62); line-height: 1.5; margin-bottom: 10px; }
+.tt-badge { display: inline-block; font-family: var(--fb); font-size: 9px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; color: #070605; background: linear-gradient(135deg,#C8923A,#F2C84A); border-radius: 3px; padding: 3px 8px; }
+
+@keyframes pulse-gold { 0%,100% { box-shadow: 0 0 8px rgba(200,146,58,.8); } 50% { box-shadow: 0 0 3px rgba(200,146,58,.3); } }
+
+@media (max-width: 1080px) {
+  .tm-header { grid-template-columns: 1fr; gap: 32px; }
+  .tm-layout { grid-template-columns: 1fr; }
+  .tm-sidebar { flex-direction: row; flex-wrap: wrap; }
+  .tm-market-card, .tm-stats-row, .tm-review-steps, .tm-sidebar-cta { flex: 1 1 280px; }
+}
+@media (max-width: 720px) {
+  #territory-map { padding: 80px 20px 80px; }
+  .tm-control-strip { grid-template-columns: 1fr; }
+  .tm-sidebar { flex-direction: column; }
+  .tm-t-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════ BOOK A CALL CTA ═══════════ */
+#book { position: relative; padding: 140px clamp(24px,5vw,80px) 100px; overflow: hidden; border-top: 1px solid rgba(200,146,58,.16); background: radial-gradient(ellipse 70% 70% at 50% 100%, rgba(200,146,58,.13), transparent 58%), radial-gradient(ellipse 55% 45% at 18% 18%, rgba(200,146,58,.055), transparent 64%), #0a0a0a; }
+#book::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(245,244,240,.020) 1px, transparent 1px), linear-gradient(90deg,rgba(245,244,240,.016) 1px,transparent 1px); background-size: 44px 44px; mask-image: radial-gradient(ellipse 70% 70% at 50% 45%, black 0%, transparent 78%); opacity: .5; pointer-events: none; }
+
+/* Scarcity bar */
+.cta-scarcity-bar { position: relative; z-index: 2; max-width: 1260px; margin: 0 auto 52px; display: flex; align-items: center; border: 1px solid rgba(200,146,58,.26); border-radius: 12px; background: linear-gradient(135deg,rgba(200,146,58,.10),rgba(245,244,240,.02)); overflow: hidden; }
+.csb-live-badge { display: flex; align-items: center; gap: 9px; padding: 18px 24px; flex-shrink: 0; border-right: 1px solid rgba(200,146,58,.18); }
+.csb-live-dot { width: 8px; height: 8px; border-radius: 50%; background: #C8923A; box-shadow: 0 0 12px rgba(200,146,58,.9); animation: pulse-gold 2s ease-in-out infinite; flex-shrink: 0; }
+.csb-live-badge span { font-family: var(--fb); font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #C8923A; white-space: nowrap; }
+.csb-divider { width: 1px; height: 40px; background: rgba(200,146,58,.18); flex-shrink: 0; }
+.csb-content { flex: 1; padding: 16px 28px; display: flex; flex-direction: column; gap: 4px; }
+.csb-content strong { font-family: var(--fd); font-size: 16px; font-weight: 800; color: var(--white); letter-spacing: -.02em; }
+.csb-content span { font-family: var(--fb); font-size: 13px; color: #C8923A; font-weight: 600; }
+.csb-pricing-block { padding: 16px 28px; text-align: right; flex-shrink: 0; border-left: 1px solid rgba(200,146,58,.18); }
+.csb-was { font-family: var(--fb); font-size: 11px; font-weight: 700; letter-spacing: .08em; color: rgba(245,244,240,.32); text-decoration: line-through; margin-bottom: 2px; }
+.csb-now { font-family: var(--fd); font-size: 30px; font-weight: 900; color: #C8923A; letter-spacing: -.045em; line-height: 1; }
+.csb-now-label { font-family: var(--fb); font-size: 10px; font-weight: 700; letter-spacing: .10em; text-transform: uppercase; color: rgba(200,146,58,.60); margin-top: 3px; }
+
+/* Inner grid */
+.cta-inner { position: relative; z-index: 2; max-width: 1260px; margin: 0 auto; display: grid; grid-template-columns: minmax(0,.92fr) minmax(400px,.78fr); gap: 68px; align-items: center; }
+.cta-eyebrow { display: flex; align-items: center; gap: 10px; font-family: var(--fb); font-size: 11px; font-weight: 900; letter-spacing: .28em; text-transform: uppercase; color: #F2C84A; margin-bottom: 24px; }
+.cta-eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: #C8923A; box-shadow: 0 0 10px rgba(200,146,58,.85); animation: pulse-gold 2s ease-in-out infinite; }
+.cta-headline { font-family: var(--fd); font-size: clamp(52px,7vw,100px); font-weight: 900; line-height: .9; letter-spacing: -.055em; color: var(--white); margin: 0 0 28px; }
+.cta-headline em { font-style: normal; background: linear-gradient(90deg,#C8923A,#F2C84A 52%,#C8923A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.cta-sub { font-family: var(--fb); font-size: clamp(16px,1.4vw,18px); line-height: 1.72; color: rgba(245,244,240,.64); margin: 0 0 38px; max-width: 58ch; }
+.cta-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.cta-btn { display: inline-flex; align-items: center; gap: 10px; padding: 0 40px; min-height: 62px; background: linear-gradient(135deg,#C8923A,#F2C84A); color: #070605; font-family: var(--fb); font-size: 13px; font-weight: 900; letter-spacing: .10em; text-transform: uppercase; text-decoration: none; border-radius: 5px; box-shadow: 0 18px 55px rgba(200,146,58,.25); transition: filter .2s, transform .2s; }
+.cta-btn:hover { filter: brightness(1.08); transform: translateY(-2px); }
+.cta-btn svg { width: 16px; height: 16px; stroke: #070605; flex-shrink: 0; }
+.cta-microcopy { font-family: var(--fb); font-size: 12px; line-height: 1.55; color: rgba(245,244,240,.40); max-width: 220px; }
+
+/* Terminal card */
+.cta-terminal { border: 1px solid rgba(200,146,58,.26); border-radius: 14px; background: radial-gradient(ellipse 70% 55% at 100% 0%, rgba(200,146,58,.12), transparent 62%), linear-gradient(180deg,rgba(20,20,18,.95),rgba(10,10,10,.96)); box-shadow: 0 36px 105px rgba(0,0,0,.52), inset 0 1px 0 rgba(255,255,255,.05); overflow: hidden; position: relative; }
+.cta-terminal::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg,transparent,rgba(200,146,58,.70),transparent); }
+.cta-terminal-top { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 17px 20px; border-bottom: 1px solid rgba(245,244,240,.07); background: rgba(0,0,0,.34); }
+.cta-terminal-dots { display: flex; gap: 7px; }
+.cta-terminal-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(200,146,58,.34); border: 1px solid rgba(200,146,58,.44); }
+.cta-terminal-label { font-family: var(--fb); font-size: 10px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; color: #C8923A; }
+.cta-sequence { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.cta-seq-row { display: grid; grid-template-columns: 42px 1fr; gap: 14px; padding: 18px; border: 1px solid rgba(245,244,240,.07); border-radius: 9px; background: rgba(245,244,240,.022); position: relative; overflow: hidden; transition: border-color .35s, background .35s, transform .35s, box-shadow .35s; }
+.cta-seq-row::before { content: ''; position: absolute; inset: 0; background: radial-gradient(320px circle at var(--mx,50%) var(--my,50%), rgba(200,146,58,.10), transparent 66%); opacity: 0; transition: opacity .35s; pointer-events: none; }
+.cta-seq-row:hover::before { opacity: 1; }
+.cta-seq-row:hover { border-color: rgba(200,146,58,.30); background: rgba(19,19,16,.95); transform: translateY(-2px); box-shadow: 0 14px 38px rgba(0,0,0,.36), 0 0 36px rgba(200,146,58,.05); }
+.cta-seq-num { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(200,146,58,.08); border: 1px solid rgba(200,146,58,.24); color: #C8923A; font-family: var(--fd); font-weight: 900; font-size: 11px; letter-spacing: .04em; align-self: center; }
+.cta-seq-row strong { display: block; font-family: var(--fd); color: var(--white); font-size: 17px; line-height: 1.1; letter-spacing: -.025em; margin-bottom: 7px; }
+.cta-seq-row p { font-family: var(--fb); margin: 0; color: rgba(245,244,240,.55); font-size: 13px; line-height: 1.58; }
+
+/* Proof cards */
+.cta-proof-grid { position: relative; z-index: 2; max-width: 1260px; margin: 60px auto 0; display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.cta-proof-card { min-height: 140px; padding: 24px 26px; border: 1px solid rgba(245,244,240,.07); border-radius: 10px; background: linear-gradient(180deg,rgba(245,244,240,.034),rgba(245,244,240,.012)); position: relative; overflow: hidden; transition: border-color .4s, transform .4s, box-shadow .4s; }
+.cta-proof-card::before { content: ''; position: absolute; left: -20%; right: -20%; top: 0; height: 1px; background: linear-gradient(90deg,transparent,rgba(200,146,58,.52),transparent); opacity: .7; }
+.cta-proof-card:hover { border-color: rgba(200,146,58,.36); transform: translateY(-3px); box-shadow: 0 18px 46px rgba(0,0,0,.36), 0 0 36px rgba(200,146,58,.05); }
+.cta-proof-kicker { font-family: var(--fb); font-size: 9px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; color: #C8923A; margin-bottom: 12px; display: block; }
+.cta-proof-card strong { display: block; font-family: var(--fd); font-size: 20px; font-weight: 900; color: var(--white); margin-bottom: 10px; letter-spacing: -.02em; }
+.cta-proof-card span { font-family: var(--fb); font-size: 13px; line-height: 1.6; color: rgba(245,244,240,.56); }
+
+/* Final note */
+.cta-final-note { position: relative; z-index: 2; max-width: 860px; margin: 32px auto 0; display: flex; align-items: center; justify-content: center; gap: 11px; text-align: center; font-family: var(--fb); color: rgba(245,244,240,.38); font-size: 13px; line-height: 1.55; }
+.cta-final-note-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(200,146,58,.5); flex-shrink: 0; }
+
+@media (max-width: 1100px) {
+  .cta-inner { grid-template-columns: 1fr; gap: 44px; }
+  .cta-headline, .cta-sub { text-align: center; }
+  .cta-eyebrow { justify-content: center; }
+  .cta-sub { margin-left: auto; margin-right: auto; }
+  .cta-actions { justify-content: center; }
+  .cta-proof-grid { grid-template-columns: 1fr; margin-top: 40px; }
+}
+@media (max-width: 768px) {
+  #book { padding: 92px 20px 68px; }
+  .cta-headline { font-size: clamp(44px,13vw,66px); }
+  .cta-scarcity-bar { flex-direction: column; align-items: flex-start; }
+  .csb-live-badge, .csb-pricing-block { border: none; width: 100%; }
+  .csb-divider { height: 1px; width: 100%; }
+  .csb-pricing-block { border-top: 1px solid rgba(200,146,58,.18); text-align: left; }
+  .csb-content { padding: 16px 24px; }
+  .cta-actions { flex-direction: column; align-items: stretch; }
+  .cta-btn { width: 100%; justify-content: center; padding: 0 22px; }
+  .cta-microcopy { max-width: none; text-align: center; }
+  .cta-seq-row { grid-template-columns: 36px 1fr; padding: 15px; }
+  .cta-seq-num { width: 36px; height: 36px; }
+}
+
 /* ═══════════ MEET AVA ═══════════ */
 #meet-ava { background: #070706; padding: 120px clamp(24px,5vw,80px) 130px; position: relative; overflow: hidden; isolation: isolate; }
 #meet-ava::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 48% 58% at 20% 42%, rgba(200,146,58,.10), transparent 66%), radial-gradient(ellipse 42% 45% at 83% 20%, rgba(200,146,58,.06), transparent 70%), linear-gradient(180deg, rgba(245,244,240,.012), transparent 28%, rgba(245,244,240,.01)); pointer-events: none; z-index: -2; }
@@ -3008,7 +3198,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
       </div>
     </div>
 
-    <div class="proof-stack-cta" id="book">
+    <div class="proof-stack-cta">
       <h3>Check Territory Availability</h3>
       <p>Takes 15 minutes. No obligation. We simply confirm whether your preferred market is still open and whether the model fits your situation.</p>
       <a class="proof-stack-button" href="#hero">
@@ -3202,6 +3392,126 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   </div>
 </section>
 
+<!-- ═══════════ SECTION: TERRITORY MAP ═══════════ -->
+<section id="territory-map" aria-label="Available territories">
+  <div class="tm-inner">
+
+    <!-- Header row -->
+    <div class="tm-header">
+      <div>
+        <div class="section-eyebrow">Available Territories</div>
+        <h2>Your market.<br><em>Protected.</em></h2>
+        <p class="tm-header-sub">A defined territory is one of the biggest strategic advantages in this model. Claimed markets are already spoken for — available markets are reviewed one operator at a time so each approved licensee has a clear local lane.</p>
+      </div>
+      <div class="tm-priority-card">
+        <div class="tm-priority-kicker"><span class="tm-priority-dot"></span> Territory Review</div>
+        <strong>First, we confirm whether your preferred market is still open.</strong>
+        <p>Then we review operator fit, protected-area logic, local event strategy, and whether the full platform deserves a deeper business conversation.</p>
+      </div>
+    </div>
+
+    <!-- Control strip -->
+    <div class="tm-control-strip">
+      <div class="tm-control-card">
+        <div class="tm-control-num">01</div>
+        <strong>Market Status</strong>
+        <p>See active regions and quickly identify where protected operators are already established.</p>
+      </div>
+      <div class="tm-control-card">
+        <div class="tm-control-num">02</div>
+        <strong>Protected Lane</strong>
+        <p>Approved operators receive a defined market area designed to prevent internal channel conflict.</p>
+      </div>
+      <div class="tm-control-card">
+        <div class="tm-control-num">03</div>
+        <strong>Local First-Mover</strong>
+        <p>The goal is to claim the education position before another operator owns the category locally.</p>
+      </div>
+    </div>
+
+    <!-- Dashboard shell -->
+    <div class="tm-shell">
+      <div class="tm-topbar">
+        <div class="tm-topbar-left">
+          <span class="tm-topbar-live"></span>
+          <strong>Territory Control Dashboard</strong>
+          <small>Hover markets to review status</small>
+        </div>
+        <div class="tm-topbar-right">
+          <span>Claimed</span>
+          <b id="map-active-num-top">—</b>
+        </div>
+      </div>
+
+      <div class="tm-layout">
+        <!-- Map column -->
+        <div class="tm-map-col">
+          <div class="tm-map-label">Protected territory map</div>
+          <div class="tm-map-wrap">
+            <div id="map-container"><div class="map-loading">Loading map…</div></div>
+          </div>
+          <div class="tm-map-legend">
+            <div class="tm-legend-item"><div class="tm-legend-dot claimed"></div>Claimed Territory</div>
+            <div class="tm-legend-item"><div class="tm-legend-dot available"></div>Available Market</div>
+            <div class="tm-legend-item"><div class="tm-legend-dot review"></div>Review Required</div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="tm-sidebar">
+          <div class="tm-market-card">
+            <div class="tm-market-head">
+              <div>
+                <div class="tm-market-title">Currently Active Markets</div>
+                <div class="tm-market-sub" id="tm-count-label">Sample claimed regions</div>
+              </div>
+              <div class="tm-market-count" id="t-count">0</div>
+            </div>
+            <div class="tm-grid-scroll">
+              <div class="tm-t-grid" id="t-grid"></div>
+            </div>
+          </div>
+
+          <div class="tm-stats-row">
+            <div class="tm-stat-card">
+              <div class="tm-stat-num" id="map-active-num">—</div>
+              <div class="tm-stat-label">Active Markets</div>
+            </div>
+            <div class="tm-stat-card">
+              <div class="tm-stat-num"><span id="map-states-num">—</span></div>
+              <div class="tm-stat-label">States Represented</div>
+            </div>
+          </div>
+
+          <div class="tm-review-steps">
+            <div class="tm-review-step"><span class="tm-review-step-num">1</span><p><strong>Confirm city.</strong> Tell us the market you want reviewed.</p></div>
+            <div class="tm-review-step"><span class="tm-review-step-num">2</span><p><strong>Check protection.</strong> We review claimed areas, overlap, and territory fit.</p></div>
+            <div class="tm-review-step"><span class="tm-review-step-num">3</span><p><strong>Review model.</strong> If available, we walk through the launch path and numbers.</p></div>
+          </div>
+
+          <div class="tm-sidebar-cta">
+            <div class="tm-sidebar-cta-title">Request Market Review</div>
+            <p class="tm-sidebar-cta-body">Confirm whether your preferred market is still open, then review the protected area and see whether the model deserves a deeper look.</p>
+            <a class="tm-sidebar-cta-btn" href="#book">
+              Check My Territory
+              <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Map tooltip -->
+<div id="map-tip">
+  <div class="tt-city" id="map-tt-city"></div>
+  <div class="tt-state" id="map-tt-state"></div>
+  <div class="tt-detail" id="map-tt-detail"></div>
+  <span class="tt-badge">Territory Claimed</span>
+</div>
+
 <!-- ═══════════ SECTION: FAQ ═══════════ -->
 <section id="faq" aria-label="Frequently asked questions">
   <div class="faq-wrap">
@@ -3317,6 +3627,96 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
     </a>
     <span class="close-note">One approved operator per protected market. No cold outreach. No pressure.</span>
   </div>
+</section>
+
+<!-- ═══════════ SECTION: BOOK A CALL CTA ═══════════ -->
+<section id="book" aria-label="Book your territory call">
+
+  <!-- Scarcity bar -->
+  <div class="cta-scarcity-bar">
+    <div class="csb-live-badge">
+      <span class="csb-live-dot"></span>
+      <span>Founding Pricing Active</span>
+    </div>
+    <div class="csb-divider"></div>
+    <div class="csb-content">
+      <strong>3–6 territories per state · Some states have 1 remaining</strong>
+      <span>Price increases to $250K once onboarding docs are finalized</span>
+    </div>
+    <div class="csb-divider"></div>
+    <div class="csb-pricing-block">
+      <div class="csb-was">Was $250K</div>
+      <div class="csb-now">$100K</div>
+      <div class="csb-now-label">Founding Operator Price</div>
+    </div>
+  </div>
+
+  <!-- Main grid -->
+  <div class="cta-inner">
+    <div>
+      <div class="cta-eyebrow"><span class="cta-eyebrow-dot"></span> Limited Territory License</div>
+      <h2 class="cta-headline">Own Your Market<br>Before Someone<br><em>Else Does.</em></h2>
+      <p class="cta-sub">The operator who moves first in a city becomes the local education authority — the reference point every competitor gets compared against. We confirm whether your market is still open, then walk through the full model before any decision is made.</p>
+      <div class="cta-actions">
+        <a class="cta-btn" href="https://calendly.com/gotstemcells" target="_blank" rel="noopener">
+          Book Your Territory Call
+          <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <p class="cta-microcopy">One operator per protected market. Founding price: $100K. No pressure.</p>
+      </div>
+    </div>
+
+    <!-- Terminal card -->
+    <div class="cta-terminal">
+      <div class="cta-terminal-top">
+        <div class="cta-terminal-dots"><span></span><span></span><span></span></div>
+        <div class="cta-terminal-label">Territory Review Sequence</div>
+      </div>
+      <div class="cta-sequence">
+        <div class="cta-seq-row">
+          <div class="cta-seq-num">01</div>
+          <div><strong>Confirm Market Availability</strong><p>We check whether your preferred city or region is still open for a protected license.</p></div>
+        </div>
+        <div class="cta-seq-row">
+          <div class="cta-seq-num">02</div>
+          <div><strong>Review Operator Fit</strong><p>We look at market goals, capital, involvement level, and whether this model is realistic for you.</p></div>
+        </div>
+        <div class="cta-seq-row">
+          <div class="cta-seq-num">03</div>
+          <div><strong>Walk Through the Platform</strong><p>See the dinner seminar engine, Ava AI, CRM, support, training, and launch path.</p></div>
+        </div>
+        <div class="cta-seq-row">
+          <div class="cta-seq-num">04</div>
+          <div><strong>Decide If It Deserves a Deeper Look</strong><p>If the market and model make sense, we discuss next steps. If not, you walk away clear.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Proof cards -->
+  <div class="cta-proof-grid">
+    <div class="cta-proof-card">
+      <span class="cta-proof-kicker">License Advantage</span>
+      <strong>Protected territory</strong>
+      <span>Market exclusivity gives the operator a defined local lane before competitors crowd the category.</span>
+    </div>
+    <div class="cta-proof-card">
+      <span class="cta-proof-kicker">Operating System</span>
+      <strong>Platform included</strong>
+      <span>Website, CRM, Ava AI, seminars, education assets, reporting, training, and launch support.</span>
+    </div>
+    <div class="cta-proof-card">
+      <span class="cta-proof-kicker">Margin Structure</span>
+      <strong>No royalty drag</strong>
+      <span>License model instead of franchise royalties, giving operators more control over long-term upside.</span>
+    </div>
+  </div>
+
+  <div class="cta-final-note">
+    <span class="cta-final-note-dot"></span>
+    Territories are reviewed one at a time. Once approved and claimed, that market is protected — permanently off the table for any other operator. Founding Operator Pricing ends when onboarding documentation is finalized.
+  </div>
+
 </section>
 
 <!-- ═══════════ SCRIPTS ═══════════ -->
@@ -3633,5 +4033,124 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 })();
 </script>
 
+<!-- D3 + TopoJSON for territory map -->
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script>
+(function() {
+  const TERRITORIES = [
+    { city:"Newark / NYC Metro", state:"New Jersey",  abbr:"NJ", code:"34", lat:40.74, lon:-74.18, detail:"Newark and the greater NYC metro corridor" },
+    { city:"Minneapolis",        state:"Minnesota",   abbr:"MN", code:"27", lat:44.98, lon:-93.27, detail:"Twin Cities — Minneapolis & St. Paul" },
+    { city:"Dallas",             state:"Texas",       abbr:"TX", code:"48", lat:32.78, lon:-96.80, detail:"DFW Metroplex — Dallas / Fort Worth" },
+    { city:"Houston",            state:"Texas",       abbr:"TX", code:"48", lat:29.76, lon:-95.37, detail:"Greater Houston metropolitan area" },
+    { city:"San Antonio",        state:"Texas",       abbr:"TX", code:"48", lat:29.42, lon:-98.49, detail:"San Antonio and South Texas corridor" },
+    { city:"Austin",             state:"Texas",       abbr:"TX", code:"48", lat:30.27, lon:-97.74, detail:"Austin metro — Central Texas" },
+    { city:"Miami",              state:"Florida",     abbr:"FL", code:"12", lat:25.77, lon:-80.19, detail:"South Florida — Miami / Ft. Lauderdale" },
+    { city:"Orlando",            state:"Florida",     abbr:"FL", code:"12", lat:28.54, lon:-81.38, detail:"Central Florida — Orlando / I-4 corridor" },
+    { city:"Tampa",              state:"Florida",     abbr:"FL", code:"12", lat:27.95, lon:-82.46, detail:"Tampa Bay — Tampa / St. Petersburg" },
+    { city:"Los Angeles",        state:"California",  abbr:"CA", code:"06", lat:34.05, lon:-118.24, detail:"Greater LA — Los Angeles / Orange County" },
+    { city:"San Diego",          state:"California",  abbr:"CA", code:"06", lat:32.72, lon:-117.16, detail:"San Diego metro and South Bay" },
+    { city:"San Francisco",      state:"California",  abbr:"CA", code:"06", lat:37.77, lon:-122.42, detail:"Bay Area — SF / Silicon Valley" },
+  ];
+
+  // Populate sidebar stats
+  document.getElementById('t-count').textContent = TERRITORIES.length;
+  document.getElementById('map-active-num').textContent = TERRITORIES.length;
+  const topNum = document.getElementById('map-active-num-top');
+  if (topNum) topNum.textContent = TERRITORIES.length;
+  document.getElementById('map-states-num').textContent = new Set(TERRITORIES.map(t => t.state)).size;
+
+  // Build territory grid cards
+  const grid = document.getElementById('t-grid');
+  TERRITORIES.forEach((t, i) => {
+    const card = document.createElement('div');
+    card.className = 't-card';
+    card.innerHTML = `<div class="tc-top"><div class="tc-dot" style="animation-delay:${i*0.18}s"></div><div class="tc-badge">${t.abbr}</div></div><div class="tc-city">${t.city}</div><div class="tc-state">${t.state}</div>`;
+    card.addEventListener('mouseenter', () => { activatePin(i, true); card.classList.add('active'); });
+    card.addEventListener('mouseleave', () => { activatePin(i, false); card.classList.remove('active'); });
+    grid.appendChild(card);
+  });
+
+  // Tooltip
+  const tip = document.getElementById('map-tip');
+  function showTip(e, t) {
+    document.getElementById('map-tt-city').textContent = t.city;
+    document.getElementById('map-tt-state').textContent = t.state;
+    document.getElementById('map-tt-detail').textContent = t.detail;
+    tip.classList.add('show'); moveTip(e);
+  }
+  function moveTip(e) {
+    const x = e.clientX + 16, y = e.clientY - 10;
+    tip.style.left = (x + tip.offsetWidth > window.innerWidth ? e.clientX - tip.offsetWidth - 10 : x) + 'px';
+    tip.style.top  = (y + tip.offsetHeight > window.innerHeight ? e.clientY - tip.offsetHeight - 10 : y) + 'px';
+  }
+  function hideTip() { tip.classList.remove('show'); }
+
+  // D3 map
+  const W = 960, H = 580;
+  const svg = d3.select('#map-container').html('')
+    .append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('preserveAspectRatio', 'xMidYMid meet');
+  const proj = d3.geoAlbersUsa().scale(1280).translate([W/2, H/2]);
+  const path = d3.geoPath().projection(proj);
+  let pinNodes = [];
+
+  function activatePin(i, on) {
+    if (!pinNodes[i]) return;
+    d3.select(pinNodes[i]).select('circle')
+      .attr('r', on ? 9 : 6)
+      .attr('fill', on ? '#F2C84A' : '#C8923A')
+      .attr('filter', on ? 'url(#pin-glow)' : null);
+  }
+
+  fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
+    .then(r => r.json())
+    .then(us => {
+      const defs = svg.append('defs');
+      const glow = defs.append('filter').attr('id', 'pin-glow');
+      glow.append('feGaussianBlur').attr('stdDeviation', '3').attr('result', 'blur');
+      const merge = glow.append('feMerge');
+      merge.append('feMergeNode').attr('in', 'blur');
+      merge.append('feMergeNode').attr('in', 'SourceGraphic');
+
+      svg.append('g').selectAll('path')
+        .data(topojson.feature(us, us.objects.states).features)
+        .join('path')
+        .attr('d', path)
+        .attr('fill', d => new Set(TERRITORIES.map(t => t.code)).has(d.id) ? 'rgba(200,146,58,0.12)' : 'rgba(245,244,240,0.03)')
+        .attr('stroke', 'rgba(245,244,240,0.08)')
+        .attr('stroke-width', 0.5);
+
+      const pinsG = svg.append('g');
+      TERRITORIES.forEach((t, i) => {
+        const p = proj([t.lon, t.lat]);
+        if (!p) return;
+        const g = pinsG.append('g').attr('transform', `translate(${p[0]},${p[1]})`).style('cursor', 'pointer');
+        g.append('circle').attr('r', 16).attr('fill', 'rgba(200,146,58,0.08)').attr('stroke', 'rgba(200,146,58,0.2)').attr('stroke-width', 1);
+        g.append('circle').attr('r', 6).attr('fill', '#C8923A').attr('stroke', '#070605').attr('stroke-width', 1.5).style('filter', 'drop-shadow(0 0 4px rgba(200,146,58,0.7))');
+        g.on('mouseenter', e => { activatePin(i, true); showTip(e, t); document.querySelectorAll('.t-card')[i]?.classList.add('active'); })
+         .on('mousemove', moveTip)
+         .on('mouseleave', () => { activatePin(i, false); hideTip(); document.querySelectorAll('.t-card')[i]?.classList.remove('active'); });
+        pinNodes[i] = g.node();
+      });
+
+      // Remove loading text
+      const loading = document.querySelector('.map-loading');
+      if (loading) loading.remove();
+    })
+    .catch(() => {
+      const c = document.getElementById('map-container');
+      if (c) c.innerHTML = '<div class="map-loading">Map unavailable — check territory availability below.</div>';
+    });
+
+  // Track mouse for control card bloom effect
+  document.querySelectorAll('.tm-control-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+})();
+</script>
 </body>
 </html>
