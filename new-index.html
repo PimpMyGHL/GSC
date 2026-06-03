@@ -4219,6 +4219,18 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   gsap.from('.wn-card',{ scrollTrigger:{trigger:'.why-now-grid',start:'top 82%'}, opacity:0, y: reducedMotion ? 0 : 20, duration: reducedMotion ? 0.15 : 0.5, stagger: reducedMotion ? 0 : 0.06, ease:'power3.out', clearProps:'transform,opacity' });
   gsap.from('.why-now-left > *',{ scrollTrigger:{trigger:'.why-now-left',start:'top 80%'}, opacity:0, y: reducedMotion ? 0 : 16, duration: reducedMotion ? 0.15 : 0.45, stagger: reducedMotion ? 0 : 0.07, ease:'power3.out', clearProps:'transform,opacity' });
+
+  /* ── Meet Ava ── */
+  gsap.from('#meet-ava .section-eyebrow, .ava-headline, .ava-intro',{ scrollTrigger:{trigger:'#meet-ava',start:'top 78%'}, opacity:0, y: reducedMotion ? 0 : 14, duration: reducedMotion ? 0.15 : 0.52, stagger: reducedMotion ? 0 : 0.08, ease:'power3.out', clearProps:'transform,opacity' });
+
+  /* ── Revenue Calculator ── */
+  gsap.from('#calculator .section-eyebrow, .calc-dashboard-headline, .calc-dashboard-sub',{ scrollTrigger:{trigger:'#calculator',start:'top 78%'}, opacity:0, y: reducedMotion ? 0 : 14, duration: reducedMotion ? 0.15 : 0.52, stagger: reducedMotion ? 0 : 0.08, ease:'power3.out', clearProps:'transform,opacity' });
+
+  /* ── Territory Map header ── */
+  gsap.from('#territory-map .section-eyebrow, .tm-header h2, .tm-header-sub',{ scrollTrigger:{trigger:'#territory-map',start:'top 78%'}, opacity:0, y: reducedMotion ? 0 : 14, duration: reducedMotion ? 0.15 : 0.52, stagger: reducedMotion ? 0 : 0.08, ease:'power3.out', clearProps:'transform,opacity' });
+
+  /* ── Partner Proof ── */
+  gsap.from('.pp-kicker, .pp-title, .pp-copy',{ scrollTrigger:{trigger:'.partner-proof',start:'top 78%'}, opacity:0, y: reducedMotion ? 0 : 14, duration: reducedMotion ? 0.15 : 0.52, stagger: reducedMotion ? 0 : 0.08, ease:'power3.out', clearProps:'transform,opacity' });
 })();
 </script>
 
