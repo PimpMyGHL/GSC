@@ -2098,6 +2098,8 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 @media (max-width: 640px) {
   .hiw-bridge-text { white-space: normal; font-size: clamp(28px, 8vw, 38px); }
   .hiw-bridge-line { display: none; }
+  .hiw-bridge { padding: 52px 18px 36px; }
+  .hiw-flow { padding: 20px 18px 0; }
 }
 .hiw-cta-note {
   max-width: 560px;
@@ -2175,6 +2177,165 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 @media (max-width: 980px) and (min-width: 521px) {
   .hiw-top { padding: 68px 20px 52px; }
   .hiw-headline { font-size: clamp(32px, 5.5vw, 48px); }
+}
+
+/* ══════════════════════════════
+   SECTION — FAQ
+══════════════════════════════ */
+#faq {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #070707;
+  padding: 112px clamp(24px, 5vw, 80px) 120px;
+  border-top: 1px solid rgba(200,146,58,0.09);
+}
+#faq::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 44% at 50% 0%, rgba(200,146,58,0.10) 0%, transparent 72%),
+    radial-gradient(ellipse 44% 52% at 2% 60%, rgba(200,146,58,0.048) 0%, transparent 70%);
+}
+.faq-wrap { width: 100%; max-width: 1260px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, .38fr) minmax(0, .62fr); gap: clamp(48px, 6vw, 96px); align-items: start; }
+.faq-left { position: sticky; top: 96px; }
+.faq-kicker { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; font-family: var(--fb); font-size: 11px; font-weight: 900; letter-spacing: .28em; text-transform: uppercase; color: rgba(200,146,58,.88); }
+.faq-kicker::before { content: ''; width: 32px; height: 1px; background: rgba(200,146,58,.60); }
+.faq-headline { font-family: var(--fd); font-size: clamp(42px, 4.6vw, 72px); line-height: .97; letter-spacing: -0.05em; font-weight: 900; color: var(--white); margin-bottom: 22px; }
+.faq-headline span { display: block; background: linear-gradient(90deg, #C8923A 0%, #F2C84A 52%, #C8923A 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.faq-sub { font-family: var(--fb); font-size: clamp(16px, 1.3vw, 19px); line-height: 1.68; color: rgba(245,244,240,.62); margin-bottom: 36px; }
+.faq-cta-inline { display: inline-flex; align-items: center; gap: 10px; padding: 15px 32px; border-radius: 100px; background: linear-gradient(135deg, #F2C84A 0%, #C8923A 55%, #9E6B1E 100%); color: #0a0800; font-family: var(--fb); font-size: 11px; font-weight: 900; letter-spacing: .10em; text-transform: uppercase; text-decoration: none; box-shadow: 0 4px 20px rgba(200,146,58,.30); transition: filter .22s ease, transform .15s ease, box-shadow .22s ease; }
+.faq-list { display: flex; flex-direction: column; gap: 0; }
+.faq-item { border-bottom: 1px solid rgba(245,244,240,.07); }
+.faq-item:first-child { border-top: 1px solid rgba(245,244,240,.07); }
+.faq-q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 26px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+.faq-q-text { font-family: var(--fd); font-size: clamp(20px, 1.8vw, 26px); line-height: 1.12; letter-spacing: -0.028em; font-weight: 700; color: var(--white); transition: color 200ms ease; }
+.faq-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(200,146,58,.38);
+  background: rgba(200,146,58,.07);
+  color: rgba(242,200,74,.90);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 220ms ease, border-color 220ms ease, transform 300ms cubic-bezier(0.23,1,0.32,1);
+}
+.faq-icon svg { display: block; transition: transform 300ms cubic-bezier(0.23,1,0.32,1); }
+.faq-item.is-open .faq-icon { background: rgba(200,146,58,.16); border-color: rgba(242,200,74,.62); }
+.faq-item.is-open .faq-icon svg { transform: rotate(45deg); }
+.faq-item.is-open .faq-q-text { color: rgba(242,200,74,.96); }
+.faq-a {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 420ms cubic-bezier(0.23,1,0.32,1);
+}
+.faq-a-inner { padding: 0 0 26px; font-family: var(--fb); font-size: clamp(16px, 1.25vw, 18.5px); line-height: 1.72; color: rgba(245,244,240,.72); }
+.faq-a-inner strong { color: #fff; font-weight: 700; }
+@media (hover:hover) and (pointer:fine) {
+  .faq-q:hover .faq-q-text { color: rgba(242,200,74,.80); }
+  .faq-q:hover .faq-icon { border-color: rgba(242,200,74,.52); background: rgba(200,146,58,.12); }
+  .faq-cta-inline:hover { filter: brightness(1.08); transform: translateY(-2px); box-shadow: 0 6px 32px rgba(200,146,58,.48); }
+}
+@media (max-width: 980px) {
+  .faq-wrap { grid-template-columns: 1fr; gap: 48px; }
+  .faq-left { position: static; }
+  .faq-headline { font-size: clamp(38px, 8vw, 56px); }
+}
+@media (max-width: 520px) {
+  #faq { padding: 88px 18px 96px; }
+  .faq-q { padding: 22px 0; }
+  .faq-q-text { font-size: 19px; }
+  .faq-icon { width: 32px; height: 32px; }
+}
+
+/* ══════════════════════════════
+   SECTION — THE CLOSE
+══════════════════════════════ */
+#the-close {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #070707;
+  padding: 0;
+  border-top: 1px solid rgba(200,146,58,0.12);
+}
+.close-inner {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse 80% 52% at 50% 0%, rgba(255,236,158,0.28) 0%, rgba(242,200,74,0.14) 40%, transparent 74%),
+    radial-gradient(ellipse 90% 60% at 50% 100%, rgba(42,25,6,0.50) 0%, transparent 72%),
+    linear-gradient(180deg, #c49332 0%, #d4a93e 42%, #9b7022 100%);
+  padding: 108px clamp(24px, 5vw, 80px) 116px;
+  text-align: center;
+}
+.close-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.close-inner > * { position: relative; z-index: 1; }
+.close-kicker { display: inline-flex; align-items: center; gap: 16px; margin-bottom: 28px; font-family: var(--fb); font-size: 11px; font-weight: 900; letter-spacing: .28em; text-transform: uppercase; color: rgba(8,7,5,.70); }
+.close-kicker::before, .close-kicker::after { content: ''; display: block; width: 40px; height: 1px; background: rgba(8,7,5,.36); }
+.close-headline { max-width: 1060px; margin: 0 auto 28px; font-family: var(--fd); font-size: clamp(44px, 5.5vw, 88px); line-height: .97; letter-spacing: -0.054em; font-weight: 900; color: #080705; text-shadow: 0 1px 0 rgba(255,255,255,.14); }
+.close-headline em { font-style: normal; color: #fff; text-shadow: 0 2px 24px rgba(0,0,0,.28); }
+.close-body { max-width: 760px; margin: 0 auto 44px; font-family: var(--fb); font-size: clamp(18px, 1.5vw, 22px); line-height: 1.68; color: rgba(8,7,5,.76); font-weight: 500; }
+.close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px 56px;
+  border-radius: 100px;
+  background: #080705;
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 6px 32px rgba(0,0,0,.36), inset 0 1px 0 rgba(255,255,255,.08);
+  color: var(--gold-light);
+  font-family: var(--fb);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: box-shadow .25s ease, transform .15s ease, filter .25s ease;
+  margin-bottom: 18px;
+}
+.close-note { display: block; font-family: var(--fb); font-size: 14px; color: rgba(8,7,5,.58); }
+@media (hover:hover) and (pointer:fine) {
+  .close-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 48px rgba(0,0,0,.48), inset 0 1px 0 rgba(255,255,255,.12); filter: brightness(1.06); }
+  .close-btn:active { transform: scale(0.97); transition-duration: 80ms; }
+}
+@media (max-width: 768px) {
+  .close-inner { padding: 88px 20px 96px; }
+  .close-headline { font-size: clamp(38px, 10vw, 58px); }
+  .close-body { font-size: 17px; }
+  .close-btn { width: 100%; padding: 18px 28px; }
+}
+@media (max-width: 480px) {
+  .close-inner { padding: 76px 18px 84px; }
+  .close-headline { font-size: clamp(34px, 10vw, 48px); }
 }
 
 /* ══════════════════════════════
@@ -2768,6 +2929,123 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   </div>
 </section>
 
+<!-- ═══════════ SECTION: FAQ ═══════════ -->
+<section id="faq" aria-label="Frequently asked questions">
+  <div class="faq-wrap">
+    <div class="faq-left">
+      <div class="faq-kicker">Common Questions</div>
+      <h2 class="faq-headline">Questions<br><span>We Hear Most.</span></h2>
+      <p class="faq-sub">If something isn't clear, it usually means we haven't answered it yet. These are the questions we get before almost every territory call.</p>
+      <a class="faq-cta-inline" href="#book">
+        Ask Us Directly
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="faq-list" role="list">
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">Is this legal? I've seen other stem cell operations get shut down.</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">The operations that have faced regulatory action were largely unlicensed, making unsubstantiated medical claims and running without proper physician oversight. The GSC model is structured differently. <strong>Every territory operates under Dr. Sean Arora's medical direction.</strong> Treatments are performed by licensed Nurse Practitioners under physician supervision. The seminar model is education-first — we present clinical information and let patients make informed decisions. The MSO (Management Services Organization) structure we operate under is a well-established legal framework used throughout healthcare.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">Do I need to open a separate location or facility?</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner"><strong>No second location. No new lease. No separate buildout.</strong> The GSC model runs as an extension of your existing practice. Seminar events are typically held at a local venue. Treatments are delivered in your clinic or in the patient's home — whichever makes sense for your market. You are adding a revenue stream to the infrastructure you already have, not building a parallel business from scratch.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">How much time does this actually require from me?</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">The core commitment is <strong>two seminar events per month</strong> — typically a Monday and Tuesday evening. Your NP handles treatment delivery. Ava handles patient follow-up and pipeline communication. The GSC team handles marketing assets, CRM, and campaign execution. Your primary role is showing up for the events and owning the patient relationship in your market. Most operators describe it as a few hours a week once the system is running.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">What if regenerative medicine is already in my market?</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">Most markets have clinics offering pieces of the category — but very few have a clear, <strong>education-first, seminar-based operator</strong> who owns the patient trust conversation before the procedure. Competition on product or price is a different battle. GSC operators compete on education and credibility. The practitioner who teaches the market first becomes the reference point patients measure everyone else against. That position is still available in most markets.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">What does it cost to license a territory?</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">Territory investment is discussed during the availability call — it varies based on market size and current availability. What we can say is that operators running two events per month are generating <strong>$900K–$1.5M in annual revenue</strong>. The territory call is 15 minutes and designed to confirm whether your market is open and whether the numbers make sense for your situation before any investment conversation happens.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">I don't have a Nurse Practitioner. Is that a problem?</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">Not a problem. <strong>GSC helps you source and vet a qualified NP for your market</strong> if you don't already have one. NP training and clinical onboarding is included in the territory package — your provider is trained to specialize in regenerative medicine protocols before your first seminar room fills. Many operators started without any existing clinical staff and had their NP ready before their first event.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">How quickly can I expect results?</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">Most licensees are running their <strong>first live seminar event within 60 days</strong> of signing. The full onboarding window is 90 days. Revenue is generated at events — a single well-run seminar night typically produces $25,000–$75,000. Your first event happens with GSC's team in the room with you. By event three you are operating independently and know exactly how the system performs in your specific market.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION: THE CLOSE ═══════════ -->
+<section id="the-close" aria-label="Final call to action">
+  <div class="close-inner">
+    <div class="close-kicker">One Question Left</div>
+    <h2 class="close-headline">Is Your Market<br><em>Still Available?</em></h2>
+    <p class="close-body">Territories are released one per market. Some are already locked. The only way to know if yours is open is to check — and the check takes 15 minutes, costs nothing, and comes with zero obligation.</p>
+    <a class="close-btn" href="#book">
+      Check My Territory Now
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <span class="close-note">One approved operator per protected market. No cold outreach. No pressure.</span>
+  </div>
+</section>
+
 <!-- ═══════════ SCRIPTS ═══════════ -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -2928,6 +3206,40 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   gsap.from('.package-kicker, .package-headline, .package-intro', { scrollTrigger:{ trigger:'#territory-package', start:'top 78%' }, opacity:0, y: reducedMotion ? 0 : 16, duration: reducedMotion ? 0.15 : 0.48, stagger: reducedMotion ? 0 : 0.07, ease:'power3.out', clearProps:'transform,opacity' });
   gsap.from('.package-card', { scrollTrigger:{ trigger:'.package-grid', start:'top 82%' }, opacity:0, y: reducedMotion ? 0 : 22, duration: reducedMotion ? 0.15 : 0.52, stagger: reducedMotion ? 0 : 0.045, ease:'power3.out', clearProps:'transform,opacity' });
   gsap.from('.package-closer', { scrollTrigger:{ trigger:'.package-closer', start:'top 84%' }, opacity:0, y: reducedMotion ? 0 : 18, duration: reducedMotion ? 0.15 : 0.52, ease:'power3.out', clearProps:'transform,opacity' });
+})();
+</script>
+
+<!-- FAQ accordion + GSAP reveals -->
+<script>
+(function(){
+  // Accordion
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.faq-item');
+      var answer = item.querySelector('.faq-a');
+      var isOpen = item.classList.contains('is-open');
+
+      // Close all others
+      document.querySelectorAll('.faq-item.is-open').forEach(function(open){
+        open.classList.remove('is-open');
+        open.querySelector('.faq-a').style.maxHeight = '0';
+        open.querySelector('.faq-q').setAttribute('aria-expanded','false');
+      });
+
+      if(!isOpen){
+        item.classList.add('is-open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+
+  // GSAP reveals
+  if(typeof gsap === 'undefined') return;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  gsap.from('.faq-left > *', { scrollTrigger:{ trigger:'#faq', start:'top 78%' }, opacity:0, y: reduced ? 0 : 16, duration: reduced ? 0.15 : 0.48, stagger: reduced ? 0 : 0.07, ease:'power3.out', clearProps:'transform,opacity' });
+  gsap.from('.faq-item', { scrollTrigger:{ trigger:'.faq-list', start:'top 82%' }, opacity:0, y: reduced ? 0 : 14, duration: reduced ? 0.15 : 0.42, stagger: reduced ? 0 : 0.055, ease:'power3.out', clearProps:'transform,opacity' });
+  gsap.from('.close-inner > *', { scrollTrigger:{ trigger:'#the-close', start:'top 80%' }, opacity:0, y: reduced ? 0 : 20, duration: reduced ? 0.15 : 0.52, stagger: reduced ? 0 : 0.07, ease:'power3.out', clearProps:'transform,opacity' });
 })();
 </script>
 
