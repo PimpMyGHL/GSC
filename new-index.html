@@ -366,14 +366,18 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 }
 .seth-eyebrow-large {
   display: flex; align-items: center; justify-content: center;
-  gap: 22px; margin: 0 auto 20px;
-  font-family: var(--fb); font-size: clamp(13px, 1.15vw, 18px); font-weight: 800;
-  letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); text-align: center;
+  gap: 18px; margin: 0 auto 20px;
+  font-family: var(--fb); font-size: clamp(12px, 1vw, 16px); font-weight: 900;
+  letter-spacing: .30em; text-transform: uppercase; color: rgba(200,146,58,.92); text-align: center;
 }
 .seth-eyebrow-large::before,
 .seth-eyebrow-large::after {
-  content: ''; width: min(120px, 16vw); height: 1px;
-  background: rgba(200,146,58,0.58);
+  content: ''; display: block; width: min(92px, 14vw); height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,146,58,.58));
+  flex-shrink: 0;
+}
+.seth-eyebrow-large::after {
+  background: linear-gradient(90deg, rgba(200,146,58,.58), transparent);
 }
 .seth-grid {
   display: grid;
@@ -509,13 +513,18 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   width: 100%; max-width: 860px; margin: 0 auto;
 }
 .seth-letter-eyebrow {
-  font-family: var(--fb); font-size: 12px; font-weight: 700;
-  letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
-  display: flex; align-items: center; gap: 12px; margin-bottom: 32px;
+  font-family: var(--fb); font-size: clamp(12px, 1vw, 16px); font-weight: 900;
+  letter-spacing: .30em; text-transform: uppercase; color: rgba(200,146,58,.92);
+  display: flex; align-items: center; justify-content: center; gap: 18px; margin-bottom: 32px;
 }
-.seth-letter-eyebrow::before {
-  content: ''; display: block; width: 28px; height: 1px;
-  background: var(--gold); flex-shrink: 0;
+.seth-letter-eyebrow::before,
+.seth-letter-eyebrow::after {
+  content: ''; display: block; width: min(92px, 14vw); height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,146,58,.58));
+  flex-shrink: 0;
+}
+.seth-letter-eyebrow::after {
+  background: linear-gradient(90deg, rgba(200,146,58,.58), transparent);
 }
 .seth-letter-headline {
   font-family: var(--fd); font-size: clamp(34px, 3.8vw, 54px);
@@ -931,7 +940,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   border-top: 1px solid rgba(200,146,58,0.09);
 }
 .seth-letter-wrap { width: 100%; }
-.seth-letter-eyebrow { margin-bottom: 28px; font-size: 13px; letter-spacing: .24em; }
+.seth-letter-eyebrow { margin-bottom: 28px; font-size: clamp(12px, 1vw, 16px); letter-spacing: .30em; }
 .seth-letter-headline {
   font-family: var(--fd); max-width: 1100px; margin: 0 auto 34px; text-align: center;
   font-size: clamp(44px, 4.5vw, 72px); line-height: 1.03; letter-spacing: -0.045em;
@@ -1007,12 +1016,15 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 .seth-letter-wrap { max-width: 1260px; text-align: center; }
 .seth-letter-eyebrow {
   justify-content: center; gap: 18px; margin: 0 auto 30px;
-  font-size: clamp(12px, 1vw, 14px); letter-spacing: .30em; color: rgba(200,146,58,.88);
+  font-size: clamp(12px, 1vw, 16px); letter-spacing: .30em; color: rgba(200,146,58,.92);
 }
 .seth-letter-eyebrow::before,
 .seth-letter-eyebrow::after {
-  content: ''; display: block; width: min(84px, 14vw); height: 1px;
-  background: rgba(200,146,58,.58); flex-shrink: 0;
+  content: ''; display: block; width: min(92px, 14vw); height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,146,58,.58)); flex-shrink: 0;
+}
+.seth-letter-eyebrow::after {
+  background: linear-gradient(90deg, rgba(200,146,58,.58), transparent);
 }
 .seth-letter-headline {
   font-family: var(--fd); max-width: 1100px; margin: 0 auto 34px; text-align: center;
@@ -1057,8 +1069,8 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 #founder-note .seth-photo-card img { object-fit: cover; object-position: 56% 28%; transform: scale(1); }
 #seth-story .seth-letter-eyebrow {
   justify-content: center; margin: 0 auto 36px;
-  font-size: clamp(14px, 1.25vw, 18px); font-weight: 800;
-  letter-spacing: .30em; color: var(--gold);
+  font-size: clamp(12px, 1vw, 16px); font-weight: 900;
+  letter-spacing: .30em; color: rgba(200,146,58,.92);
 }
 #seth-story .seth-letter-headline {
   font-family: var(--fd); max-width: 1100px; margin: 0 auto 34px; text-align: center;
