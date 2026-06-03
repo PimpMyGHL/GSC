@@ -2455,79 +2455,124 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 }
 
 /* ═══════════ MEET AVA ═══════════ */
-#meet-ava { background: #050403; padding: 110px clamp(24px, 5vw, 80px) 120px; position: relative; overflow: hidden; }
-#meet-ava::before { content: ''; position: absolute; top: -160px; right: -100px; width: 800px; height: 800px; background: radial-gradient(ellipse, rgba(200,146,58,0.07) 0%, transparent 65%); pointer-events: none; }
-#meet-ava::after { content: ''; position: absolute; bottom: -80px; left: -60px; width: 500px; height: 500px; background: radial-gradient(ellipse, rgba(60,100,200,0.06) 0%, transparent 65%); pointer-events: none; }
+#meet-ava { background: #070706; padding: 120px clamp(24px,5vw,80px) 130px; position: relative; overflow: hidden; isolation: isolate; }
+#meet-ava::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 48% 58% at 20% 42%, rgba(200,146,58,.10), transparent 66%), radial-gradient(ellipse 42% 45% at 83% 20%, rgba(200,146,58,.06), transparent 70%), linear-gradient(180deg, rgba(245,244,240,.012), transparent 28%, rgba(245,244,240,.01)); pointer-events: none; z-index: -2; }
+#meet-ava::after { content: ''; position: absolute; inset: 34px 48px; border: 1px solid rgba(200,146,58,.08); border-radius: 18px; background: linear-gradient(rgba(245,244,240,.022) 1px, transparent 1px), linear-gradient(90deg, rgba(245,244,240,.016) 1px, transparent 1px); background-size: 44px 44px; opacity: .32; pointer-events: none; z-index: -1; }
 
-.ava-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(60px, 7vw, 110px); align-items: center; }
-.ava-eyebrow { font-family: var(--fb); font-size: 12px; font-weight: 900; letter-spacing: .30em; text-transform: uppercase; color: rgba(200,146,58,.85); margin-bottom: 20px; }
-.ava-headline { font-family: var(--fd); font-size: clamp(36px, 3.8vw, 58px); font-weight: 900; line-height: 1.04; letter-spacing: -0.032em; color: var(--white); margin: 0 0 28px; }
-.ava-headline em { font-style: normal; background: linear-gradient(90deg, #C8923A 0%, #F2C84A 52%, #C8923A 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.ava-intro { font-family: var(--fb); font-size: clamp(16px, 1.35vw, 19px); line-height: 1.68; color: rgba(245,244,240,.72); margin-bottom: 40px; max-width: 60ch; }
+.ava-inner { position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: minmax(340px,.86fr) minmax(400px,1.14fr); gap: clamp(58px,6vw,96px); align-items: center; }
 
-/* Capability stacks */
-.ava-stacks { display: flex; flex-direction: column; gap: 28px; margin-bottom: 40px; }
-.ava-stack { background: rgba(255,255,255,0.034); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 22px 26px; position: relative; overflow: hidden; }
-.ava-stack::before { content: ''; position: absolute; top: 0; left: 24px; right: 24px; height: 1px; background: linear-gradient(90deg, transparent, rgba(242,200,74,.45), transparent); }
-.ava-stack-label { font-family: var(--fb); font-size: 10px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; color: rgba(200,146,58,.75); margin-bottom: 12px; }
-.ava-stack-items { display: flex; flex-direction: column; gap: 9px; }
-.ava-stack-item { font-family: var(--fb); font-size: clamp(14px, 1.1vw, 15.5px); line-height: 1.45; color: rgba(245,244,240,.82); display: flex; align-items: flex-start; gap: 10px; }
-.ava-stack-item::before { content: ''; flex-shrink: 0; margin-top: 7px; width: 5px; height: 5px; border-radius: 50%; background: #C8923A; }
+/* ── Left: phone ── */
+.ava-left { position: relative; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.ava-left::before { content: 'CONVERSION AMPLIFIER'; position: absolute; left: 50%; top: -24px; transform: translateX(-50%); z-index: 5; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(200,146,58,.30); background: rgba(10,10,10,.74); color: #C8923A; font-family: var(--fb); font-size: 9px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; backdrop-filter: blur(14px); }
+.ava-phone-wrap { position: relative; width: min(360px, 92vw); filter: drop-shadow(0 40px 90px rgba(0,0,0,.65)); }
+.ava-phone-glow { position: absolute; left: 50%; bottom: -52px; width: 340px; height: 130px; transform: translateX(-50%); background: radial-gradient(ellipse, rgba(200,146,58,.22), transparent 70%); filter: blur(34px); pointer-events: none; }
+.ava-phone { position: relative; width: 100%; aspect-ratio: 390/790; border-radius: 46px; padding: 13px; background: linear-gradient(145deg,#2b2b2d,#050505 52%,#27231b); border: 1px solid rgba(245,244,240,.10); box-shadow: inset 0 1px 0 rgba(255,255,255,.12), inset 0 -2px 0 rgba(0,0,0,.8), 0 0 0 1px rgba(200,146,58,.10); }
+.ava-phone::before { content: ''; position: absolute; inset: 4px; border-radius: 42px; border: 1px solid rgba(200,146,58,.14); pointer-events: none; }
+.ava-phone-island { position: absolute; top: 24px; left: 50%; width: 112px; height: 30px; transform: translateX(-50%); border-radius: 999px; background: #050505; z-index: 40; box-shadow: inset 0 1px 2px rgba(255,255,255,.08); }
+.ava-phone-screen { position: relative; width: 100%; height: 100%; border-radius: 35px; overflow: hidden; background: #050505; border: 1px solid rgba(255,255,255,.06); }
+.ava-video-shell { position: absolute; inset: 0; z-index: 4; overflow: hidden; background: #020202; }
+.ava-video-el { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; filter: saturate(1.08) contrast(1.04); }
+.ava-video-shell::before { content: ''; position: absolute; inset: 0; z-index: 2; background: linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.12) 38%, rgba(0,0,0,.72) 100%), radial-gradient(ellipse 90% 70% at 50% 8%, rgba(200,146,58,.13), transparent 60%); pointer-events: none; }
+.ava-video-shell::after { content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px); background-size: 20px 20px; opacity: .35; mix-blend-mode: screen; }
+.ava-vid-topbar { position: absolute; top: 62px; left: 18px; right: 18px; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.ava-vid-badge { display: inline-flex; align-items: center; gap: 7px; padding: 7px 11px; border-radius: 999px; background: rgba(10,10,10,.58); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(10px); color: rgba(255,255,255,.92); font-family: var(--fb); font-size: 10px; font-weight: 700; letter-spacing: .05em; }
+.ava-vid-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 10px rgba(34,197,94,.85); animation: avaPulse 2s ease-in-out infinite; }
+.ava-vid-time { padding: 7px 10px; border-radius: 999px; background: rgba(10,10,10,.58); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(10px); color: rgba(255,255,255,.85); font-family: var(--fb); font-size: 10px; font-weight: 700; letter-spacing: .05em; }
+.ava-play-glow { position: absolute; left: 50%; top: 49%; width: 72px; height: 72px; transform: translate(-50%,-50%); z-index: 10; border-radius: 50%; background: rgba(200,146,58,.26); border: 1px solid rgba(200,146,58,.36); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 14px rgba(200,146,58,.06), 0 0 34px rgba(200,146,58,.20); backdrop-filter: blur(6px); }
+.ava-play-glow svg { width: 24px; height: 24px; fill: #F2C84A; transform: translateX(2px); }
+.ava-vid-lower { position: absolute; left: 20px; right: 20px; bottom: 24px; z-index: 10; }
+.ava-vid-label { font-family: var(--fb); font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #F2C84A; margin-bottom: 8px; }
+.ava-vid-title { font-family: var(--fd); font-size: 26px; font-weight: 900; letter-spacing: -.04em; line-height: .96; color: #fff; max-width: 240px; margin-bottom: 10px; }
+.ava-vid-sub { color: rgba(245,244,240,.66); font-family: var(--fb); font-size: 12px; line-height: 1.55; max-width: 260px; }
+.ava-vid-cta { margin-top: 14px; display: inline-flex; align-items: center; gap: 7px; padding: 9px 14px; border-radius: 999px; background: rgba(245,244,240,.94); color: #101010; font-family: var(--fb); font-size: 11px; font-weight: 800; letter-spacing: .02em; box-shadow: 0 12px 32px rgba(0,0,0,.35); }
+.ava-vid-cta svg { width: 13px; height: 13px; fill: #101010; }
 
-/* Gold callout quote */
-.ava-callout { border: 1px solid rgba(200,146,58,.48); border-left: 3px solid #C8923A; background: rgba(200,146,58,.06); border-radius: 0 10px 10px 0; padding: 22px 26px; margin-bottom: 28px; }
-.ava-callout p { font-family: var(--fb); font-size: clamp(15px, 1.2vw, 17px); line-height: 1.62; color: rgba(245,244,240,.88); margin: 0; font-style: italic; }
+/* Floating notification pills */
+.ava-notif { position: absolute; z-index: 60; min-width: 220px; display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px; background: rgba(17,17,17,.88); border: 1px solid rgba(245,244,240,.14); box-shadow: 0 20px 50px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.04); backdrop-filter: blur(16px); opacity: 0; transform: translate3d(-16px,8px,0) scale(.97); animation: avaBadgeCycle 8.6s cubic-bezier(.16,1,.3,1) infinite; will-change: opacity,transform; }
+.ava-notif-1 { top: 15%; left: -80px; animation-delay: 0s; }
+.ava-notif-2 { top: 46%; right: -86px; transform: translate3d(16px,8px,0) scale(.97); animation-delay: 1.2s; animation-name: avaBadgeCycleRight; }
+.ava-notif-3 { bottom: 13%; left: -72px; animation-delay: 2.4s; }
+.ava-notif-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px rgba(34,197,94,.75); flex: 0 0 auto; }
+.ava-notif-avatar { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(145deg,#F2C84A,#C8923A); color: #050505; font-family: var(--fd); font-weight: 900; font-size: 12px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; }
+.ava-notif-title { font-family: var(--fb); font-size: 9px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #F2C84A; margin-bottom: 2px; }
+.ava-notif-body { font-family: var(--fb); font-size: 11px; color: rgba(245,244,240,.72); line-height: 1.4; }
 
-.ava-transition { font-family: var(--fb); font-size: clamp(14px, 1.1vw, 16px); color: rgba(245,244,240,.52); line-height: 1.6; }
-.ava-transition strong { color: rgba(245,244,240,.78); font-weight: 600; }
+/* Channel pills */
+.ava-channels { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 26px; }
+.ava-channel-pill { display: inline-flex; align-items: center; gap: 6px; padding: 7px 13px; border-radius: 999px; font-family: var(--fb); font-size: 12px; font-weight: 600; border: 1px solid rgba(245,244,240,.10); color: rgba(245,244,240,.48); background: rgba(245,244,240,.02); transition: border-color .25s, color .25s, background .25s; }
+.ava-channel-pill.active, .ava-channel-pill:hover { border-color: rgba(200,146,58,.45); color: #C8923A; background: rgba(200,146,58,.07); }
 
-/* Phone mockup */
-.ava-visual { position: relative; display: flex; align-items: center; justify-content: center; }
-.ava-phone { width: min(300px, 80vw); position: relative; z-index: 2; }
-.ava-phone-frame { background: #0d0c0b; border: 1.5px solid rgba(255,255,255,0.12); border-radius: 38px; padding: 12px; box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.04), inset 0 1px 0 rgba(255,255,255,.08); }
-.ava-phone-screen { background: #111010; border-radius: 28px; overflow: hidden; min-height: 520px; display: flex; flex-direction: column; }
-.ava-phone-statusbar { height: 34px; background: #0a0909; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-shrink: 0; }
-.ava-phone-notch { width: 86px; height: 22px; background: #0a0909; border-radius: 0 0 14px 14px; position: absolute; left: 50%; transform: translateX(-50%); top: 12px; z-index: 3; }
-.ava-phone-statusbar span { font-size: 10px; color: rgba(255,255,255,.55); font-family: var(--fb); font-weight: 600; }
-.ava-chat-header { background: rgba(255,255,255,.04); border-bottom: 1px solid rgba(255,255,255,.06); padding: 14px 18px; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.ava-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #C8923A 0%, #F2C84A 100%); display: flex; align-items: center; justify-content: center; font-family: var(--fd); font-size: 14px; font-weight: 900; color: #050403; flex-shrink: 0; }
-.ava-chat-name { font-family: var(--fb); font-size: 13px; font-weight: 700; color: var(--white); }
-.ava-chat-status { font-family: var(--fb); font-size: 10px; color: #4ade80; display: flex; align-items: center; gap: 4px; }
-.ava-chat-status::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #4ade80; display: inline-block; }
-.ava-messages { flex: 1; padding: 16px 14px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
-.ava-msg { max-width: 82%; }
-.ava-msg.ava { align-self: flex-start; }
-.ava-msg.user { align-self: flex-end; }
-.ava-msg-bubble { padding: 9px 13px; border-radius: 16px; font-family: var(--fb); font-size: 11.5px; line-height: 1.5; }
-.ava-msg.ava .ava-msg-bubble { background: rgba(255,255,255,.09); color: rgba(245,244,240,.9); border-radius: 4px 16px 16px 16px; }
-.ava-msg.user .ava-msg-bubble { background: linear-gradient(135deg, #C8923A, #d4a040); color: #050403; font-weight: 600; border-radius: 16px 16px 4px 16px; }
-.ava-msg-time { font-family: var(--fb); font-size: 9px; color: rgba(255,255,255,.28); margin-top: 3px; }
-.ava-msg.user .ava-msg-time { text-align: right; }
-.ava-typing { display: flex; align-items: center; gap: 4px; padding: 10px 13px; background: rgba(255,255,255,.06); border-radius: 4px 16px 16px 16px; width: fit-content; }
-.ava-typing span { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.4); animation: ava-pulse 1.2s infinite; }
-.ava-typing span:nth-child(2) { animation-delay: .2s; }
-.ava-typing span:nth-child(3) { animation-delay: .4s; }
-@keyframes ava-pulse { 0%, 80%, 100% { transform: scale(.7); opacity: .4; } 40% { transform: scale(1); opacity: 1; } }
+/* ── Right: copy broken into mini sections ── */
+.ava-right { display: flex; flex-direction: column; gap: 0; }
 
-/* Floating stat chips behind phone */
-.ava-stat-chip { position: absolute; background: rgba(18,16,14,.92); border: 1px solid rgba(200,146,58,.38); border-radius: 10px; padding: 10px 14px; backdrop-filter: blur(8px); z-index: 3; }
-.ava-stat-chip .chip-num { font-family: var(--fd); font-size: 20px; font-weight: 900; color: #F2C84A; line-height: 1; }
-.ava-stat-chip .chip-label { font-family: var(--fb); font-size: 10px; color: rgba(245,244,240,.58); margin-top: 3px; line-height: 1.3; }
-.ava-stat-chip.left { left: -32px; top: 140px; }
-.ava-stat-chip.right { right: -28px; bottom: 160px; }
+/* Mini section 1 — eyebrow + headline + intro */
+.ava-mini-head { margin-bottom: 32px; }
+.ava-eyebrow { font-family: var(--fb); font-size: 11px; font-weight: 900; letter-spacing: .28em; text-transform: uppercase; color: rgba(200,146,58,.85); margin-bottom: 14px; }
+.ava-headline { font-family: var(--fd); font-size: clamp(34px, 3.5vw, 52px); font-weight: 900; line-height: 1.04; letter-spacing: -.032em; color: var(--white); margin: 0 0 20px; }
+.ava-headline em { font-style: normal; display: block; background: linear-gradient(90deg, #C8923A 0%, #F2C84A 52%, #C8923A 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.ava-intro { font-family: var(--fb); font-size: clamp(16px, 1.35vw, 19px); line-height: 1.68; color: rgba(245,244,240,.70); max-width: 60ch; }
 
-.ava-glow { position: absolute; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(200,146,58,.14) 0%, transparent 70%); pointer-events: none; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+/* Mini section 2 — role cards (3 jobs Ava does) */
+.ava-mini-roles { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid rgba(245,244,240,.06); }
+.ava-role-card { background: rgba(255,255,255,.034); border: 1px solid rgba(245,244,240,.07); border-radius: 10px; padding: 18px 16px; position: relative; overflow: hidden; }
+.ava-role-card::before { content: ''; position: absolute; top: 0; left: 16px; right: 16px; height: 1px; background: linear-gradient(90deg, transparent, rgba(242,200,74,.38), transparent); }
+.ava-role-num { font-family: var(--fd); font-size: 11px; font-weight: 900; color: rgba(200,146,58,.55); letter-spacing: .08em; margin-bottom: 8px; }
+.ava-role-title { font-family: var(--fb); font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.ava-role-desc { font-family: var(--fb); font-size: 12px; color: rgba(245,244,240,.52); line-height: 1.5; }
 
-@media (max-width: 1024px) {
-  .ava-inner { grid-template-columns: 1fr; gap: 60px; }
-  .ava-visual { order: -1; }
-  .ava-stat-chip.left { left: 0; }
-  .ava-stat-chip.right { right: 0; }
+/* Mini section 3 — stats row */
+.ava-mini-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid rgba(245,244,240,.06); }
+.ava-stat { background: rgba(255,255,255,.028); border: 1px solid rgba(245,244,240,.07); border-radius: 8px; padding: 14px 10px; text-align: center; transition: border-color .3s, background .3s; }
+.ava-stat:hover { border-color: rgba(200,146,58,.32); background: rgba(200,146,58,.04); }
+.ava-stat-num { font-family: var(--fd); font-weight: 900; font-size: 22px; letter-spacing: -.03em; color: var(--white); margin-bottom: 5px; }
+.ava-stat-label { font-family: var(--fb); font-size: 9px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: rgba(245,244,240,.46); line-height: 1.4; }
+
+/* Mini section 4 — capability cards (2×2) */
+.ava-mini-caps { margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid rgba(245,244,240,.06); }
+.ava-mini-caps-label { font-family: var(--fb); font-size: 10px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; color: rgba(245,244,240,.35); margin-bottom: 14px; }
+.ava-caps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ava-cap { background: rgba(255,255,255,.028); border: 1px solid rgba(245,244,240,.07); border-radius: 8px; padding: 14px; display: flex; gap: 10px; align-items: flex-start; transition: border-color .3s, background .3s, box-shadow .3s; }
+.ava-cap:hover { border-color: rgba(200,146,58,.38); background: rgba(200,146,58,.04); }
+.ava-cap-icon { width: 30px; height: 30px; border-radius: 6px; background: rgba(200,146,58,.08); border: 1px solid rgba(200,146,58,.22); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ava-cap-icon svg { width: 14px; height: 14px; stroke: #C8923A; }
+.ava-cap-title { font-family: var(--fd); font-weight: 700; font-size: 13px; color: var(--white); margin-bottom: 3px; }
+.ava-cap-desc { font-family: var(--fb); font-size: 11.5px; color: rgba(245,244,240,.50); line-height: 1.5; }
+
+/* Mini section 5 — agent stack */
+.ava-mini-stack { background: rgba(255,255,255,.024); border: 1px solid rgba(245,244,240,.07); border-radius: 10px; padding: 18px 20px; }
+.ava-mini-stack-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.ava-mini-stack-title { font-family: var(--fb); font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(245,244,240,.40); }
+.ava-mini-stack-badge { font-family: var(--fb); background: rgba(200,146,58,.10); border: 1px solid rgba(200,146,58,.28); color: #C8923A; padding: 3px 10px; border-radius: 100px; font-size: 10px; font-weight: 700; letter-spacing: .06em; }
+.ava-agent-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+.ava-agent-pill { font-family: var(--fb); font-size: 11px; color: rgba(245,244,240,.55); display: flex; align-items: center; gap: 5px; }
+.ava-agent-pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: rgba(200,146,58,.55); flex-shrink: 0; }
+
+/* Animations */
+@keyframes avaPulse { 0%, 100% { opacity: 1; box-shadow: 0 0 10px rgba(34,197,94,.85); } 50% { opacity: .6; box-shadow: 0 0 5px rgba(34,197,94,.4); } }
+@keyframes avaBadgeCycle { 0%,100% { opacity:0; transform:translate3d(-16px,8px,0) scale(.97); } 8%,28% { opacity:1; transform:translate3d(0,0,0) scale(1); } 36%,100% { opacity:0; transform:translate3d(-16px,8px,0) scale(.97); } }
+@keyframes avaBadgeCycleRight { 0%,100% { opacity:0; transform:translate3d(16px,8px,0) scale(.97); } 8%,28% { opacity:1; transform:translate3d(0,0,0) scale(1); } 36%,100% { opacity:0; transform:translate3d(16px,8px,0) scale(.97); } }
+
+/* Responsive */
+@media (max-width: 1120px) {
+  .ava-inner { grid-template-columns: 1fr; gap: 52px; }
+  .ava-phone-wrap { width: min(340px, 82vw); margin: 0 auto; }
+  .ava-notif-1 { left: -24px; }
+  .ava-notif-2 { right: -28px; }
+  .ava-notif-3 { left: -18px; }
 }
-@media (max-width: 600px) {
-  #meet-ava { padding: 80px 20px 80px; }
-  .ava-phone { width: min(270px, 88vw); }
-  .ava-stat-chip { display: none; }
+@media (max-width: 700px) {
+  #meet-ava { padding: 72px 20px 80px; }
+  #meet-ava::after { display: none; }
+  .ava-left::before { display: none; }
+  .ava-phone-wrap { width: min(300px, 86vw); }
+  .ava-phone { border-radius: 38px; padding: 10px; }
+  .ava-phone::before { border-radius: 34px; }
+  .ava-phone-screen { border-radius: 29px; }
+  .ava-phone-island { top: 18px; width: 92px; height: 25px; }
+  .ava-notif { display: none; }
+  .ava-mini-roles { grid-template-columns: 1fr; }
+  .ava-mini-stats { grid-template-columns: repeat(2,1fr); }
+  .ava-caps-grid { grid-template-columns: 1fr; }
 }
 </style>
 <script src="https://player.vimeo.com/api/player.js" defer></script>
@@ -3015,106 +3060,145 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 <section id="meet-ava" aria-label="Meet Ava — AI Practice Assistant">
   <div class="ava-inner">
 
-    <!-- Left: Copy -->
-    <div class="ava-copy">
-      <div class="ava-eyebrow">AI Practice Assistant</div>
-      <h2 class="ava-headline">While You're With Patients,<br><em>Ava Is Closing<br>Your Pipeline.</em></h2>
-      <p class="ava-intro">Every lead you generate from a seminar event has a window. The patients who attended but didn't buy. The ones who RSVPed and never showed. The ones who visited your website at 11pm on a Sunday wondering if this is right for them. Most practices let those leads go cold. Not yours.</p>
-
-      <div class="ava-stacks">
-        <div class="ava-stack">
-          <div class="ava-stack-label">Before the Event</div>
-          <div class="ava-stack-items">
-            <div class="ava-stack-item">RSVP confirmation sequences — automated, personalized, on-brand</div>
-            <div class="ava-stack-item">Reminder calls and texts so your seats are filled, not forfeited</div>
-            <div class="ava-stack-item">Pre-screening conversations that qualify attendees before they walk in</div>
-            <div class="ava-stack-item">Educational sequences that prime patients so your seminar closes faster</div>
-          </div>
-        </div>
-        <div class="ava-stack">
-          <div class="ava-stack-label">After the Event</div>
-          <div class="ava-stack-items">
-            <div class="ava-stack-item">Immediate follow-up with every attendee who didn't convert</div>
-            <div class="ava-stack-item">No-show reactivation — the lead isn't dead until Ava says it's dead</div>
-            <div class="ava-stack-item">Post-event nurturing that keeps warm leads warm over days and weeks</div>
-            <div class="ava-stack-item">Consultation booking directly into your calendar without staff involvement</div>
-          </div>
-        </div>
-        <div class="ava-stack">
-          <div class="ava-stack-label">On Your Website, 24/7</div>
-          <div class="ava-stack-items">
-            <div class="ava-stack-item">Live chat that answers patient questions in real time, any hour</div>
-            <div class="ava-stack-item">Lead capture and qualification before a human ever gets involved</div>
-            <div class="ava-stack-item">Intake forms, FAQ handling, and appointment scheduling — automated</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ava-callout">
-        <p>"Ava isn't a chatbot. She's a fully trained AI agent built for regenerative medicine — she understands the treatments, the patient concerns, the pricing conversations, and the path from curious to committed."</p>
-      </div>
-
-      <p class="ava-transition">Ava comes <strong>standard with every GOT Stem Cells territory.</strong> She's active before your first event and keeps working long after it ends.</p>
-    </div>
-
-    <!-- Right: Phone mockup -->
-    <div class="ava-visual">
-      <div class="ava-glow"></div>
-
-      <div class="ava-stat-chip left">
-        <div class="chip-num">24/7</div>
-        <div class="chip-label">Always on,<br>never misses a lead</div>
-      </div>
-
-      <div class="ava-phone">
-        <div class="ava-phone-frame">
+    <!-- Left: Real phone + video -->
+    <div class="ava-left">
+      <div class="ava-phone-wrap">
+        <div class="ava-phone-glow"></div>
+        <div class="ava-phone">
+          <div class="ava-phone-island"></div>
           <div class="ava-phone-screen">
-            <div class="ava-phone-statusbar">
-              <span>9:41</span>
-              <span>●●●</span>
-            </div>
-            <div class="ava-chat-header">
-              <div class="ava-avatar">A</div>
-              <div>
-                <div class="ava-chat-name">Ava — GSC Assistant</div>
-                <div class="ava-chat-status">Active now</div>
+            <div class="ava-video-shell">
+              <video class="ava-video-el" autoplay muted loop playsinline webkit-playsinline
+                poster="https://raw.githubusercontent.com/PimpMyGHL/GSC/main/images/ava_ai_v14_loop.webp"
+                preload="metadata" aria-label="Ava AI assistant preview">
+                <source src="https://raw.githubusercontent.com/PimpMyGHL/GSC/main/images/ava-loop.mp4" type="video/mp4">
+                <img src="https://raw.githubusercontent.com/PimpMyGHL/GSC/main/images/ava_ai_v14_loop.webp" alt="Ava AI assistant preview" loading="eager">
+              </video>
+              <div class="ava-vid-topbar">
+                <div class="ava-vid-badge"><span class="ava-vid-badge-dot"></span>Ava is online</div>
+                <div class="ava-vid-time">LIVE DEMO</div>
               </div>
-            </div>
-            <div class="ava-messages">
-              <div class="ava-msg ava">
-                <div class="ava-msg-bubble">Hi Dr. Chen — I saw you attended our seminar last Tuesday. I wanted to follow up and see if you had any questions about the territory model.</div>
-                <div class="ava-msg-time">11:04 PM</div>
+              <div class="ava-play-glow" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               </div>
-              <div class="ava-msg user">
-                <div class="ava-msg-bubble">Actually yes — is the Denver market still open?</div>
-                <div class="ava-msg-time">11:06 PM</div>
-              </div>
-              <div class="ava-msg ava">
-                <div class="ava-msg-bubble">Denver is still available. I can get you on Seth's calendar for a 15-minute territory call — no obligation, just confirmation. Does Thursday work?</div>
-                <div class="ava-msg-time">11:06 PM</div>
-              </div>
-              <div class="ava-msg user">
-                <div class="ava-msg-bubble">Thursday at 2pm works.</div>
-                <div class="ava-msg-time">11:07 PM</div>
-              </div>
-              <div class="ava-msg ava">
-                <div class="ava-msg-bubble">Confirmed. You'll receive a calendar invite in the next few minutes. Looking forward to it.</div>
-                <div class="ava-msg-time">11:07 PM</div>
-              </div>
-              <div class="ava-typing">
-                <span></span><span></span><span></span>
+              <div class="ava-vid-lower">
+                <div class="ava-vid-label">AI Booking Layer</div>
+                <div class="ava-vid-title">Ava starts the conversation instantly.</div>
+                <div class="ava-vid-sub">Inbound questions, text replies, intake prompts, and booking paths handled before a lead goes cold.</div>
+                <div class="ava-vid-cta">
+                  <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  Hi, want to chat?
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <!-- Floating notification pills -->
+        <div class="ava-notif ava-notif-1">
+          <span class="ava-notif-dot"></span>
+          <div><div class="ava-notif-title">New lead captured</div><div class="ava-notif-body">Ava replied in under 60 seconds.</div></div>
+        </div>
+        <div class="ava-notif ava-notif-2">
+          <div class="ava-notif-avatar">AI</div>
+          <div><div class="ava-notif-title">Question answered</div><div class="ava-notif-body">Eligibility, therapy basics, and next steps handled.</div></div>
+        </div>
+        <div class="ava-notif ava-notif-3">
+          <span class="ava-notif-dot"></span>
+          <div><div class="ava-notif-title">Consult booked</div><div class="ava-notif-body">Qualified prospect moved into the calendar.</div></div>
+        </div>
       </div>
-
-      <div class="ava-stat-chip right">
-        <div class="chip-num">0</div>
-        <div class="chip-label">Leads written off<br>without a follow-up</div>
+      <!-- Channel pills -->
+      <div class="ava-channels">
+        <div class="ava-channel-pill active">Video Intake</div>
+        <div class="ava-channel-pill">SMS</div>
+        <div class="ava-channel-pill">Voice</div>
+        <div class="ava-channel-pill">Web Chat</div>
       </div>
     </div>
 
+    <!-- Right: mini sections -->
+    <div class="ava-right">
+
+      <!-- Mini 1: Headline -->
+      <div class="ava-mini-head">
+        <div class="ava-eyebrow">Meet Ava — Your AI Practice Agent</div>
+        <h2 class="ava-headline">Ava Handles The Conversations<em>So You Can Focus On Patients.</em></h2>
+        <p class="ava-intro">Every GOT Stem Cells territory includes Ava — a 24/7 AI practice agent that handles inbound inquiries, qualifies intent, answers common questions, and guides serious prospects toward a booked consultation across every channel.</p>
+      </div>
+
+      <!-- Mini 2: 3 core jobs -->
+      <div class="ava-mini-roles">
+        <div class="ava-role-card">
+          <div class="ava-role-num">01</div>
+          <div class="ava-role-title">Responds Instantly</div>
+          <div class="ava-role-desc">Speed-to-lead while intent is highest — under 60 seconds, any channel.</div>
+        </div>
+        <div class="ava-role-card">
+          <div class="ava-role-num">02</div>
+          <div class="ava-role-title">Qualifies Intent</div>
+          <div class="ava-role-desc">Separates serious interest from casual curiosity before it hits your calendar.</div>
+        </div>
+        <div class="ava-role-card">
+          <div class="ava-role-num">03</div>
+          <div class="ava-role-title">Books &amp; Follows Up</div>
+          <div class="ava-role-desc">Moves qualified prospects to a consultation and recovers those who go cold.</div>
+        </div>
+      </div>
+
+      <!-- Mini 3: Stats -->
+      <div class="ava-mini-stats">
+        <div class="ava-stat"><div class="ava-stat-num">24/7</div><div class="ava-stat-label">Lead<br>Engagement</div></div>
+        <div class="ava-stat"><div class="ava-stat-num">16</div><div class="ava-stat-label">AI<br>Workflows</div></div>
+        <div class="ava-stat"><div class="ava-stat-num">&lt;60s</div><div class="ava-stat-label">First Response<br>Target</div></div>
+        <div class="ava-stat"><div class="ava-stat-num">Multi</div><div class="ava-stat-label">SMS · Voice<br>Video · Chat</div></div>
+      </div>
+
+      <!-- Mini 4: Capabilities -->
+      <div class="ava-mini-caps">
+        <div class="ava-mini-caps-label">What Ava Does</div>
+        <div class="ava-caps-grid">
+          <div class="ava-cap">
+            <div class="ava-cap-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.06 6.06l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><div class="ava-cap-title">Voice &amp; SMS</div><div class="ava-cap-desc">Answers calls, texts back, qualifies patients around the clock</div></div>
+          </div>
+          <div class="ava-cap">
+            <div class="ava-cap-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect height="14" rx="2" width="15" x="1" y="5"/></svg></div>
+            <div><div class="ava-cap-title">Video Intake</div><div class="ava-cap-desc">Conducts initial intake video sessions before the provider steps in</div></div>
+          </div>
+          <div class="ava-cap">
+            <div class="ava-cap-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="4"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg></div>
+            <div><div class="ava-cap-title">Live Booking</div><div class="ava-cap-desc">Schedules directly into your calendar in real time, no staff required</div></div>
+          </div>
+          <div class="ava-cap">
+            <div class="ava-cap-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div><div class="ava-cap-title">Therapy Expert</div><div class="ava-cap-desc">Educates prospects on conditions, protocols, and outcomes before booking</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mini 5: Agent stack -->
+      <div class="ava-mini-stack">
+        <div class="ava-mini-stack-header">
+          <div class="ava-mini-stack-title">Supporting Agent Stack</div>
+          <div class="ava-mini-stack-badge">+ 15 Additional Agents</div>
+        </div>
+        <div class="ava-agent-pills">
+          <div class="ava-agent-pill">Ad Copy &amp; Creative</div>
+          <div class="ava-agent-pill">Database Reactivation</div>
+          <div class="ava-agent-pill">SEO &amp; Content</div>
+          <div class="ava-agent-pill">Pre-Qualification</div>
+          <div class="ava-agent-pill">Condition Screening</div>
+          <div class="ava-agent-pill">Patient Intake &amp; Consent</div>
+          <div class="ava-agent-pill">Appointment Scheduling</div>
+          <div class="ava-agent-pill">Live Event Management</div>
+          <div class="ava-agent-pill">Objection Handling</div>
+          <div class="ava-agent-pill">Follow-Up &amp; Reactivation</div>
+          <div class="ava-agent-pill">Revenue Tracking</div>
+          <div class="ava-agent-pill">Onboarding Agent</div>
+        </div>
+      </div>
+
+    </div><!-- /ava-right -->
   </div>
 </section>
 
