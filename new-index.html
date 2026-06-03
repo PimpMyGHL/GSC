@@ -330,9 +330,9 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   align-items: center;
 }
 .seth-story-section {
-  padding: 64px clamp(24px, 5vw, 80px) 72px;
-  display: flex;
-  align-items: center;
+  padding: 86px clamp(24px, 5vw, 80px) 92px;
+  display: block;
+  border-top: 1px solid rgb(255 255 255 / 13%);
   background: #080807;
 }
 .seth-section::before,
@@ -493,7 +493,6 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 .seth-sig {
   display: flex; flex-direction: column; gap: 8px;
   margin-top: 32px; padding-top: 26px;
-  border-top: 1px solid rgba(200,146,58,0.18);
 }
 .seth-sig-name {
   font-family: 'Great Vibes', cursive;
@@ -862,8 +861,8 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 #why-now::before { content: ''; position: absolute; top: -120px; left: -80px; width: 700px; height: 700px; background: radial-gradient(ellipse, rgba(200,146,58,0.065) 0%, transparent 68%); pointer-events: none; }
 .why-now-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(48px, 5vw, 80px); align-items: center; }
 .why-now-left { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 24px; }
-.section-eyebrow { font-family: var(--fb); font-size: 12px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 12px; }
-.section-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: linear-gradient(to left, var(--gold), rgba(200,146,58,0.3)); flex-shrink: 0; }
+.section-eyebrow { font-family: var(--fb); font-size: 12px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.section-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); flex-shrink: 0; }
 .why-now-headline { font-family: var(--fd); font-size: clamp(36px, 4vw, 59px); font-weight: 900; line-height: 1.02; letter-spacing: -0.03em; color: var(--white); }
 .why-now-fade { background: linear-gradient(90deg, #C8923A 0%, #F2C84A 50%, #C8923A 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .why-now-body { font-family: var(--fb); font-size: clamp(17px, 1.5vw, 21px); line-height: 1.55; color: rgb(245,244,240); max-width: 62ch; }
