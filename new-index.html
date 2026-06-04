@@ -5168,9 +5168,9 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 
   function activatePin(i, on) {
     if (!pinNodes[i]) return;
-    d3.select(pinNodes[i]).select('circle')
+    d3.select(pinNodes[i]).selectAll('circle').filter((d, j) => j === 1)
       .attr('r', on ? 9 : 6)
-      .attr('fill', on ? '#F2C84A' : '#C8923A')
+      .attr('fill', on ? '#E7C466' : '#080705')
       .attr('filter', on ? 'url(#pin-glow)' : null);
   }
 
@@ -5184,21 +5184,53 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
       merge.append('feMergeNode').attr('in', 'blur');
       merge.append('feMergeNode').attr('in', 'SourceGraphic');
 
+      const claimedCodes = new Set(TERRITORIES.map(t => t.code));
+      const stateMarkets = d3.group(TERRITORIES, t => t.code);
+
+      // State paths — hover for both claimed and available states
       svg.append('g').selectAll('path')
         .data(topojson.feature(us, us.objects.states).features)
         .join('path')
         .attr('d', path)
-        .attr('fill', d => new Set(TERRITORIES.map(t => t.code)).has(d.id) ? 'rgba(200,146,58,0.12)' : 'rgba(245,244,240,0.03)')
-        .attr('stroke', 'rgba(245,244,240,0.08)')
-        .attr('stroke-width', 0.5);
+        .attr('fill', d => claimedCodes.has(d.id) ? 'rgba(8,7,5,0.26)' : 'rgba(255,255,255,0.12)')
+        .attr('stroke', 'rgba(8,7,5,0.24)')
+        .attr('stroke-width', 0.7)
+        .style('cursor', 'pointer')
+        .on('mouseenter', function(e, d) {
+          const markets = stateMarkets.get(d.id) || [];
+          if (claimedCodes.has(d.id)) {
+            d3.select(this).attr('fill', 'rgba(8,7,5,0.42)').attr('stroke', 'rgba(8,7,5,0.56)').attr('stroke-width', 1.15);
+            showTip(e, {
+              city: markets.length > 1 ? `${markets.length} claimed sample markets` : markets[0].city,
+              state: markets[0].state,
+              detail: markets.map(m => m.city).join(' · ')
+            });
+          } else {
+            d3.select(this).attr('fill', 'rgba(255,255,255,0.24)').attr('stroke', 'rgba(8,7,5,0.44)').attr('stroke-width', 1.05);
+            showTip(e, {
+              city: 'Available market',
+              state: 'Review required',
+              detail: 'This area appears open for territory review. Final availability is confirmed one market at a time.'
+            });
+          }
+        })
+        .on('mousemove', moveTip)
+        .on('mouseleave', function(e, d) {
+          d3.select(this)
+            .attr('fill', claimedCodes.has(d.id) ? 'rgba(8,7,5,0.26)' : 'rgba(255,255,255,0.12)')
+            .attr('stroke', 'rgba(8,7,5,0.24)')
+            .attr('stroke-width', 0.7);
+          hideTip();
+        });
 
+      // Pins for claimed territories
       const pinsG = svg.append('g');
       TERRITORIES.forEach((t, i) => {
         const p = proj([t.lon, t.lat]);
         if (!p) return;
         const g = pinsG.append('g').attr('transform', `translate(${p[0]},${p[1]})`).style('cursor', 'pointer');
-        g.append('circle').attr('r', 16).attr('fill', 'rgba(200,146,58,0.08)').attr('stroke', 'rgba(200,146,58,0.2)').attr('stroke-width', 1);
-        g.append('circle').attr('r', 6).attr('fill', '#C8923A').attr('stroke', '#070605').attr('stroke-width', 1.5).style('filter', 'drop-shadow(0 0 4px rgba(200,146,58,0.7))');
+        g.append('circle').attr('r', 16).attr('fill', 'rgba(8,7,5,0.10)').attr('stroke', 'rgba(8,7,5,0.24)').attr('stroke-width', 1);
+        g.append('circle').attr('r', 6).attr('fill', '#080705').attr('stroke', '#E7C466').attr('stroke-width', 1.5).style('filter', 'drop-shadow(0 0 7px rgba(8,7,5,0.45))');
         g.on('mouseenter', e => { activatePin(i, true); showTip(e, t); document.querySelectorAll('.t-card')[i]?.classList.add('active'); })
          .on('mousemove', moveTip)
          .on('mouseleave', () => { activatePin(i, false); hideTip(); document.querySelectorAll('.t-card')[i]?.classList.remove('active'); });
@@ -5213,15 +5245,6 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
       const c = document.getElementById('map-container');
       if (c) c.innerHTML = '<div class="map-loading">Map unavailable — check territory availability below.</div>';
     });
-
-  // Track mouse for control card bloom effect
-  document.querySelectorAll('.tm-control-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-    });
-  });
 })();
 </script>
 </body>
