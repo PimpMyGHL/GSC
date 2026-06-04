@@ -3231,23 +3231,54 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 
 /* Mobile ≤ 720px */
 @media (max-width:720px) {
-  #territory-map { padding:52px 0 56px!important; }
+  /* Section: no horizontal padding so map bleeds edge-to-edge */
+  #territory-map { padding:42px 0 0!important; overflow-x:hidden; }
   .tm-split-inner { gap:0!important; }
-  .tm-copy-side { padding:0 18px; }
+
+  /* Copy side: inner padding for text only */
+  .tm-copy-side { padding:0 18px 26px; }
   .tm-copy-side h2 { font-size:clamp(40px,11vw,56px); }
-  /* Hide eyebrow, rule, note and button inside copy-side on mobile */
+
+  /* Hide on mobile */
   #territory-map .section-eyebrow { display:none!important; }
   .tm-clean-rule { display:none!important; }
   .tm-copy-side .tm-clean-note { display:none!important; }
   .tm-copy-side .tm-action-row-clean { display:none!important; }
-  /* Map: full width, no padding */
-  .tm-map-side { min-height:300px!important; width:100vw!important; margin-left:0!important; padding-bottom:52px!important; }
-  .tm-map-side .tm-map-wrap { height:300px!important; border-radius:0!important; }
-  /* Legend: below map, full width */
-  .tm-open-legend { position:relative!important; left:auto!important; bottom:auto!important; transform:none!important; width:calc(100% - 36px)!important; margin:10px auto 0!important; border-radius:14px!important; gap:10px!important; }
-  /* Mobile footer: shown below map */
-  .tm-mobile-footer { display:block; padding:28px 18px 0; }
-  .tm-mobile-footer .tm-clean-note { max-width:100%; margin-bottom:22px; }
+
+  /* Map side: column layout so map + legend stack vertically, full width */
+  .tm-map-side {
+    min-height:0!important;
+    width:100%!important;
+    padding-bottom:0!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    justify-content:flex-start!important;
+  }
+
+  /* Map wrap: full width, compact height */
+  .tm-map-side .tm-map-wrap {
+    width:100%!important;
+    height:260px!important;
+    border-radius:0!important;
+    flex-shrink:0;
+  }
+
+  /* Legend: flows below map naturally in column flex */
+  .tm-open-legend {
+    position:relative!important;
+    left:auto!important;
+    bottom:auto!important;
+    transform:none!important;
+    width:calc(100% - 36px)!important;
+    margin:12px auto 0!important;
+    border-radius:14px!important;
+    gap:10px!important;
+    flex-shrink:0;
+  }
+
+  /* Mobile footer: tight below legend */
+  .tm-mobile-footer { display:block; padding:22px 18px 48px; }
+  .tm-mobile-footer .tm-clean-note { max-width:100%; margin-bottom:20px; }
   .tm-mobile-footer .tm-action-row-clean .tm-sidebar-cta-btn { width:100%!important; justify-content:center!important; }
 }
 
