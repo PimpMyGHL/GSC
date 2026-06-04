@@ -44,7 +44,7 @@ body{display:grid;place-items:center;overflow-x:hidden;padding:clamp(12px,2.2vw,
 /* ── Screen — NO white border, NO box-shadow ── */
 .screen{
   position:absolute;z-index:5;
-  top:29.18%;left:18.45%;width:63.1%;height:39.2%;
+  top:27.8%;left:18.45%;width:63.1%;height:42.8%;
   overflow:hidden;
   background:#0f1014;
   border-radius:2px;
@@ -211,9 +211,23 @@ input[type=range]::-moz-range-thumb{
 }
 .ava p{
   position:relative;
-  font-size:clamp(8px,.82vw,12px);line-height:1.3;
+  font-size:clamp(8px,.82vw,11px);line-height:1.3;
   margin:clamp(4px,.5vw,8px) 0 clamp(8px,.75vw,11px);
   color:rgba(0,0,0,.72)
+}
+/* Ava slider — premium warm bronze thumb */
+.ava input[type=range]{
+  background:linear-gradient(90deg,rgba(0,0,0,.38) 0%,rgba(0,0,0,.38) var(--fill,33%),rgba(255,255,255,.22) var(--fill,33%),rgba(255,255,255,.22) 100%);
+  margin:clamp(4px,.5vw,7px) 0 clamp(6px,.65vw,9px);
+}
+.ava input[type=range]::-webkit-slider-thumb{
+  background:radial-gradient(circle at 35% 35%,#6b4010,#3a1e00);
+  border:2px solid rgba(255,230,140,.45);
+  box-shadow:0 2px 10px rgba(0,0,0,.45),0 0 0 1.5px rgba(200,150,40,.3);
+}
+.ava input[type=range]::-moz-range-thumb{
+  background:radial-gradient(circle at 35% 35%,#6b4010,#3a1e00);
+  border:2px solid rgba(255,230,140,.45);
 }
 .ava-row{
   position:relative;
@@ -358,13 +372,11 @@ input[type=range]::-moz-range-thumb{
             <p>Website, ads, SMS follow-up &amp; reactivation — books while you sleep.</p>
           </div>
           <div>
-            <div class="ava-row">
+            <div class="ava-row" style="border-top:none;padding-top:0;margin-bottom:clamp(3px,.35vw,5px);">
               <span>Ava Bookings / Month</span>
               <strong id="v-ava">4</strong>
             </div>
-            <input id="ava-bookings" type="range" min="0" max="12" value="4"
-                   style="width:100%;margin:clamp(4px,.45vw,7px) 0 clamp(5px,.55vw,8px);
-                          background:linear-gradient(90deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,.45) var(--fill,33%),rgba(0,0,0,.15) var(--fill,33%),rgba(0,0,0,.15) 100%)">
+            <input id="ava-bookings" type="range" min="0" max="12" value="4" style="width:100%">
             <div class="ava-row">
               <span>Ava Revenue / Month</span>
               <strong id="ava-rev">$34,000</strong>
