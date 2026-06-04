@@ -44,7 +44,7 @@ body{display:grid;place-items:center;overflow-x:hidden;padding:clamp(12px,2.2vw,
 /* ── Screen — NO white border, NO box-shadow ── */
 .screen{
   position:absolute;z-index:5;
-  top:27.8%;left:18.45%;width:63.1%;height:42.8%;
+  top:29.18%;left:18.45%;width:63.1%;height:39.2%;
   overflow:hidden;
   background:#0f1014;
   border-radius:2px;
@@ -188,7 +188,7 @@ input[type=range]::-moz-range-thumb{
   color:#080705;
   box-shadow:0 0 34px rgba(216,191,118,.28),inset 0 1px 0 rgba(255,255,255,.36);
   position:relative;overflow:hidden;
-  min-height:0;flex:1 1 auto;
+  min-height:0;flex:0 1 auto;
   display:flex;flex-direction:column;justify-content:space-between
 }
 .ava:before{
@@ -215,19 +215,28 @@ input[type=range]::-moz-range-thumb{
   margin:clamp(4px,.5vw,8px) 0 clamp(8px,.75vw,11px);
   color:rgba(0,0,0,.72)
 }
-/* Ava slider — premium warm bronze thumb */
+/* Ava slider — readable on champagne gold */
 .ava input[type=range]{
-  background:linear-gradient(90deg,rgba(0,0,0,.38) 0%,rgba(0,0,0,.38) var(--fill,33%),rgba(255,255,255,.22) var(--fill,33%),rgba(255,255,255,.22) 100%);
+  height:5px;
+  background:linear-gradient(
+    90deg,
+    rgba(80,44,0,.75) 0%,
+    rgba(80,44,0,.75) var(--fill,33%),
+    rgba(0,0,0,.18) var(--fill,33%),
+    rgba(0,0,0,.18) 100%
+  );
   margin:clamp(4px,.5vw,7px) 0 clamp(6px,.65vw,9px);
 }
 .ava input[type=range]::-webkit-slider-thumb{
-  background:radial-gradient(circle at 35% 35%,#6b4010,#3a1e00);
-  border:2px solid rgba(255,230,140,.45);
-  box-shadow:0 2px 10px rgba(0,0,0,.45),0 0 0 1.5px rgba(200,150,40,.3);
+  width:clamp(14px,1.35vw,18px);height:clamp(14px,1.35vw,18px);
+  background:radial-gradient(circle at 35% 35%,#7a4a18,#3a1e00);
+  border:2px solid rgba(255,235,160,.55);
+  box-shadow:0 2px 10px rgba(0,0,0,.5),0 0 0 1.5px rgba(180,120,20,.45);
 }
 .ava input[type=range]::-moz-range-thumb{
-  background:radial-gradient(circle at 35% 35%,#6b4010,#3a1e00);
-  border:2px solid rgba(255,230,140,.45);
+  width:16px;height:16px;
+  background:radial-gradient(circle at 35% 35%,#7a4a18,#3a1e00);
+  border:2px solid rgba(255,235,160,.55);
 }
 .ava-row{
   position:relative;
