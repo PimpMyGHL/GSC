@@ -4256,7 +4256,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 }
 /* Mobile */
 @media(max-width:620px){
-  .macb-calc{padding:0 14px}
+  .macb-calc{padding:0 14px;overflow-x:hidden}
   .macb-calc .calc-title .line1{font-size:clamp(28px,8vw,40px)}
   .macb-calc .calc-title .line2{font-size:clamp(20px,7vw,38px)}
   /* topbar: left-align title, prevent overlap with LIVE badge */
@@ -4264,17 +4264,20 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   .macb-calc .topbar{gap:8px}
   .macb-calc .scenario-tabs{gap:5px;flex-wrap:nowrap}
   .macb-calc .tab{min-width:0;flex:1;padding:7px 10px}
-  .macb-calc .tab-label{font-size:11px;white-space:normal;text-align:center;line-height:1.2}
+  .macb-calc .tab-label{font-size:10px;white-space:nowrap;text-align:center;line-height:1.2}
+  .macb-calc .stage-clip{overflow:hidden;max-width:100%}
+  .macb-calc .screen{max-width:100%;box-sizing:border-box;overflow:hidden}
   .macb-calc .ui{grid-template-columns:1fr}
   .macb-calc .cleft{border-right:none;border-bottom:1px solid rgba(216,191,118,.15);padding:16px 14px}
   .macb-calc .cright{padding:16px 14px;gap:10px}
   .macb-calc .cbig{font-size:40px}
   .macb-calc .chero h2{font-size:14px}
-  .macb-calc .crow{font-size:13px}
-  .macb-calc .crow strong{font-size:15px}
-  .macb-calc .cstats{grid-template-columns:repeat(3,1fr)}
-  .macb-calc .cstat-num{font-size:26px}
-  .macb-calc .cstat:nth-child(2) .cstat-num{font-size:22px}
+  .macb-calc .crow{font-size:12px;gap:8px}
+  .macb-calc .crow strong{font-size:14px}
+  .macb-calc .cstats{grid-template-columns:repeat(3,1fr);gap:6px}
+  .macb-calc .cstat{padding:9px 4px}
+  .macb-calc .cstat-num{font-size:22px}
+  .macb-calc .cstat:nth-child(2) .cstat-num{font-size:18px}
 }
 </style>
 <div class="macb-calc">
