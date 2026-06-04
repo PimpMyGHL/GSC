@@ -3381,37 +3381,25 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 .cta-microcopy { font-family: var(--fb); font-size: 12px; line-height: 1.55; color: rgba(245,244,240,.40); max-width: 220px; }
 
 /* Terminal card */
-/* ── Terminal: 3D tilted glass window ── */
-.cta-terminal-perspective {
-  perspective: 1100px;
-  perspective-origin: 60% 50%;
-  padding: 20px 0 20px 20px;
-  margin: -20px 0 -20px -20px;
+/* ── iPad mockup image ── */
+.cta-ipad-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 0 20px;
 }
-.cta-terminal {
-  border: 1px solid rgba(200,146,58,.32);
-  border-radius: 20px;
-  background: linear-gradient(160deg, rgba(255,255,255,.96) 0%, rgba(248,245,238,.98) 100%);
-  box-shadow:
-    -18px 32px 80px rgba(0,0,0,.52),
-    -4px 8px 24px rgba(0,0,0,.28),
-    0 2px 0 rgba(255,255,255,.9) inset,
-    0 -1px 0 rgba(200,146,58,.22) inset;
-  overflow: hidden;
-  position: relative;
-  transform: rotateY(-22deg) rotateX(4deg) scale(1.02);
-  transform-style: preserve-3d;
-  transform-origin: right center;
-  transition: transform .55s cubic-bezier(.16,1,.3,1), box-shadow .55s cubic-bezier(.16,1,.3,1);
+.cta-ipad-img {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(-24px 32px 60px rgba(0,0,0,.55)) drop-shadow(-8px 12px 24px rgba(0,0,0,.32));
+  transition: filter .45s ease, transform .45s cubic-bezier(.16,1,.3,1);
   will-change: transform;
 }
-.cta-terminal-perspective:hover .cta-terminal {
-  transform: rotateY(-10deg) rotateX(2deg) scale(1.03);
-  box-shadow:
-    -24px 40px 100px rgba(0,0,0,.56),
-    -6px 12px 32px rgba(0,0,0,.30),
-    0 2px 0 rgba(255,255,255,.9) inset,
-    0 -1px 0 rgba(200,146,58,.22) inset;
+.cta-ipad-wrap:hover .cta-ipad-img {
+  filter: drop-shadow(-28px 38px 72px rgba(0,0,0,.62)) drop-shadow(-10px 16px 28px rgba(0,0,0,.36));
+  transform: translateY(-6px) scale(1.015);
 }
 .cta-terminal::before {
   content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px;
@@ -3471,9 +3459,9 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   .cta-sub { margin-left: auto; margin-right: auto; }
   .cta-actions { justify-content: center; }
   .cta-proof-grid { grid-template-columns: 1fr; margin-top: 40px; }
-  /* Flatten 3D tilt on smaller screens */
-  .cta-terminal { transform: none !important; box-shadow: 0 32px 80px rgba(0,0,0,.46), 0 2px 0 rgba(255,255,255,.9) inset, 0 -1px 0 rgba(200,146,58,.22) inset !important; }
-  .cta-terminal-perspective:hover .cta-terminal { transform: translateY(-4px) !important; }
+  /* iPad image: center and constrain on smaller screens */
+  .cta-ipad-wrap { padding: 0; justify-content: center; }
+  .cta-ipad-img { max-width: 420px; }
 }
 @media (max-width: 768px) {
   #book { padding: 92px 20px 68px; }
@@ -4612,31 +4600,8 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
     </div>
 
     <!-- Terminal card -->
-    <div class="cta-terminal-perspective">
-    <div class="cta-terminal">
-      <div class="cta-terminal-top">
-        <div class="cta-terminal-dots"><span></span><span></span><span></span></div>
-        <div class="cta-terminal-label">Territory Review Sequence</div>
-      </div>
-      <div class="cta-sequence">
-        <div class="cta-seq-row">
-          <div class="cta-seq-num">01</div>
-          <div><strong>Confirm Market Availability</strong><p>We check whether your preferred city or region is still open for a protected license.</p></div>
-        </div>
-        <div class="cta-seq-row">
-          <div class="cta-seq-num">02</div>
-          <div><strong>Review Operator Fit</strong><p>We look at market goals, capital, involvement level, and whether this model is realistic for you.</p></div>
-        </div>
-        <div class="cta-seq-row active">
-          <div class="cta-seq-num">03</div>
-          <div><strong>Walk Through the Platform</strong><p>See the dinner seminar engine, Ava AI, CRM, support, training, and launch path.</p></div>
-        </div>
-        <div class="cta-seq-row">
-          <div class="cta-seq-num">04</div>
-          <div><strong>Decide If It Deserves a Deeper Look</strong><p>If the market and model make sense, we discuss next steps. If not, you walk away clear.</p></div>
-        </div>
-      </div>
-    </div>
+    <div class="cta-ipad-wrap">
+      <img class="cta-ipad-img" src="https://raw.githubusercontent.com/PimpMyGHL/GSC/main/images/territory%20review%20sequence%20ipad.png" alt="Territory Review Sequence on iPad" loading="eager" decoding="async">
     </div>
   </div>
 
