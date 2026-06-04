@@ -3381,14 +3381,37 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 .cta-microcopy { font-family: var(--fb); font-size: 12px; line-height: 1.55; color: rgba(245,244,240,.40); max-width: 220px; }
 
 /* Terminal card */
-/* ── Terminal: light glass browser window ── */
+/* ── Terminal: 3D tilted glass window ── */
+.cta-terminal-perspective {
+  perspective: 1100px;
+  perspective-origin: 60% 50%;
+  padding: 20px 0 20px 20px;
+  margin: -20px 0 -20px -20px;
+}
 .cta-terminal {
   border: 1px solid rgba(200,146,58,.32);
   border-radius: 20px;
   background: linear-gradient(160deg, rgba(255,255,255,.96) 0%, rgba(248,245,238,.98) 100%);
-  box-shadow: 0 48px 120px rgba(0,0,0,.52), 0 2px 0 rgba(255,255,255,.9) inset, 0 -1px 0 rgba(200,146,58,.22) inset;
+  box-shadow:
+    -18px 32px 80px rgba(0,0,0,.52),
+    -4px 8px 24px rgba(0,0,0,.28),
+    0 2px 0 rgba(255,255,255,.9) inset,
+    0 -1px 0 rgba(200,146,58,.22) inset;
   overflow: hidden;
   position: relative;
+  transform: rotateY(-22deg) rotateX(4deg) scale(1.02);
+  transform-style: preserve-3d;
+  transform-origin: right center;
+  transition: transform .55s cubic-bezier(.16,1,.3,1), box-shadow .55s cubic-bezier(.16,1,.3,1);
+  will-change: transform;
+}
+.cta-terminal-perspective:hover .cta-terminal {
+  transform: rotateY(-10deg) rotateX(2deg) scale(1.03);
+  box-shadow:
+    -24px 40px 100px rgba(0,0,0,.56),
+    -6px 12px 32px rgba(0,0,0,.30),
+    0 2px 0 rgba(255,255,255,.9) inset,
+    0 -1px 0 rgba(200,146,58,.22) inset;
 }
 .cta-terminal::before {
   content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px;
@@ -3448,6 +3471,9 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   .cta-sub { margin-left: auto; margin-right: auto; }
   .cta-actions { justify-content: center; }
   .cta-proof-grid { grid-template-columns: 1fr; margin-top: 40px; }
+  /* Flatten 3D tilt on smaller screens */
+  .cta-terminal { transform: none !important; box-shadow: 0 32px 80px rgba(0,0,0,.46), 0 2px 0 rgba(255,255,255,.9) inset, 0 -1px 0 rgba(200,146,58,.22) inset !important; }
+  .cta-terminal-perspective:hover .cta-terminal { transform: translateY(-4px) !important; }
 }
 @media (max-width: 768px) {
   #book { padding: 92px 20px 68px; }
@@ -4586,6 +4612,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
     </div>
 
     <!-- Terminal card -->
+    <div class="cta-terminal-perspective">
     <div class="cta-terminal">
       <div class="cta-terminal-top">
         <div class="cta-terminal-dots"><span></span><span></span><span></span></div>
@@ -4609,6 +4636,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
           <div><strong>Decide If It Deserves a Deeper Look</strong><p>If the market and model make sense, we discuss next steps. If not, you walk away clear.</p></div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 
