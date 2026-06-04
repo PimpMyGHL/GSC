@@ -1423,7 +1423,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 }
 .filter-top {
   position: relative;
-  padding: 94px clamp(24px, 5vw, 80px) 50px;
+  padding: 94px clamp(24px, 5vw, 80px) 17px;
   text-align: center;
 }
 .filter-wrap {
@@ -1458,7 +1458,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 .filter-kicker::after { background: linear-gradient(90deg, rgba(200,146,58,.58), transparent); }
 .filter-headline {
   max-width: 1080px;
-  margin: 0 auto 22px;
+  margin: 0 auto 11px;
   font-family: var(--fd);
   font-size: clamp(42px, 5vw, 76px);
   line-height: 1.01;
@@ -3417,8 +3417,9 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 
 .cta-ipad-floater {
   position: relative;
-  width: 100%;
-  max-width: 520px;
+  width: 115%;
+  max-width: 600px;
+  margin-left: -7.5%;
   animation: ipad-float 6s ease-in-out infinite, ipad-glow 6s ease-in-out infinite;
   will-change: transform, filter;
 }
@@ -4322,114 +4323,214 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 <!-- ═══════════ SECTION: REVENUE CALCULATOR ═══════════ -->
 <div id="revenue-calc">
 <section class="calc-dashboard-section" id="calculator">
-<div class="calc-dashboard-bg"></div>
-<div class="calc-dashboard-header">
-<div class="calc-header-copy">
-<div class="section-eyebrow">Revenue Potential</div>
-<h2 class="calc-dashboard-headline">What Could Your<br/><em>Market Be Worth?</em></h2>
-<p class="calc-dashboard-sub">Use conservative assumptions to model how live dinner events, consultation capture, treatment conversion, and Ava AI follow-up could work together inside one protected territory. Illustrative only; not a promise of income.</p>
+<style>
+/* ── MacBook Calculator — scoped under .macb-calc ── */
+#calculator{padding:clamp(60px,6vw,90px) 0 clamp(40px,4vw,60px)!important;max-width:none!important;overflow:visible!important;background:transparent!important;}
+.macb-calc{display:grid;place-items:center;width:100%;overflow-x:hidden;padding:0 clamp(12px,2.2vw,36px)}
+.macb-calc .calc-header{width:min(1260px,100%);text-align:center;padding-bottom:clamp(18px,2.2vw,34px)}
+/* Eyebrow */
+.macb-calc .calc-eyebrow{display:inline-flex;align-items:center;gap:clamp(10px,1.1vw,16px);font-family:var(--fb);font-size:clamp(12px,1vw,15px);font-weight:900;letter-spacing:.30em;text-transform:uppercase;color:rgba(200,146,58,.92);margin-bottom:clamp(12px,1.35vw,20px)}
+.macb-calc .calc-eyebrow:before,.macb-calc .calc-eyebrow:after{content:'';display:block;width:min(92px,14vw);height:1px;background:linear-gradient(90deg,transparent,rgba(200,146,58,.58))}
+.macb-calc .calc-eyebrow:after{background:linear-gradient(90deg,rgba(200,146,58,.58),transparent)}
+/* Title */
+.macb-calc .calc-title{font-family:var(--fd);font-weight:900;line-height:1;letter-spacing:-0.052em;margin:0 0 8px}
+.macb-calc .calc-title .line1{display:block;font-family:var(--fd);font-size:clamp(42px,5vw,78px);line-height:1;letter-spacing:-0.052em;font-weight:900;color:var(--white);margin:0 0 8px}
+.macb-calc .calc-title .line2{display:block;background:linear-gradient(90deg,#C8923A 0%,#F2C84A 52%,#C8923A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic;font-size:clamp(42px,5vw,78px)}
+/* Subtext */
+.macb-calc .calc-sub{max-width:1000px;margin:0 auto;font-family:var(--fb);font-size:clamp(16px,1.36vw,20px);line-height:1.72;color:rgb(245 244 240 / 81%);margin-bottom:-3px}
+.macb-calc .scenario-tabs{display:inline-flex;gap:8px;padding:0;margin-bottom:10px;position:relative;z-index:20;background:none;border:none}
+.macb-calc .tab{position:relative;display:flex;flex-direction:column;align-items:center;min-width:130px;padding:8px 20px;border-radius:999px;border:1px solid rgba(216,191,118,.22);background:rgba(255,255,255,.05);cursor:pointer;transition:background .22s,border-color .22s,box-shadow .22s;user-select:none;gap:2px}
+.macb-calc .tab:hover:not(.active){background:rgba(255,255,255,.08);border-color:rgba(216,191,118,.40)}
+.macb-calc .tab.active{background:linear-gradient(135deg,#c8923a,#d8bf76 55%,#f3dda0);border-color:transparent;box-shadow:0 4px 18px rgba(216,191,118,.25),inset 0 1px 0 rgba(255,255,255,.3)}
+.macb-calc .tab-label{font-family:var(--fd);font-size:13px;font-weight:800;letter-spacing:.02em;color:rgba(255,255,255,.65);white-space:nowrap;transition:color .22s}
+.macb-calc .tab.active .tab-label{color:#0f0d08}
+.macb-calc .stage-clip{width:min(1500px,100%);overflow:hidden}
+.macb-calc .stage{position:relative;width:100%;aspect-ratio:1/1;margin:-23% 0 -21.5%;background:radial-gradient(ellipse at 50% 54%,rgba(216,191,118,.10),transparent 45%),transparent}
+.macb-calc .mac{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:10;pointer-events:none;user-select:none}
+.macb-calc .screen{position:absolute;z-index:5;top:29.18%;left:18.45%;width:63.1%;height:39.2%;overflow:hidden;background:#0f1014;border-radius:2px;display:grid;grid-template-rows:clamp(28px,2.55vw,38px) 1fr}
+.macb-calc .topbar{background:linear-gradient(180deg,#25262b,#191a1f);border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;padding:0 clamp(10px,1.25vw,18px);position:relative;min-width:0}
+.macb-calc .dots{display:flex;gap:clamp(4px,.55vw,8px);flex-shrink:0}
+.macb-calc .dots i{width:clamp(7px,.78vw,10px);height:clamp(7px,.78vw,10px);border-radius:99px;display:block}
+.macb-calc .dots i:nth-child(1){background:#ff5f57}
+.macb-calc .dots i:nth-child(2){background:#ffbd2e}
+.macb-calc .dots i:nth-child(3){background:#28c840}
+.macb-calc .bar-title{position:absolute;left:50%;transform:translateX(-50%);font:700 clamp(9px,.95vw,14px)/1 var(--fd);color:rgba(246,244,238,.84);letter-spacing:.01em;white-space:nowrap;max-width:54%;overflow:hidden;text-overflow:ellipsis;text-align:center}
+.macb-calc .bar-right{margin-left:auto;display:flex;align-items:center;gap:clamp(7px,.9vw,13px);flex-shrink:0}
+.macb-calc .clive{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(75,222,128,.34);background:rgba(34,197,94,.13);color:#69d883;border-radius:999px;padding:clamp(2px,.35vw,4px) clamp(7px,.7vw,10px);font-size:clamp(7px,.66vw,10px);font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+.macb-calc .clive:before{content:'';width:5px;height:5px;border-radius:50%;background:#69d883;box-shadow:0 0 8px rgba(105,216,131,.9);animation:gpulse2 2s ease-in-out infinite}
+@keyframes gpulse2{0%,100%{opacity:1}50%{opacity:.4}}
+.macb-calc .ctime{font-size:clamp(8px,.82vw,12px);color:rgba(246,244,238,.5);font-weight:600}
+.macb-calc .ui{display:grid;grid-template-columns:1.04fr 1.06fr;min-height:0;background:radial-gradient(ellipse 74% 64% at 20% 82%,rgba(216,191,118,.12),transparent 55%),linear-gradient(135deg,#17181d 0%,#101115 45%,#17181d 100%)}
+.macb-calc .cleft,.macb-calc .cright{min-width:0;min-height:0}
+.macb-calc .cleft{border-right:1px solid rgba(255,255,255,.075);display:flex;flex-direction:column;gap:clamp(6px,.75vw,10px);padding:clamp(13px,1.5vw,22px) clamp(16px,1.7vw,26px) clamp(12px,1.35vw,20px)}
+.macb-calc .ceyebrow{font-size:clamp(10px,.86vw,14px);font-weight:900;letter-spacing:.25em;text-transform:uppercase;color:#d8bf76;margin-bottom:clamp(4px,.45vw,7px)}
+.macb-calc .ctitle{font-family:var(--fd);font-size:clamp(16px,2.05vw,17px);line-height:.95;font-weight:900;letter-spacing:.02em;color:#fff;margin-bottom:clamp(6px,.65vw,11px)}
+.macb-calc .cslider{border:1px solid rgba(216,191,118,.42);border-radius:7px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018));padding:clamp(6px,.62vw,9px) clamp(11px,1vw,15px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);flex:0 0 auto}
+.macb-calc .cslider-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:clamp(5px,.55vw,8px);gap:12px}
+.macb-calc .cslider-label{font-size:clamp(9px,.94vw,13px);color:rgba(255,255,255,.90);font-weight:600}
+.macb-calc .cslider-val{font-size:clamp(9px,.94vw,13px);color:#fff;font-weight:800;white-space:nowrap}
+.macb-calc input[type=range]{width:100%;height:4px;appearance:none;-webkit-appearance:none;outline:0;border-radius:999px;cursor:pointer;background:linear-gradient(90deg,#f3dda0 0%,#d8bf76 var(--fill,50%),rgba(255,255,255,.10) var(--fill,50%),rgba(255,255,255,.10) 100%)}
+.macb-calc input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:clamp(13px,1.2vw,17px);height:clamp(13px,1.2vw,17px);border-radius:50%;background:radial-gradient(circle at 36% 36%,#f5dfa0,#c8a84b 55%,#b89145);border:2px solid rgba(255,255,255,.55);box-shadow:0 2px 10px rgba(216,191,118,.45),0 0 0 1px rgba(216,191,118,.3);transition:transform .15s,box-shadow .15s}
+.macb-calc input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18);box-shadow:0 3px 14px rgba(216,191,118,.6),0 0 0 2px rgba(216,191,118,.4)}
+.macb-calc input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:radial-gradient(circle at 36% 36%,#f5dfa0,#c8a84b 55%,#b89145);border:2px solid rgba(255,255,255,.55);box-shadow:0 2px 10px rgba(216,191,118,.45)}
+.macb-calc .cava{margin-top:clamp(4px,.45vw,6px);border-radius:9px;padding:clamp(9px,.9vw,13px) clamp(12px,1.1vw,16px);background:linear-gradient(135deg,#f9da83 0%,#edd283 34%,#ffca6c 100%);color:#080705;box-shadow:0 0 34px rgba(216,191,118,.28),inset 0 1px 0 rgba(255,255,255,.36);position:relative;overflow:hidden;min-height:0;flex:0 1 auto;display:flex;flex-direction:column;gap:clamp(4px,.4vw,6px)}
+.macb-calc .cava:before{content:'';position:absolute;inset:-40% -25% auto auto;width:60%;height:80%;background:radial-gradient(ellipse,rgba(255,255,255,.46),transparent 65%);filter:blur(10px)}
+.macb-calc .cava h3{position:relative;font-family:var(--fd);font-size:clamp(13px,1.35vw,17px);line-height:1;margin-bottom:1px}
+.macb-calc .cava h3 span{display:block;font-size:clamp(10px,1.0vw,12px);font-weight:500;margin-top:1px}
+.macb-calc .cava p{position:relative;font-size:clamp(8px,.76vw,10px);line-height:1.25;margin:0;color:rgba(0,0,0,.72)}
+.macb-calc .cava input[type=range]{height:5px;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.55) var(--fill,33%),rgba(0,0,0,.18) var(--fill,33%),rgba(0,0,0,.18) 100%);margin:clamp(4px,.5vw,7px) 0 clamp(6px,.65vw,9px)}
+.macb-calc .cava input[type=range]::-webkit-slider-thumb{width:clamp(14px,1.35vw,18px);height:clamp(14px,1.35vw,18px);background:radial-gradient(circle at 34% 34%,#4a4a4a,#111 60%,#000);border:1.5px solid rgba(255,255,255,.20);box-shadow:0 2px 10px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.15)}
+.macb-calc .cava input[type=range]::-moz-range-thumb{width:16px;height:16px;background:radial-gradient(circle at 34% 34%,#4a4a4a,#111 60%,#000);border:1.5px solid rgba(255,255,255,.20)}
+.macb-calc .cava-row{position:relative;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(0,0,0,.14);padding-top:clamp(3px,.35vw,5px);font-size:clamp(8px,.82vw,11px);color:rgba(0,0,0,.74);gap:10px;font-weight:bold}
+.macb-calc .cava-row strong{font-size:clamp(8px,.88vw,12px);color:#060503;white-space:nowrap}
+.macb-calc .cava-row + .cava-row{margin-top:clamp(2px,.28vw,4px)}
+.macb-calc .cright{display:flex;flex-direction:column;justify-content:center;padding:clamp(14px,1.55vw,23px) clamp(24px,2.5vw,38px);gap:clamp(10px,1.05vw,15px)}
+.macb-calc .chero{border:1px solid rgba(216,191,118,.34);border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));padding:clamp(17px,1.8vw,27px) clamp(22px,2.25vw,34px);text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 18px 50px rgba(0,0,0,.24);flex:0 0 auto}
+.macb-calc .chero h2{font-family:var(--fd);font-size:clamp(18px,1.95vw,26px);font-weight:bold;color:#d8bf76;letter-spacing:.02em;margin-bottom:clamp(8px,.9vw,12px)}
+.macb-calc .cbig{font-family:var(--fd);font-size:clamp(39px,4.4vw,54px);line-height:.9;font-weight:500;letter-spacing:.02em;color:#f3dda0;text-shadow:0 0 28px rgba(216,191,118,.12);margin-bottom:clamp(11px,1.1vw,16px)}
+.macb-calc .csub{font-size:clamp(8px,.8vw,11px);color:rgba(255,255,255,.62)}
+.macb-calc .crows{border:1px solid rgba(216,191,118,.34);border-radius:7px;overflow:hidden;background:rgba(0,0,0,.10);flex:0 0 auto}
+.macb-calc .crow{display:flex;align-items:center;justify-content:space-between;padding:clamp(8px,.86vw,12px) clamp(13px,1.25vw,18px);border-bottom:1px solid rgba(216,191,118,.32);font-size:clamp(9px,.94vw,13px);color:rgba(255,255,255,.88);gap:16px}
+.macb-calc .crow:last-child{border-bottom:0}
+.macb-calc .crow strong{font-size:clamp(12px,1.18vw,17px);color:#f3dda0;white-space:nowrap}
+.macb-calc .cstats{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(7px,.8vw,10px);flex:0 0 auto}
+.macb-calc .cstat{border:1px solid rgba(216,191,118,.48);border-radius:7px;text-align:center;padding:clamp(10px,1.02vw,15px) 8px;background:rgba(255,255,255,.018)}
+.macb-calc .cstat-label{font-size:clamp(7px,.72vw,8px);color:#fff;margin-bottom:clamp(5px,.55vw,7px);line-height:1.15}
+.macb-calc .cstat-num{font-family:var(--fd);font-size:clamp(22px,2.45vw,34px);line-height:1;color:#fff;font-weight:700}
+.macb-calc .cstat:nth-child(2) .cstat-num{font-size:clamp(19px,2.05vw,29px);color:#f3dda0}
+/* Tablet */
+@media(max-width:1024px){
+  #calculator{padding:58px 20px clamp(40px,4vw,60px)!important;}
+  .macb-calc{padding:0}
+  .macb-calc .calc-header{padding-bottom:clamp(12px,2.5vw,20px)}
+  .macb-calc .calc-title .line1{font-size:clamp(30px,6vw,52px)}
+  .macb-calc .calc-title .line2{font-size:clamp(28px,5.6vw,48px)}
+  .macb-calc .scenario-tabs{flex-wrap:nowrap;justify-content:center;margin-bottom:24px;gap:7px}
+  .macb-calc .tab{min-width:110px;padding:7px 16px}
+  .macb-calc .tab-label{font-size:12px}
+  .macb-calc .calc-sub{font-size:14px;margin-top:14px;margin-bottom:24px}
+  .macb-calc .stage-clip{overflow:visible}
+  .macb-calc .stage{aspect-ratio:unset;margin:0;background:none}
+  .macb-calc .mac{display:none}
+  .macb-calc .screen{position:static;width:100%;height:auto;border-radius:16px;border:1px solid rgba(216,191,118,.22);box-shadow:0 24px 80px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.04);display:flex;flex-direction:column;overflow:hidden}
+  .macb-calc .topbar{padding:11px 18px;min-height:44px}
+  .macb-calc .bar-title{font-size:13px}
+  .macb-calc .ctime{display:block;font-size:12px}
+  .macb-calc .ui{display:grid;grid-template-columns:1fr 1fr;min-height:0;height:auto}
+  .macb-calc .cright{display:flex!important}
+  .macb-calc .cleft{padding:18px 16px;gap:10px;border-right:1px solid rgba(255,255,255,.07)}
+  .macb-calc .ceyebrow{font-size:11px;margin-bottom:3px}
+  .macb-calc .ctitle{font-size:17px;margin-bottom:3px}
+  .macb-calc .cslider{padding:9px 12px}
+  .macb-calc .cslider-top{margin-bottom:6px}
+  .macb-calc .cslider-label,.macb-calc .cslider-val{font-size:13px}
+  .macb-calc input[type=range]{height:5px}
+  .macb-calc .cava{padding:12px 13px;margin-top:5px}
+  .macb-calc .cava h3{font-size:15px}
+  .macb-calc .cava h3 span{font-size:12px}
+  .macb-calc .cava p{font-size:11px}
+  .macb-calc .cava-row{font-size:12px;padding-top:5px}
+  .macb-calc .cava-row strong{font-size:13px}
+  .macb-calc .cright{padding:18px 16px;gap:11px}
+  .macb-calc .chero{padding:16px 14px}
+  .macb-calc .chero h2{font-size:15px;margin-bottom:8px}
+  .macb-calc .cbig{font-size:34px}
+  .macb-calc .csub{font-size:10px}
+  .macb-calc .crow{padding:9px 12px;font-size:12px}
+  .macb-calc .crow strong{font-size:14px}
+  .macb-calc .cstats{gap:7px}
+  .macb-calc .cstat{padding:9px 5px}
+  .macb-calc .cstat-label{font-size:9px}
+  .macb-calc .cstat-num{font-size:24px}
+  .macb-calc .cstat:nth-child(2) .cstat-num{font-size:20px}
+}
+/* Mobile */
+@media(max-width:620px){
+  .macb-calc{padding:0 14px}
+  .macb-calc .calc-title .line1{font-size:clamp(28px,8vw,40px)}
+  .macb-calc .calc-title .line2{font-size:clamp(20px,7vw,38px)}
+  /* topbar: left-align title, prevent overlap with LIVE badge */
+  .macb-calc .bar-title{position:static;transform:none;text-align:left;max-width:calc(100% - 110px);font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-right:auto}
+  .macb-calc .topbar{gap:8px}
+  .macb-calc .scenario-tabs{gap:5px;flex-wrap:nowrap}
+  .macb-calc .tab{min-width:0;flex:1;padding:7px 10px}
+  .macb-calc .tab-label{font-size:11px;white-space:normal;text-align:center;line-height:1.2}
+  .macb-calc .ui{grid-template-columns:1fr}
+  .macb-calc .cleft{border-right:none;border-bottom:1px solid rgba(216,191,118,.15);padding:16px 14px}
+  .macb-calc .cright{padding:16px 14px;gap:10px}
+  .macb-calc .cbig{font-size:40px}
+  .macb-calc .chero h2{font-size:14px}
+  .macb-calc .crow{font-size:13px}
+  .macb-calc .crow strong{font-size:15px}
+  .macb-calc .cstats{grid-template-columns:repeat(3,1fr)}
+  .macb-calc .cstat-num{font-size:26px}
+  .macb-calc .cstat:nth-child(2) .cstat-num{font-size:22px}
+}
+</style>
+<div class="macb-calc">
+<div class="calc-header">
+  <div class="calc-eyebrow">Revenue Potential</div>
+  <h2 class="calc-title">
+    <span class="line1">What Could Your</span>
+    <span class="line2">Market Be Worth?</span>
+  </h2>
+  <p class="calc-sub">Use conservative assumptions to model how live dinner events, consultation capture, treatment conversion, and Ava AI follow-up could work together inside one protected territory. Illustrative only — not a promise of income.</p>
 </div>
-<div class="calc-target-panel">
-<div class="ctp-kicker"><span></span>Target Range</div>
-<div class="ctp-num">$750K–$1.5M+</div>
-<div class="ctp-label">Illustrative Annual Territory Potential</div>
-<p>Built around live education events, consultation capture, treatment conversion, and AI-assisted follow-up.</p>
+<div class="scenario-tabs" role="tablist">
+  <button class="tab" data-preset="conservative" role="tab"><span class="tab-label">Conservative Start</span></button>
+  <button class="tab active" data-preset="realistic" role="tab" aria-selected="true"><span class="tab-label">Growth Case</span></button>
+  <button class="tab" data-preset="aggressive" role="tab"><span class="tab-label">Expansion Case</span></button>
 </div>
-</div>
-<div aria-label="Revenue model presets" class="calc-scenario-row">
-<button class="calc-scenario-btn active" data-attendees="20" data-ava="4" data-conv="30" data-events="2" data-treat="8500" type="button">Conservative Start</button>
-<button class="calc-scenario-btn" data-attendees="30" data-ava="7" data-conv="35" data-events="3" data-treat="9000" type="button">Growth Case</button>
-<button class="calc-scenario-btn" data-attendees="40" data-ava="10" data-conv="40" data-events="4" data-treat="9500" type="button">Expansion Case</button>
-</div>
-<div class="calc-dashboard-shell">
-<div class="calc-dashboard-topbar">
-<div><span class="calc-live-dot"></span><strong>Business Model Dashboard</strong><small>Adjust assumptions in real time</small></div>
-<div class="calc-formula-pill">Events + Ava AI = Consultations + Follow-Up</div>
-</div>
-<div class="calc-dashboard-grid">
-<div class="calc-control-panel">
-<div class="calc-panel-title-row">
-<div>
-<span class="calc-card-eyebrow"><span class="calc-card-dot event-dot"></span>Model Inputs</span>
-<h3>Control the levers.</h3>
-</div>
-<span class="calc-mini-badge">Default: 2 seminars</span>
-</div>
-<div class="calc-lever-group">
-<div class="calc-lever-row">
-<div class="calc-v5-label">Events / Month <span class="calc-v5-val" id="eventsVal">2</span></div>
-<input class="calc-v5-range" id="eventsSlider" max="8" min="1" oninput="calcRevenue()" type="range" value="2"/>
-</div>
-<div class="calc-lever-row">
-<div class="calc-v5-label">Attendees / Event <span class="calc-v5-val" id="attendeesVal">20</span></div>
-<input class="calc-v5-range" id="attendeesSlider" max="80" min="10" oninput="calcRevenue()" step="5" type="range" value="20"/>
-</div>
-<div class="calc-lever-row">
-<div class="calc-v5-label">Conversion Rate <span class="calc-v5-val gold" id="convVal">30%</span></div>
-<input class="calc-v5-range" id="convSlider" max="80" min="10" oninput="calcRevenue()" type="range" value="30"/>
-</div>
-<div class="calc-lever-row">
-<div class="calc-v5-label">Avg Treatment Value <span class="calc-v5-val gold" id="treatVal">$8,500</span></div>
-<input class="calc-v5-range" id="treatSlider" max="18000" min="4000" oninput="calcRevenue()" step="500" type="range" value="8500"/>
-</div>
-</div>
-<div class="calc-channel-card live-channel-card">
-<div class="calc-channel-left">
-<span class="channel-icon event-channel-icon"></span>
-<div><strong>Live dinner event channel</strong><p>Local patient education, consultation capture, and immediate follow-up.</p></div>
-</div>
-<div class="calc-channel-num" id="event-monthly-sub">$102,000</div>
-</div>
-<div class="calc-ava-premium-card">
-<div class="calc-ava-glow"></div>
-<div class="calc-ava-header">
-<div class="calc-ava-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M6 20v-2a6 6 0 0 1 12 0v2"></path></svg></div>
-<div>
-<div class="calc-ava-title">Ava AI <span class="calc-ava-badge">24/7 Follow-Up</span></div>
-<div class="calc-ava-desc">Website, ads, SMS, reactivation, and missed-opportunity recovery while the operator is offline.</div>
-</div>
-</div>
-<div class="calc-lever-row ava-lever-row">
-<div class="calc-v5-label">Ava Bookings / Month <span class="calc-v5-val gold" id="avaVal">4</span></div>
-<input class="calc-v5-range ava-range" id="avaSlider" max="30" min="0" oninput="calcRevenue()" type="range" value="4"/>
-</div>
-<div class="calc-channel-card ava-channel-card">
-<div class="calc-channel-left"><span class="channel-icon ava-channel-icon"></span><div><strong>Ava assisted revenue / month</strong><p>Bookings attributed to automation and follow-up.</p></div></div>
-<div class="calc-channel-num" id="result-ava-monthly">$34,000</div>
+<div class="stage-clip">
+<div class="stage" aria-label="Got Stem Cells calculator MacBook mockup">
+  <img class="mac" src="https://raw.githubusercontent.com/PimpMyGHL/GSC/main/images/macbook-shell.png" alt="" aria-hidden="true">
+  <div class="screen">
+    <div class="topbar">
+      <div class="dots"><i></i><i></i><i></i></div>
+      <div class="bar-title">Got Stem Cells — Territory Revenue Model</div>
+      <div class="bar-right">
+        <span class="clive">Live</span>
+        <span class="ctime" id="clock">10:57 AM</span>
+      </div>
+    </div>
+    <div class="ui">
+      <div class="cleft">
+        <div>
+          <div class="ceyebrow">Your Territory</div>
+          <div class="ctitle">Set Your Numbers</div>
+        </div>
+        <div class="cslider"><div class="cslider-top"><span class="cslider-label">Events / Month</span><span class="cslider-val" id="v-events">3</span></div><input id="events" type="range" min="1" max="8" value="3"></div>
+        <div class="cslider"><div class="cslider-top"><span class="cslider-label">Attendees / Event</span><span class="cslider-val" id="v-attendees">25</span></div><input id="attendees" type="range" min="10" max="60" value="25"></div>
+        <div class="cslider"><div class="cslider-top"><span class="cslider-label">Conversion Rate</span><span class="cslider-val" id="v-conversion">30%</span></div><input id="conversion" type="range" min="10" max="60" value="30"></div>
+        <div class="cslider"><div class="cslider-top"><span class="cslider-label">Avg Treatment Value</span><span class="cslider-val" id="v-treatment">$8,500</span></div><input id="treatment" type="range" min="3000" max="20000" step="500" value="8500"></div>
+        <div class="cava">
+          <div><h3>Ava AI <span>24/7 Revenue Stream</span></h3><p>Website, ads, SMS follow-up &amp; reactivation — books while you sleep.</p></div>
+          <div>
+            <div class="cava-row" style="border-top:none;padding-top:0;margin-bottom:clamp(3px,.35vw,5px);"><span>Ava Bookings / Month</span><strong id="v-ava">4</strong></div>
+            <input id="ava-bookings" type="range" min="0" max="12" value="4" style="width:100%">
+            <div class="cava-row"><span>Ava Revenue / Month</span><strong id="ava-rev">$34,000</strong></div>
+          </div>
+        </div>
+      </div>
+      <div class="cright">
+        <div class="chero"><h2>Projected Annual Revenue</h2><div class="cbig" id="annual">$2,754,000</div><div class="csub">Based on current assumptions</div></div>
+        <div class="crows">
+          <div class="crow"><span>Events Revenue / Month</span><strong id="events-rev">$195,500</strong></div>
+          <div class="crow"><span>Ava AI Revenue / Month</span><strong id="ava-rev-row">$34,000</strong></div>
+          <div class="crow"><span>Combined Monthly</span><strong id="monthly">$229,500</strong></div>
+          <div class="crow"><span>Annual Margin (~40%)</span><strong id="margin">$1,101,600</strong></div>
+        </div>
+        <div class="cstats">
+          <div class="cstat"><div class="cstat-label">New Patients / Month</div><div class="cstat-num" id="patients">27</div></div>
+          <div class="cstat"><div class="cstat-label">Revenue / Event</div><div class="cstat-num" id="rev-event">$65,167</div></div>
+          <div class="cstat"><div class="cstat-label">Patients / Event</div><div class="cstat-num" id="patients-event">8</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
 </div>
-<div class="calc-output-panel">
-<div class="calc-output-hero">
-<div class="calc-output-kicker">Projected annual revenue</div>
-<div class="calc-output-num" id="result-annual">$1,632,000</div>
-<div class="calc-output-sub">Based on current assumptions</div>
-</div>
-<div class="calc-output-grid">
-<div class="calc-output-card patients-card"><span>New Patients / Month</span><strong id="result-patients">16</strong><small>events + Ava combined</small></div>
-<div class="calc-output-card"><span>Monthly Revenue</span><strong id="result-monthly">$136,000</strong><small>combined / month</small></div>
-<div class="calc-output-card"><span>Annual Margin</span><strong id="result-margin">$652,800</strong><small>estimated at ~40%</small></div>
-</div>
-<div class="calc-stream-dashboard">
-<div class="calc-stream-label-row"><span>Revenue stream mix</span><strong id="stream-total-label">$136,000 / mo</strong></div>
-<div class="calc-stream-bar"><div class="stream-fill-events" id="stream-fill-events"></div><div class="stream-fill-ava" id="stream-fill-ava"></div></div>
-<div class="calc-stream-row calc-stream-row-v45">
-<div class="calc-stream-pill event-stream"><span class="csp-dot event-dot-sm"></span><span class="csp-label">Events</span><span class="csp-num" id="stream-events">$102,000</span></div>
-<div class="calc-stream-pill ava-stream"><span class="csp-dot ava-dot-sm"></span><span class="csp-label">Ava AI</span><span class="csp-num" id="stream-ava">$34,000</span></div>
-</div>
-</div>
-<div class="calc-insight-grid">
-<div class="calc-insight-card"><strong id="event-per-rev">$51,000</strong><span>Projected revenue per dinner event</span></div>
-<div class="calc-insight-card"><strong id="patients-per-event">6</strong><span>Projected new patients per event</span></div>
-</div>
-<div class="calc-explanation-card">
-<span>How to read this</span>
-<p>This dashboard shows the interaction between seminar frequency, attendance, conversion, treatment value, and Ava-assisted bookings. The model becomes more powerful when the live event engine and automated follow-up work together.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="calc-compliance-note">Projection tool only. Results are not guaranteed and vary based on market, budget, event attendance, sales execution, treatment mix, pricing, follow-up speed, clinical availability, regulatory requirements, and operator execution.</div>
 </section>
 </div>
 
@@ -5179,76 +5280,52 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 })();
 </script>
 
-<!-- Revenue Calculator logic -->
+<!-- MacBook Calculator logic -->
 <script>
 (function(){
-  function calcRevenue() {
-    var evSlider = document.getElementById('eventsSlider');
-    if (!evSlider) return;
-    var events    = parseInt(evSlider.value || '0', 10);
-    var attendees = parseInt(document.getElementById('attendeesSlider').value || '0', 10);
-    var conv      = parseInt(document.getElementById('convSlider').value || '0', 10);
-    var treat     = parseInt(document.getElementById('treatSlider').value || '0', 10);
-    var avSlider  = document.getElementById('avaSlider');
-    var avaBooks  = avSlider ? parseInt(avSlider.value || '0', 10) : 0;
-    function setEl(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; }
-    function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
-    setEl('eventsVal',    events);
-    setEl('attendeesVal', attendees);
-    setEl('convVal',      conv + '%');
-    setEl('treatVal',     '$' + treat.toLocaleString());
-    setEl('avaVal',       avaBooks);
-    var eventPatients = Math.round(events * attendees * (conv / 100));
-    var eventMonthly  = eventPatients * treat;
-    var avaMonthly    = avaBooks * treat;
-    var totalMonthly  = eventMonthly + avaMonthly;
-    var totalAnnual   = totalMonthly * 12;
-    var totalMargin   = Math.round(totalAnnual * 0.40);
-    var totalPatients = eventPatients + avaBooks;
-    var perEvent      = events > 0 ? eventMonthly / events : 0;
-    var patientsPerEvent = events > 0 ? Math.round(eventPatients / events) : 0;
-    var eventPct = totalMonthly > 0 ? Math.round((eventMonthly / totalMonthly) * 100) : 0;
-    var avaPct   = Math.max(0, 100 - eventPct);
-    setEl('result-patients',    totalPatients);
-    setEl('result-monthly',     fmt(totalMonthly));
-    setEl('result-annual',      fmt(totalAnnual));
-    setEl('result-margin',      fmt(totalMargin) + ' / yr');
-    setEl('result-ava-monthly', fmt(avaMonthly));
-    setEl('event-monthly-sub',  fmt(eventMonthly));
-    setEl('stream-events',      fmt(eventMonthly));
-    setEl('stream-ava',         fmt(avaMonthly));
-    setEl('stream-total-label', fmt(totalMonthly) + ' / mo');
-    setEl('event-per-rev',      fmt(perEvent));
-    setEl('patients-per-event', patientsPerEvent);
-    var eventFill = document.getElementById('stream-fill-events');
-    var avaFill = document.getElementById('stream-fill-ava');
-    if (eventFill) eventFill.style.width = eventPct + '%';
-    if (avaFill) avaFill.style.width = avaPct + '%';
-  }
-  document.querySelectorAll('.calc-scenario-btn').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      document.querySelectorAll('.calc-scenario-btn').forEach(function(b){ b.classList.remove('active'); });
-      btn.classList.add('active');
-      var map = {events:'eventsSlider', attendees:'attendeesSlider', conv:'convSlider', treat:'treatSlider', ava:'avaSlider'};
-      Object.keys(map).forEach(function(key){
-        var el = document.getElementById(map[key]);
-        if (el && btn.dataset[key]) el.value = btn.dataset[key];
+  function initPage(){
+    /* ── MacBook calculator ── */
+    var els2={
+      events:     document.getElementById('events'),
+      attendees:  document.getElementById('attendees'),
+      conversion: document.getElementById('conversion'),
+      treatment:  document.getElementById('treatment'),
+      avaBookings:document.getElementById('ava-bookings')
+    };
+    function $2(id){return document.getElementById(id);}
+    function money2(n){return '$'+Math.round(n).toLocaleString('en-US');}
+    function fill2(input){if(!input)return;var mn=+input.min,mx=+input.max,v=+input.value;input.style.setProperty('--fill',((v-mn)/(mx-mn)*100)+'%');}
+    function recalc2(){
+      Object.values(els2).forEach(fill2);
+      if(!els2.events)return;
+      var ev=+els2.events.value,at=+els2.attendees.value,cv=+els2.conversion.value/100,tx=+els2.treatment.value,avaBk=+els2.avaBookings.value;
+      var eP=Math.round(ev*at*cv),ppE=Math.round(at*cv),eR=eP*tx,aR=avaBk*tx,mo=eR+aR,an=mo*12,mg=an*.4,rpE=ev?eR/ev:0;
+      function set(id,v){var e=$2(id);if(e)e.textContent=v;}
+      set('v-events',ev);set('v-attendees',at);set('v-conversion',Math.round(cv*100)+'%');set('v-treatment',money2(tx));
+      set('v-ava',avaBk);set('ava-rev',money2(aR));set('ava-rev-row',money2(aR));
+      set('events-rev',money2(eR));set('monthly',money2(mo));set('annual',money2(an));set('margin',money2(mg));
+      set('patients',eP+avaBk);set('rev-event',money2(rpE));set('patients-event',ppE);
+    }
+    Object.values(els2).forEach(function(el){if(el)el.addEventListener('input',recalc2);});
+    var presets2={
+      conservative:{events:2,attendees:18,conversion:20,treatment:6500,avaBookings:2},
+      realistic:   {events:3,attendees:25,conversion:30,treatment:8500,avaBookings:4},
+      aggressive:  {events:6,attendees:40,conversion:42,treatment:13000,avaBookings:9}
+    };
+    function applyPreset2(name){var p=presets2[name];if(!p)return;Object.entries(p).forEach(function(kv){if(els2[kv[0]])els2[kv[0]].value=kv[1];});recalc2();}
+    document.querySelectorAll('.macb-calc .tab').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        document.querySelectorAll('.macb-calc .tab').forEach(function(t){t.classList.remove('active');t.removeAttribute('aria-selected');});
+        btn.classList.add('active');btn.setAttribute('aria-selected','true');
+        applyPreset2(btn.dataset.preset);
       });
-      calcRevenue();
     });
-  });
-  calcRevenue();
-  window.calcRevenue = calcRevenue;
-  // ── INIT MAP ──
-  initTerritoryMap();
-  } // end initPage
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPage);
-  } else {
-    initPage();
+    function tick2(){var n=new Date(),h=n.getHours()%12||12,m=String(n.getMinutes()).padStart(2,'0');var el=$2('clock');if(el)el.textContent=h+':'+m+' '+(n.getHours()>=12?'PM':'AM');}
+    tick2();setInterval(tick2,15000);recalc2();
+    /* ── INIT MAP ── */
+    initTerritoryMap();
   }
-})();
-  calcRevenue();
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initPage);}else{initPage();}
 })();
 </script>
 

@@ -23,6 +23,95 @@
 html,body{min-height:100%;background:#050505;color:var(--text);font-family:var(--fb);-webkit-font-smoothing:antialiased}
 body{display:grid;place-items:center;overflow-x:hidden;padding:clamp(12px,2.2vw,36px)}
 
+/* ── Section header ── */
+.calc-header{
+  width:min(1500px,100%);
+  text-align:center;
+  padding-bottom:clamp(18px,2.2vw,34px);
+}
+.calc-eyebrow{
+  display:inline-flex;align-items:center;gap:clamp(10px,1.1vw,16px);
+  font-size:clamp(10px,.82vw,13px);font-weight:900;
+  letter-spacing:.32em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:clamp(12px,1.35vw,20px)
+}
+.calc-eyebrow:before,.calc-eyebrow:after{
+  content:'';display:block;
+  height:1px;width:clamp(32px,4vw,64px);
+  background:linear-gradient(90deg,transparent,var(--gold));
+  opacity:.5
+}
+.calc-eyebrow:after{background:linear-gradient(90deg,var(--gold),transparent)}
+.calc-title{
+  font-family:var(--fd);
+  font-weight:900;
+  line-height:1.0;
+  letter-spacing:-.01em;
+  margin:0 auto clamp(6px,.6vw,10px)
+}
+.calc-title .line1{
+  display:block;
+  font-size:clamp(30px,3.8vw,58px);
+  color:#ffffff;
+  letter-spacing:-.02em
+}
+.calc-title .line2{
+  display:block;
+  font-size:clamp(28px,3.5vw,54px);
+  background:linear-gradient(90deg,var(--gold2),var(--gold3) 55%,var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  letter-spacing:-.02em;
+  font-style:italic
+}
+.calc-sub{
+  max-width:640px;
+  margin:clamp(14px,1.4vw,22px) auto 0;
+  font-size:clamp(14px,1.1vw,17px);
+  line-height:1.65;
+  color:rgba(246,244,238,.52);
+  font-weight:400
+}
+
+/* ── Scenario tabs ── */
+.scenario-tabs{
+  display:inline-flex;gap:8px;
+  padding:0;
+  margin-bottom:10px;
+  position:relative;z-index:20;
+  background:none;border:none
+}
+.tab{
+  position:relative;
+  display:flex;flex-direction:column;align-items:center;
+  min-width:130px;             /* uniform width across all three */
+  padding:8px 20px;
+  border-radius:999px;
+  border:1px solid rgba(216,191,118,.22);
+  background:rgba(255,255,255,.05);
+  cursor:pointer;
+  transition:background .22s,border-color .22s,box-shadow .22s;
+  user-select:none;
+  gap:2px
+}
+.tab:hover:not(.active){
+  background:rgba(255,255,255,.08);
+  border-color:rgba(216,191,118,.40)
+}
+.tab.active{
+  background:linear-gradient(135deg,#c8923a,#d8bf76 55%,#f3dda0);
+  border-color:transparent;
+  box-shadow:0 4px 18px rgba(216,191,118,.25),inset 0 1px 0 rgba(255,255,255,.3)
+}
+.tab-label{
+  font-family:var(--fd);
+  font-size:13px;
+  font-weight:800;letter-spacing:.02em;
+  color:rgba(255,255,255,.65);
+  white-space:nowrap;   /* single line on desktop + tablet */
+  transition:color .22s
+}
+.tab.active .tab-label{color:#0f0d08}
+
 /* Clip wrapper — trims the transparent PNG padding top and bottom */
 .stage-clip{
   width:min(1500px,100%);
@@ -33,7 +122,7 @@ body{display:grid;place-items:center;overflow-x:hidden;padding:clamp(12px,2.2vw,
   position:relative;
   width:100%;
   aspect-ratio:1/1;
-  margin:-10.5% 0;  /* crops ~10.5% transparent space top & bottom */
+  margin:-23% 0 -10.5%;  /* top: aggressively crop PNG transparent space; bottom: normal */
   background:radial-gradient(ellipse at 50% 54%,rgba(216,191,118,.10),transparent 45%),#050505;
 }
 .mac{
@@ -135,7 +224,7 @@ body{display:grid;place-items:center;overflow-x:hidden;padding:clamp(12px,2.2vw,
 .slider-label{font-size:clamp(9px,.94vw,13px);color:rgba(255,255,255,.90);font-weight:600}
 .slider-val{font-size:clamp(9px,.94vw,13px);color:#fff;font-weight:800;white-space:nowrap}
 
-/* Range input — gold fill track */
+/* Range input — gold fill, dark unfilled track */
 input[type=range]{
   width:100%;height:4px;
   appearance:none;-webkit-appearance:none;
@@ -144,16 +233,16 @@ input[type=range]{
     90deg,
     var(--gold3) 0%,
     var(--gold) var(--fill,50%),
-    rgba(255,255,255,.16) var(--fill,50%),
-    rgba(255,255,255,.16) 100%
+    rgba(255,255,255,.10) var(--fill,50%),
+    rgba(255,255,255,.10) 100%
   )
 }
-/* ── ROUND premium slider thumb ── */
+/* ── ROUND premium slider thumb — gold ── */
 input[type=range]::-webkit-slider-thumb{
   appearance:none;-webkit-appearance:none;
   width:clamp(13px,1.2vw,17px);height:clamp(13px,1.2vw,17px);
   border-radius:50%;
-  background:radial-gradient(circle at 36% 36%,#f5dfa0,#b89145);
+  background:radial-gradient(circle at 36% 36%,#f5dfa0,#c8a84b 55%,#b89145);
   border:2px solid rgba(255,255,255,.55);
   box-shadow:0 2px 10px rgba(216,191,118,.45),0 0 0 1px rgba(216,191,118,.3);
   transition:transform .15s,box-shadow .15s
@@ -164,32 +253,22 @@ input[type=range]::-webkit-slider-thumb:hover{
 }
 input[type=range]::-moz-range-thumb{
   width:15px;height:15px;border-radius:50%;
-  background:radial-gradient(circle at 36% 36%,#f5dfa0,#b89145);
+  background:radial-gradient(circle at 36% 36%,#f5dfa0,#c8a84b 55%,#b89145);
   border:2px solid rgba(255,255,255,.55);
   box-shadow:0 2px 10px rgba(216,191,118,.45)
-}
-/* Ava slider — dark thumb on gold card */
-.ava input[type=range]::-webkit-slider-thumb{
-  background:radial-gradient(circle at 36% 36%,#3a2800,#1a1000);
-  border:2px solid rgba(0,0,0,.35);
-  box-shadow:0 2px 8px rgba(0,0,0,.4)
-}
-.ava input[type=range]::-moz-range-thumb{
-  background:radial-gradient(circle at 36% 36%,#3a2800,#1a1000);
-  border:2px solid rgba(0,0,0,.35)
 }
 
 /* ── Ava module — bright champagne gradient ── */
 .ava{
-  margin-top:clamp(5px,.55vw,8px);
+  margin-top:clamp(4px,.45vw,6px);
   border-radius:9px;
-  padding:clamp(12px,1.15vw,17px) clamp(14px,1.25vw,18px);
+  padding:clamp(9px,.9vw,13px) clamp(12px,1.1vw,16px);
   background:linear-gradient(135deg,#f9da83 0%,#edd283 34%,#ffca6c 100%);
   color:#080705;
   box-shadow:0 0 34px rgba(216,191,118,.28),inset 0 1px 0 rgba(255,255,255,.36);
   position:relative;overflow:hidden;
   min-height:0;flex:0 1 auto;
-  display:flex;flex-direction:column;justify-content:space-between
+  display:flex;flex-direction:column;gap:clamp(4px,.4vw,6px)
 }
 .ava:before{
   content:'';position:absolute;
@@ -201,27 +280,27 @@ input[type=range]::-moz-range-thumb{
 .ava h3{
   position:relative;
   font-family:var(--fd);
-  font-size:clamp(16px,1.65vw,21px);
-  line-height:1.02;margin-bottom:3px
+  font-size:clamp(13px,1.35vw,17px);
+  line-height:1;margin-bottom:1px
 }
 .ava h3 span{
   display:block;
-  font-size:clamp(11px,1.45vw,14px);
-  font-weight:500;margin-top:2px
+  font-size:clamp(10px,1.0vw,12px);
+  font-weight:500;margin-top:1px
 }
 .ava p{
   position:relative;
-  font-size:clamp(8px,.82vw,11px);line-height:1.3;
-  margin:clamp(4px,.5vw,8px) 0 clamp(8px,.75vw,11px);
+  font-size:clamp(8px,.76vw,10px);line-height:1.25;
+  margin:0;
   color:rgba(0,0,0,.72)
 }
-/* Ava slider — readable on champagne gold */
+/* Ava slider — black gloss thumb on gold card */
 .ava input[type=range]{
   height:5px;
   background:linear-gradient(
     90deg,
-    rgba(80,44,0,.75) 0%,
-    rgba(80,44,0,.75) var(--fill,33%),
+    rgba(0,0,0,.55) 0%,
+    rgba(0,0,0,.55) var(--fill,33%),
     rgba(0,0,0,.18) var(--fill,33%),
     rgba(0,0,0,.18) 100%
   );
@@ -229,29 +308,29 @@ input[type=range]::-moz-range-thumb{
 }
 .ava input[type=range]::-webkit-slider-thumb{
   width:clamp(14px,1.35vw,18px);height:clamp(14px,1.35vw,18px);
-  background:radial-gradient(circle at 35% 35%,#7a4a18,#3a1e00);
-  border:2px solid rgba(255,235,160,.55);
-  box-shadow:0 2px 10px rgba(0,0,0,.5),0 0 0 1.5px rgba(180,120,20,.45);
+  background:radial-gradient(circle at 34% 34%,#4a4a4a,#111 60%,#000);
+  border:1.5px solid rgba(255,255,255,.20);
+  box-shadow:0 2px 10px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.15);
 }
 .ava input[type=range]::-moz-range-thumb{
   width:16px;height:16px;
-  background:radial-gradient(circle at 35% 35%,#7a4a18,#3a1e00);
-  border:2px solid rgba(255,235,160,.55);
+  background:radial-gradient(circle at 34% 34%,#4a4a4a,#111 60%,#000);
+  border:1.5px solid rgba(255,255,255,.20);
 }
 .ava-row{
   position:relative;
   display:flex;align-items:center;justify-content:space-between;
   border-top:1px solid rgba(0,0,0,.14);
-  padding-top:clamp(5px,.55vw,8px);
-  font-size:clamp(8px,.88vw,15px);
+  padding-top:clamp(3px,.35vw,5px);
+  font-size:clamp(8px,.82vw,11px);
   color:rgba(0,0,0,.74);
   gap:10px;font-weight:bold
 }
 .ava-row strong{
-  font-size:clamp(9px,.95vw,13px);
+  font-size:clamp(8px,.88vw,12px);
   color:#060503;white-space:nowrap
 }
-.ava-row + .ava-row{margin-top:clamp(4px,.45vw,7px)}
+.ava-row + .ava-row{margin-top:clamp(2px,.28vw,4px)}
 
 /* ── RIGHT panel ── */
 .right{
@@ -319,24 +398,149 @@ input[type=range]::-moz-range-thumb{
 }
 .stat:nth-child(2) .stat-num{font-size:clamp(19px,2.05vw,29px);color:var(--gold3)}
 
-/* ── Mobile ── */
-@media(max-width:900px){
-  body{padding:10px}
-  .screen{grid-template-rows:28px 1fr}
-  .bar-title{font-size:8px}.time{display:none}
-  .ui{grid-template-columns:1fr}.right{display:none}
-  .left{padding:10px 13px;border:0;gap:5px}
-  .eyebrow{font-size:7px;margin-bottom:2px}
-  .title{font-size:15px;margin-bottom:2px}
-  .slider{padding:5px 8px}.slider-top{margin-bottom:4px}
-  .slider-label,.slider-val{font-size:8px}
-  .ava{padding:8px 10px}
-  .ava h3{font-size:13px}.ava h3 span{font-size:11px}
-  .ava p,.ava-row{font-size:7px}
+/* ══════════════════════════════════════════
+   TABLET + MOBILE — collapse shell to card
+   ══════════════════════════════════════════ */
+@media(max-width:1024px){
+
+  body{ padding:clamp(16px,4vw,28px) clamp(14px,4vw,20px); align-items:stretch }
+
+  /* Header */
+  .calc-header{ padding-bottom:clamp(12px,2.5vw,20px) }
+  .calc-title .line1{ font-size:clamp(24px,5vw,40px) }
+  .calc-title .line2{ font-size:clamp(22px,4.6vw,36px) }
+
+  /* Tabs */
+  .scenario-tabs{ flex-wrap:nowrap; justify-content:center; margin-bottom:24px; gap:7px }
+  .tab{ min-width:110px; padding:7px 16px }
+  .tab-label{ font-size:12px }
+  .tab-hint{ font-size:9px }
+
+  /* Sub text */
+  .calc-sub{ font-size:14px; margin-top:14px }
+
+  /* stage-clip: stop clipping, let screen flow naturally */
+  .stage-clip{ overflow:visible }
+
+  /* stage: kill the aspect-ratio and negative margins */
+  .stage{
+    aspect-ratio:unset;
+    margin:0;
+    background:none
+  }
+
+  /* Hide MacBook shell image only */
+  .mac{ display:none }
+
+  /* Screen becomes a standalone rounded card */
+  .screen{
+    position:static;
+    width:100%;height:auto;
+    border-radius:16px;
+    border:1px solid rgba(216,191,118,.22);
+    box-shadow:0 24px 80px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.04);
+    display:flex;flex-direction:column;
+    overflow:hidden
+  }
+
+  /* topbar gets more breathing room */
+  .topbar{ padding:11px 18px; min-height:44px }
+  .bar-title{ font-size:13px }
+  .time{ display:block; font-size:12px }
+
+  /* UI: two columns on tablet */
+  .ui{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    min-height:0;
+    height:auto
+  }
+  .right{ display:flex !important }
+
+  /* Left */
+  .left{ padding:18px 16px; gap:10px; border-right:1px solid rgba(255,255,255,.07) }
+  .eyebrow{ font-size:11px; margin-bottom:3px }
+  .title{ font-size:17px; margin-bottom:3px }
+  .slider{ padding:9px 12px }
+  .slider-top{ margin-bottom:6px }
+  .slider-label,.slider-val{ font-size:13px }
+  input[type=range]{ height:5px }
+  .ava{ padding:12px 13px; margin-top:5px }
+  .ava h3{ font-size:15px }
+  .ava h3 span{ font-size:12px }
+  .ava p{ font-size:11px }
+  .ava-row{ font-size:12px; padding-top:5px }
+  .ava-row strong{ font-size:13px }
+
+  /* Right */
+  .right{ padding:18px 16px; gap:11px }
+  .hero-card{ padding:16px 14px }
+  .hero-card h2{ font-size:15px; margin-bottom:8px }
+  .big{ font-size:34px }
+  .sub{ font-size:10px }
+  .row{ padding:9px 12px; font-size:12px }
+  .row strong{ font-size:14px }
+  .stats{ gap:7px }
+  .stat{ padding:9px 5px }
+  .stat-label{ font-size:9px }
+  .stat-num{ font-size:24px }
+  .stat:nth-child(2) .stat-num{ font-size:20px }
+}
+
+/* ── Mobile: single column, revenue below sliders ── */
+@media(max-width:620px){
+  body{ padding:14px }
+
+  .calc-title .line1{ font-size:clamp(22px,7.5vw,30px) }
+  .calc-title .line2{ font-size:clamp(20px,7vw,28px) }
+
+  .scenario-tabs{ gap:5px; flex-wrap:nowrap }
+  .tab{ min-width:0; flex:1; padding:7px 10px }
+  .tab-label{ font-size:10px; white-space:nowrap; text-align:center; line-height:1.2 }
+
+  .ui{ grid-template-columns:1fr }
+
+  .left{ border-right:none; border-bottom:1px solid rgba(216,191,118,.15); padding:16px 14px }
+  .right{
+    border-top:none;
+    padding:16px 14px;
+    gap:10px
+  }
+
+  .big{ font-size:40px }
+  .hero-card h2{ font-size:14px }
+  .row{ font-size:13px }
+  .row strong{ font-size:15px }
+  .stats{ grid-template-columns:repeat(3,1fr) }
+  .stat-num{ font-size:26px }
+  .stat:nth-child(2) .stat-num{ font-size:22px }
 }
 </style>
 </head>
 <body>
+<!-- Section header -->
+<div class="calc-header">
+  <div class="calc-eyebrow">Revenue Potential</div>
+  <h2 class="calc-title">
+    <span class="line1">What Could Your</span>
+    <span class="line2">Market Be Worth?</span>
+  </h2>
+  <p class="calc-sub">Use conservative assumptions to model how live dinner events, consultation capture, treatment conversion, and Ava AI follow-up could work together inside one protected territory. Illustrative only — not a promise of income.</p>
+</div>
+
+<!-- Scenario tabs -->
+<div class="scenario-tabs" role="tablist">
+  <button class="tab" data-preset="conservative" role="tab">
+    <span class="tab-label">Conservative Start</span>
+  </button>
+  <button class="tab active" data-preset="realistic" role="tab" aria-selected="true">
+    <span class="tab-label">Growth Case</span>
+  </button>
+  <button class="tab" data-preset="aggressive" role="tab">
+    <span class="tab-label">Expansion Case</span>
+  </button>
+</div>
+
 <div class="stage-clip">
 <main class="stage" aria-label="Got Stem Cells calculator MacBook mockup">
   <img class="mac"
@@ -357,7 +561,7 @@ input[type=range]::-moz-range-thumb{
       <div class="left">
         <div>
           <div class="eyebrow">Your Territory</div>
-          <div class="title">Set Your Numbers.</div>
+          <div class="title">Set Your Numbers</div>
         </div>
         <div class="slider">
           <div class="slider-top"><span class="slider-label">Events / Month</span><span class="slider-val" id="v-events">3</span></div>
@@ -475,6 +679,34 @@ function recalc(){
 }
 
 Object.values(els).forEach(el => el.addEventListener('input', recalc));
+
+/* ── Scenario presets ── */
+const presets = {
+  conservative: { events:2, attendees:18, conversion:20, treatment:6500, avaBookings:2 },
+  realistic:    { events:3, attendees:25, conversion:30, treatment:8500, avaBookings:4 },
+  aggressive:   { events:6, attendees:40, conversion:42, treatment:13000, avaBookings:9 }
+};
+
+function applyPreset(name){
+  const p = presets[name];
+  if(!p) return;
+  Object.entries(p).forEach(([key,val])=>{
+    if(els[key]){ els[key].value = val; }
+  });
+  recalc();
+}
+
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => {
+      t.classList.remove('active');
+      t.removeAttribute('aria-selected');
+    });
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected','true');
+    applyPreset(btn.dataset.preset);
+  });
+});
 
 function tick(){
   const n=new Date(); let h=n.getHours()%12||12;
