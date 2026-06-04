@@ -168,6 +168,16 @@ input[type=range]::-moz-range-thumb{
   border:2px solid rgba(255,255,255,.55);
   box-shadow:0 2px 10px rgba(216,191,118,.45)
 }
+/* Ava slider — dark thumb on gold card */
+.ava input[type=range]::-webkit-slider-thumb{
+  background:radial-gradient(circle at 36% 36%,#3a2800,#1a1000);
+  border:2px solid rgba(0,0,0,.35);
+  box-shadow:0 2px 8px rgba(0,0,0,.4)
+}
+.ava input[type=range]::-moz-range-thumb{
+  background:radial-gradient(circle at 36% 36%,#3a2800,#1a1000);
+  border:2px solid rgba(0,0,0,.35)
+}
 
 /* ── Ava module — bright champagne gradient ── */
 .ava{
@@ -352,6 +362,9 @@ input[type=range]::-moz-range-thumb{
               <span>Ava Bookings / Month</span>
               <strong id="v-ava">4</strong>
             </div>
+            <input id="ava-bookings" type="range" min="0" max="12" value="4"
+                   style="width:100%;margin:clamp(4px,.45vw,7px) 0 clamp(5px,.55vw,8px);
+                          background:linear-gradient(90deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,.45) var(--fill,33%),rgba(0,0,0,.15) var(--fill,33%),rgba(0,0,0,.15) 100%)">
             <div class="ava-row">
               <span>Ava Revenue / Month</span>
               <strong id="ava-rev">$34,000</strong>
@@ -395,12 +408,12 @@ input[type=range]::-moz-range-thumb{
 </div><!-- /stage-clip -->
 <script>
 const els = {
-  events:     document.getElementById('events'),
-  attendees:  document.getElementById('attendees'),
-  conversion: document.getElementById('conversion'),
-  treatment:  document.getElementById('treatment')
+  events:      document.getElementById('events'),
+  attendees:   document.getElementById('attendees'),
+  conversion:  document.getElementById('conversion'),
+  treatment:   document.getElementById('treatment'),
+  avaBookings: document.getElementById('ava-bookings')
 };
-const avaBookings = 4;
 const $ = id => document.getElementById(id);
 
 function money(n){ return '$' + Math.round(n).toLocaleString('en-US') }
@@ -413,11 +426,12 @@ function fill(input){
 function recalc(){
   Object.values(els).forEach(fill);
   const ev=+els.events.value, at=+els.attendees.value,
-        cv=+els.conversion.value/100, tx=+els.treatment.value;
+        cv=+els.conversion.value/100, tx=+els.treatment.value,
+        avaBk=+els.avaBookings.value;
   const eventPatients  = Math.round(ev*at*cv);
   const patientsPerEv  = Math.round(at*cv);
   const eventsRev      = eventPatients*tx;
-  const avaRev         = avaBookings*tx;
+  const avaRev         = avaBk*tx;
   const monthly        = eventsRev+avaRev;
   const annual         = monthly*12;
   const margin         = annual*.4;
@@ -427,14 +441,14 @@ function recalc(){
   $('v-attendees').textContent = at;
   $('v-conversion').textContent= Math.round(cv*100)+'%';
   $('v-treatment').textContent = money(tx);
-  $('v-ava').textContent       = avaBookings;
+  $('v-ava').textContent       = avaBk;
   $('ava-rev').textContent     = money(avaRev);
   $('ava-rev-row').textContent = money(avaRev);
   $('events-rev').textContent  = money(eventsRev);
   $('monthly').textContent     = money(monthly);
   $('annual').textContent      = money(annual);
   $('margin').textContent      = money(margin);
-  $('patients').textContent    = eventPatients + avaBookings;
+  $('patients').textContent    = eventPatients + avaBk;
   $('rev-event').textContent   = money(revPerEvent);
   $('patients-event').textContent = patientsPerEv;
 }
