@@ -3177,9 +3177,9 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 #territory-map .section-eyebrow { font-family:var(--fb)!important; font-size:14px!important; font-weight:700!important; letter-spacing:.22em!important; text-transform:uppercase!important; color:rgba(8,7,5,.74)!important; display:flex!important; align-items:center!important; gap:12px!important; margin-bottom:18px!important; }
 .tm-copy-side h2 { font-family:var(--fd); font-weight:900; font-size:clamp(44px,5vw,76px); line-height:.96; letter-spacing:-.055em; color:#080705; margin:0 0 20px; text-shadow:0 1px 0 rgba(255,255,255,.14); }
 .tm-copy-side h2 em { font-style:normal; color:#080705; background:none; -webkit-text-fill-color:currentColor; }
-.tm-copy-side .tm-header-sub { max-width:58ch; color:rgba(8,7,5,.72); font-size:clamp(16px,1.28vw,19px); line-height:1.62; font-weight:500; margin:0 0 22px; }
+.tm-copy-side .tm-header-sub { max-width:58ch; color:rgba(8,7,5,.72); font-size:clamp(18px,1.28vw,19px); line-height:1.4; font-weight:500; margin:0 0 22px; }
 .tm-clean-rule { width:min(180px,44%); height:1px; background:linear-gradient(90deg,rgba(8,7,5,.45),transparent); margin:0 0 20px; }
-.tm-clean-note { max-width:46ch; margin:0 0 28px; font-family:var(--fb); font-size:clamp(15px,1.12vw,17px); line-height:1.62; color:rgba(8,7,5,.68); font-weight:500; }
+.tm-clean-note { max-width:46ch; margin:0 0 28px; font-family:var(--fb); font-size:clamp(16px,1.12vw,17px); line-height:1.62; color:rgba(8,7,5,.82); font-weight:500; }
 .tm-action-row { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
 .tm-action-row-clean { margin-top:0; }
 .tm-action-row-clean .tm-sidebar-cta-btn { display:inline-flex; align-items:center; justify-content:center; min-width:0!important; padding:18px 46px!important; border-radius:999px!important; background:#080705!important; color:#F2C84A!important; text-decoration:none; font-family:var(--fb)!important; font-size:13px!important; font-weight:900!important; letter-spacing:.12em!important; text-transform:uppercase!important; border:1px solid rgba(255,255,255,.10)!important; box-shadow:0 6px 32px rgba(0,0,0,.30),0 18px 44px rgba(43,24,3,.24),inset 0 1px 0 rgba(255,255,255,.09)!important; transition:filter .22s ease, transform .16s ease, box-shadow .22s ease!important; }
@@ -3212,9 +3212,43 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 
 @keyframes pulse-gold { 0%,100% { box-shadow: 0 0 8px rgba(200,146,58,.8); } 50% { box-shadow: 0 0 3px rgba(200,146,58,.3); } }
 
+/* Desktop min-height */
 @media (min-width:1181px) { #territory-map { min-height:calc(100svh - 56px)!important; display:flex!important; align-items:center!important; } }
-@media (max-width:1080px) { .tm-split-inner { grid-template-columns:1fr!important; gap:28px!important; } .tm-copy-side { max-width:760px!important; } .tm-map-side { min-height:430px!important; } .tm-map-side .tm-map-wrap { height:430px!important; } }
-@media (max-width:720px) { #territory-map { padding:62px 18px 70px!important; } .tm-copy-side h2 { font-size:clamp(40px,11vw,56px); } .tm-action-row { align-items:stretch; } .tm-action-row-clean .tm-sidebar-cta-btn { width:100%; } .tm-map-side { min-height:330px!important; } .tm-map-side .tm-map-wrap { height:330px!important; } .tm-open-legend { position:relative; left:auto; bottom:auto; transform:none; width:100%; margin-top:-8px; border-radius:16px; gap:10px; } }
+
+/* Tablet: single column, wider copy, button inline with headline */
+@media (max-width:1080px) {
+  .tm-split-inner { grid-template-columns:1fr!important; gap:28px!important; }
+  .tm-copy-side { max-width:100%!important; }
+  .tm-copy-side .tm-header-sub { max-width:74ch!important; }
+  .tm-clean-note { max-width:68ch!important; }
+  .tm-map-side { min-height:430px!important; }
+  .tm-map-side .tm-map-wrap { height:430px!important; }
+}
+
+/* Mobile footer — shown only on mobile */
+.tm-mobile-footer { display:none; }
+
+/* Mobile ≤ 720px */
+@media (max-width:720px) {
+  #territory-map { padding:52px 0 56px!important; }
+  .tm-split-inner { gap:0!important; }
+  .tm-copy-side { padding:0 18px; }
+  .tm-copy-side h2 { font-size:clamp(40px,11vw,56px); }
+  /* Hide eyebrow, rule, note and button inside copy-side on mobile */
+  #territory-map .section-eyebrow { display:none!important; }
+  .tm-clean-rule { display:none!important; }
+  .tm-copy-side .tm-clean-note { display:none!important; }
+  .tm-copy-side .tm-action-row-clean { display:none!important; }
+  /* Map: full width, no padding */
+  .tm-map-side { min-height:300px!important; width:100vw!important; margin-left:0!important; padding-bottom:52px!important; }
+  .tm-map-side .tm-map-wrap { height:300px!important; border-radius:0!important; }
+  /* Legend: below map, full width */
+  .tm-open-legend { position:relative!important; left:auto!important; bottom:auto!important; transform:none!important; width:calc(100% - 36px)!important; margin:10px auto 0!important; border-radius:14px!important; gap:10px!important; }
+  /* Mobile footer: shown below map */
+  .tm-mobile-footer { display:block; padding:28px 18px 0; }
+  .tm-mobile-footer .tm-clean-note { max-width:100%; margin-bottom:22px; }
+  .tm-mobile-footer .tm-action-row-clean .tm-sidebar-cta-btn { width:100%!important; justify-content:center!important; }
+}
 
 /* ═══════════ PARTNER PROOF ═══════════ */
 .partner-proof{
@@ -4321,6 +4355,14 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
       </div>
     </div>
   </div>
+
+  <!-- Mobile footer: note + CTA shown below map on mobile only -->
+  <div class="tm-mobile-footer">
+    <p class="tm-clean-note">Tell us the city or region you want reviewed. We check protected-area logic, overlap, and whether the market deserves a deeper business conversation.</p>
+    <div class="tm-action-row tm-action-row-clean">
+      <a class="tm-sidebar-cta-btn" href="#book">Check My Territory</a>
+    </div>
+  </div>
 </section>
 
 <!-- Map tooltip -->
@@ -5196,7 +5238,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
         .attr('stroke', 'rgba(8,7,5,0.24)')
         .attr('stroke-width', 0.7)
         .style('cursor', 'pointer')
-        .on('mouseenter', function(e, d) {
+        .on('pointerenter', function(e, d) {
           const markets = stateMarkets.get(d.id) || [];
           if (claimedCodes.has(d.id)) {
             d3.select(this).attr('fill', 'rgba(8,7,5,0.42)').attr('stroke', 'rgba(8,7,5,0.56)').attr('stroke-width', 1.15);
@@ -5214,8 +5256,8 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
             });
           }
         })
-        .on('mousemove', moveTip)
-        .on('mouseleave', function(e, d) {
+        .on('pointermove', moveTip)
+        .on('pointerleave', function(e, d) {
           d3.select(this)
             .attr('fill', claimedCodes.has(d.id) ? 'rgba(8,7,5,0.26)' : 'rgba(255,255,255,0.12)')
             .attr('stroke', 'rgba(8,7,5,0.24)')
@@ -5231,9 +5273,9 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
         const g = pinsG.append('g').attr('transform', `translate(${p[0]},${p[1]})`).style('cursor', 'pointer');
         g.append('circle').attr('r', 16).attr('fill', 'rgba(8,7,5,0.10)').attr('stroke', 'rgba(8,7,5,0.24)').attr('stroke-width', 1);
         g.append('circle').attr('r', 6).attr('fill', '#080705').attr('stroke', '#E7C466').attr('stroke-width', 1.5).style('filter', 'drop-shadow(0 0 7px rgba(8,7,5,0.45))');
-        g.on('mouseenter', e => { activatePin(i, true); showTip(e, t); document.querySelectorAll('.t-card')[i]?.classList.add('active'); })
-         .on('mousemove', moveTip)
-         .on('mouseleave', () => { activatePin(i, false); hideTip(); document.querySelectorAll('.t-card')[i]?.classList.remove('active'); });
+        g.on('pointerenter', e => { activatePin(i, true); showTip(e, t); document.querySelectorAll('.t-card')[i]?.classList.add('active'); })
+         .on('pointermove', moveTip)
+         .on('pointerleave', () => { activatePin(i, false); hideTip(); document.querySelectorAll('.t-card')[i]?.classList.remove('active'); });
         pinNodes[i] = g.node();
       });
 
