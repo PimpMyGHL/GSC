@@ -3205,6 +3205,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 .tt-state { font-family:var(--fb); font-size:11px; color:rgba(245,244,240,.50); margin-bottom:10px; }
 .tt-detail { font-family:var(--fb); font-size:12px; color:rgba(245,244,240,.62); line-height:1.5; margin-bottom:10px; }
 .tt-badge { display:inline-block; font-family:var(--fb); font-size:9px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; color:#070605; background:linear-gradient(135deg,#C8923A,#F2C84A); border-radius:3px; padding:3px 8px; }
+.tt-badge.available { background:rgba(255,255,255,.18); color:rgba(8,7,5,.72); border:1px solid rgba(8,7,5,.20); }
 
 #map-container { width:100%; }
 #map-container svg { width:100%; height:auto; display:block; }
@@ -4370,7 +4371,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   <div class="tt-city" id="map-tt-city"></div>
   <div class="tt-state" id="map-tt-state"></div>
   <div class="tt-detail" id="map-tt-detail"></div>
-  <span class="tt-badge">Territory Claimed</span>
+  <span class="tt-badge" id="map-tt-badge">Territory Claimed</span>
 </div>
 
 <!-- ═══════════ SECTION: FAQ ═══════════ -->
@@ -5191,6 +5192,14 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
     document.getElementById('map-tt-city').textContent = t.city;
     document.getElementById('map-tt-state').textContent = t.state;
     document.getElementById('map-tt-detail').textContent = t.detail;
+    const badge = document.getElementById('map-tt-badge');
+    if (t.available) {
+      badge.textContent = 'Available — Review Required';
+      badge.classList.add('available');
+    } else {
+      badge.textContent = 'Territory Claimed';
+      badge.classList.remove('available');
+    }
     tip.classList.add('show'); moveTip(e);
   }
   function moveTip(e) {
@@ -5252,7 +5261,8 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
             showTip(e, {
               city: 'Available market',
               state: 'Review required',
-              detail: 'This area appears open for territory review. Final availability is confirmed one market at a time.'
+              detail: 'This area appears open for territory review. Final availability is confirmed one market at a time.',
+              available: true
             });
           }
         })
