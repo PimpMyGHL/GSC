@@ -3177,7 +3177,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 #territory-map .section-eyebrow { font-family:var(--fb)!important; font-size:14px!important; font-weight:700!important; letter-spacing:.22em!important; text-transform:uppercase!important; color:rgba(8,7,5,.74)!important; display:flex!important; align-items:center!important; gap:12px!important; margin-bottom:18px!important; }
 .tm-copy-side h2 { font-family:var(--fd); font-weight:900; font-size:clamp(44px,5vw,76px); line-height:.96; letter-spacing:-.055em; color:#080705; margin:0 0 20px; text-shadow:0 1px 0 rgba(255,255,255,.14); }
 .tm-copy-side h2 em { font-style:normal; color:#080705; background:none; -webkit-text-fill-color:currentColor; }
-.tm-copy-side .tm-header-sub { max-width:58ch; color:rgba(8,7,5,.72); font-size:clamp(18px,1.28vw,19px); line-height:1.4; font-weight:500; margin:0 0 22px; }
+.tm-copy-side .tm-header-sub { max-width:58ch; font-family:var(--fb); color:rgba(8,7,5,.72); font-size:clamp(18px,1.28vw,19px); line-height:1.4; font-weight:500; margin:0 0 22px; }
 .tm-clean-rule { width:min(180px,44%); height:1px; background:linear-gradient(90deg,rgba(8,7,5,.45),transparent); margin:0 0 20px; }
 .tm-clean-note { max-width:46ch; margin:0 0 28px; font-family:var(--fb); font-size:clamp(16px,1.12vw,17px); line-height:1.62; color:rgba(8,7,5,.82); font-weight:500; }
 .tm-action-row { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
@@ -3546,6 +3546,43 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 @media(max-width:1100px){.ava-breakout{min-height:auto}.ava-wrap{grid-template-columns:1fr;gap:52px}.ava-copy{max-width:900px}.ava-phone-zone{width:min(356px,82vw)}.ava-f1{left:-42px}.ava-f2{right:-42px}.ava-f3{left:-34px}}
 @media(max-width:720px){.ava-breakout{padding:76px 20px}.ava-breakout:after{display:none}.ava-eyebrow{font-size:11px;letter-spacing:.18em}.ava-title{font-size:clamp(38px,10vw,54px);line-height:1.03}.ava-body{font-size:18px;line-height:1.62}.ava-micro-row{display:grid;grid-template-columns:1fr;width:100%}.ava-phone-zone{min-width:0;width:min(320px,88vw)}.ava-phone{border-radius:40px;padding:10px}.ava-screen{border-radius:31px}.ava-float{display:none}.ava-demo-pill{display:none}.ava-lower h3{font-size:27px}.ava-lower p{font-size:12px}.ava-topbar{top:44px;left:12px;right:12px}.ava-status,.ava-live{font-size:9px;padding:8px 9px}.ava-play{width:70px;height:70px}.ava-lower{left:22px;right:22px;bottom:24px}}
 @media(prefers-reduced-motion:reduce){.ava-dot,.ava-float{animation:none}.ava-float{opacity:1}}
+.divider-glow{position:relative;height:64px;background:transparent;overflow:hidden;pointer-events:none}
+.divider-glow::before{content:'';position:absolute;left:50%;top:50%;width:min(700px,80vw);height:120px;transform:translate(-50%,-50%);background:radial-gradient(ellipse at center,rgba(200,146,58,.07) 0%,transparent 65%)}
+
+/* ═══════════ AVA OPERATING DEMO ═══════════ */
+#ava-operating-demo{position:relative;overflow:hidden;isolation:isolate;min-height:100svh;padding:92px clamp(24px,5vw,80px) 104px;background:radial-gradient(ellipse 70% 38% at 50% 0%,rgba(242,200,74,.30) 0%,rgba(200,146,58,.20) 42%,transparent 72%),radial-gradient(ellipse 110% 56% at 50% 100%,rgba(255,232,143,.14) 0%,transparent 68%),linear-gradient(180deg,#b9872c 0%,#d8aa41 100%)}
+#ava-operating-demo::before{content:'';position:absolute;inset:0;z-index:-2;pointer-events:none;opacity:.08;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#ava-operating-demo::after{content:'';position:absolute;left:0;right:0;bottom:0;height:180px;z-index:-1;pointer-events:none;background:linear-gradient(180deg,transparent 0%,rgba(7,7,7,.22) 100%)}
+.ava-demo-wrap{width:100%;max-width:1260px;margin:0 auto;position:relative;z-index:1}
+.ava-demo-top{text-align:center;max-width:1200px;margin:0 auto 50px}
+.ava-demo-kicker{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 auto 22px;font-family:var(--fb);font-size:18px;font-weight:900;letter-spacing:.34em;text-transform:uppercase;color:rgba(8,7,5,.72);text-shadow:0 1px 0 rgba(255,255,255,.15)}
+.ava-demo-kicker::before,.ava-demo-kicker::after{content:'';display:block;width:min(78px,12vw);height:1px;background:linear-gradient(90deg,transparent,rgba(8,7,5,.34))}
+.ava-demo-kicker::after{background:linear-gradient(90deg,rgba(8,7,5,.34),transparent)}
+.ava-demo-headline{font-family:var(--fd);font-weight:900;letter-spacing:-.052em;line-height:.98;font-size:clamp(44px,5.15vw,72px);color:#131313;text-shadow:0 1px 0 rgba(255,255,255,.14);margin-bottom:24px}
+.ava-demo-headline .white{display:block;color:var(--ink);text-shadow:0 1px 0 rgba(255,255,255,.14)}
+.ava-demo-copy{max-width:1100px;margin:0 auto;font-family:var(--fb);font-size:clamp(17px,1.18vw,20px);line-height:1.68;color:rgba(8,7,5,.76);font-weight:500}
+.ava-demo-copy strong{font-weight:900;color:#080705}
+.ava-video-shell{position:relative;max-width:900px;margin:0 auto;padding:12px;border-radius:24px;background:#070707;border:1px solid rgba(8,7,5,.34);box-shadow:0 34px 105px rgba(20,10,0,.42),0 0 0 1px rgba(255,255,255,.08),inset 0 1px 0 rgba(255,255,255,.08)}
+.ava-video-frame{position:relative;aspect-ratio:16/9;border-radius:17px;overflow:hidden;background:#070707;border:1px solid rgba(255,255,255,.075)}
+.ava-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.ava-play-large{position:absolute;z-index:10;left:50%;top:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;border:none;background:linear-gradient(148deg,#E0AA52 0%,#C8923A 48%,#9E6818 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 6px 36px rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform 200ms cubic-bezier(.23,1,.32,1),box-shadow 200ms cubic-bezier(.23,1,.32,1),filter 200ms cubic-bezier(.23,1,.32,1)}
+.ava-play-large::before,.ava-play-large::after{content:'';position:absolute;border-radius:50%;pointer-events:none}
+.ava-play-large::before{inset:-14px;border:1px solid rgba(200,146,58,.45);animation:vslRing 2.8s ease-in-out infinite}
+.ava-play-large::after{inset:-28px;border:1px solid rgba(200,146,58,.18);animation:vslRing 2.8s ease-in-out .8s infinite}
+@keyframes vslRing{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.06)}}
+.ava-play-large:hover{transform:translate(-50%,-50%) scale(1.09);filter:brightness(1.06);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 6px 36px rgba(0,0,0,.65),0 0 0 18px rgba(200,146,58,.11)}
+.ava-play-large span{width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:20px solid rgba(8,5,0,.88);margin-left:5px;position:relative;z-index:2}
+.demo-caption{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:17px 8px 2px;color:rgba(8,7,5,.70)}
+.demo-caption strong{font-family:var(--fd);font-size:21px;letter-spacing:-.035em;color:#080705}
+.demo-caption span{font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:rgba(8,7,5,.54)}
+.capability-row{max-width:1000px;margin:32px auto 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.cap-pill{position:relative;overflow:hidden;border:1px solid rgba(8,7,5,.46);background:radial-gradient(ellipse 85% 90% at 50% 0%,rgba(255,232,160,.075),transparent 62%),linear-gradient(180deg,#070707 0%,#020202 100%);border-radius:999px;min-height:86px;padding:19px 22px 18px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 22px 58px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.075),inset 0 -1px 0 rgba(0,0,0,.72);transition:transform 220ms cubic-bezier(.23,1,.32,1),box-shadow 220ms cubic-bezier(.23,1,.32,1),border-color 220ms cubic-bezier(.23,1,.32,1),filter 220ms cubic-bezier(.23,1,.32,1)}
+.cap-pill::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(90deg,transparent 5%,rgba(216,191,118,.18) 50%,transparent 95%);opacity:.45;pointer-events:none}
+.cap-pill strong{position:relative;z-index:1;font-family:var(--fd);font-size:clamp(17px,1.35vw,22px);line-height:1;letter-spacing:-.026em;color:#f3dda0;text-shadow:0 1px 0 rgba(255,255,255,.04),0 0 22px rgba(200,146,58,.10)}
+.cap-pill span{position:relative;z-index:1;display:block;margin-top:9px;font-size:10px;line-height:1;font-weight:900;letter-spacing:.24em;text-transform:uppercase;color:rgba(245,244,240,.46)}
+.cap-pill:hover{transform:translateY(-3px);filter:brightness(1.05);border-color:rgba(8,7,5,.72);box-shadow:0 28px 68px rgba(0,0,0,.32),0 0 0 1px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,.095),inset 0 -1px 0 rgba(0,0,0,.76)}
+@media(max-width:980px){#ava-operating-demo{padding:76px 20px 86px}.ava-demo-top{text-align:left}.ava-demo-kicker{justify-content:flex-start;letter-spacing:.22em;font-size:12px}.ava-demo-kicker::before{display:none}.ava-demo-headline{font-size:clamp(38px,8vw,58px)}.ava-demo-copy{margin-left:0}.ava-video-frame{aspect-ratio:16/10}.capability-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.ava-video-shell{padding:8px;border-radius:18px}.ava-video-frame{border-radius:13px;aspect-ratio:4/3}.ava-play-large{width:68px;height:68px}.demo-caption{flex-direction:column;align-items:flex-start}.capability-row{grid-template-columns:1fr}.ava-demo-headline{font-size:clamp(34px,10vw,46px)}}
 </style>
 <script src="https://player.vimeo.com/api/player.js" defer></script>
 </head>
@@ -3558,7 +3595,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   <a href="#hero" class="preview-nav-logo" aria-label="Got Stem Cells? — Home">
     <img src="https://raw.githubusercontent.com/PimpMyGHL/GSC/main/images/got-stem-cells-logo-transparent.png" alt="Got Stem Cells?" height="32" loading="eager" decoding="async">
   </a>
-  <a class="preview-nav-cta" href="#book">Check My Territory</a>
+  <a class="preview-nav-cta" href="#territory-map">Check My Territory</a>
 </nav>
 
 <!-- ═══════════ SECTION 1: HERO ═══════════ -->
@@ -3583,7 +3620,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
       pricing — and the exclusive right to own your market before a competitor does.
       <strong>Launch in 60–90 days.</strong>
     </p>
-    <a class="hero-cta" href="#book">
+    <a class="hero-cta" href="#territory-map">
       Check Your Territory
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -3805,7 +3842,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
       </div>
 
       <div class="hiw-cta-wrap">
-        <a class="hiw-cta" href="#book">
+        <a class="hiw-cta" href="#territory-map">
           See If Your Territory Is Available
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -4080,6 +4117,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 </section>
 
 <!-- ═══════════ SECTION 5: MEET AVA ═══════════ -->
+<div class="divider-glow" aria-hidden="true"></div>
 <section id="meet-ava" class="ava-breakout" aria-label="Ava AI Practice Agent breakout section">
   <div class="ava-noise" aria-hidden="true"></div>
   <div class="ava-wrap">
@@ -4125,6 +4163,26 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
           <div class="ava-channel"><strong>Voice</strong>Calls</div>
           <div class="ava-channel"><strong>Web</strong>Chat</div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ AVA OPERATING DEMO ═══════════ -->
+<section id="ava-operating-demo" aria-label="Ava Operating Layer">
+  <div class="ava-demo-wrap">
+    <div class="ava-demo-top">
+      <div class="ava-demo-kicker">Ava Operating Layer</div>
+      <h2 class="ava-demo-headline">Behind Ava Is a Complete <span class="white">Patient Conversion Layer.</span></h2>
+      <p class="ava-demo-copy"><strong>Not a chatbot. Not a notification tool.</strong> Ava is the AI follow-up system built into every GSC territory — designed to respond fast, qualify intent, answer patient questions, route serious leads, and keep prospects moving toward a consultation.</p>
+    </div>
+    <div class="ava-video-shell">
+      <div class="ava-video-frame" role="img" aria-label="Ava system walkthrough video">
+        <button class="ava-play-large" aria-label="Play Ava system walkthrough"><span></span></button>
+      </div>
+      <div class="demo-caption">
+        <strong>Ava System Walkthrough</strong>
+        <span>Full platform demo</span>
       </div>
     </div>
   </div>
@@ -4360,7 +4418,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
       <p class="tm-clean-note">Tell us the city or region you want reviewed. We check protected-area logic, overlap, and whether the market deserves a deeper business conversation.</p>
 
       <div class="tm-action-row tm-action-row-clean">
-        <a class="tm-sidebar-cta-btn" href="#book">Check My Territory</a>
+        <a class="tm-sidebar-cta-btn" href="#territory-map">Check My Territory</a>
       </div>
 
       <div class="tm-data-hidden" aria-hidden="true">
@@ -4389,7 +4447,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   <div class="tm-mobile-footer">
     <p class="tm-clean-note">Tell us the city or region you want reviewed. We check protected-area logic, overlap, and whether the market deserves a deeper business conversation.</p>
     <div class="tm-action-row tm-action-row-clean">
-      <a class="tm-sidebar-cta-btn" href="#book">Check My Territory</a>
+      <a class="tm-sidebar-cta-btn" href="#territory-map">Check My Territory</a>
     </div>
   </div>
 </section>
@@ -4409,7 +4467,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
       <div class="faq-kicker">Common Questions</div>
       <h2 class="faq-headline">Questions<br><span>We Hear Most.</span></h2>
       <p class="faq-sub">If something isn't clear, it usually means we haven't answered it yet. These are the questions we get before almost every territory call.</p>
-      <a class="faq-cta-inline" href="#book">
+      <a class="faq-cta-inline" href="#territory-map">
         Ask Us Directly
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -4511,7 +4569,7 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
     <div class="close-kicker">One Question Left</div>
     <h2 class="close-headline">Is Your Market<br><em>Still Available?</em></h2>
     <p class="close-body">Territories are released one per market. Some are already locked. The only way to know if yours is open is to check — and the check takes 15 minutes, costs nothing, and comes with zero obligation.</p>
-    <a class="close-btn" href="#book">
+    <a class="close-btn" href="#territory-map">
       Check My Territory Now
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
