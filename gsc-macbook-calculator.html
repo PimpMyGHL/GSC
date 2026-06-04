@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GSC MacBook Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;900&family=Satoshi:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#d8bf76;
+  --gold2:#c8923a;
+  --gold3:#f3dda0;
+  --dark:#0f1014;
+  --text:#f6f4ee;
+  --muted:rgba(246,244,238,.62);
+  --line:rgba(216,191,118,.42);
+  --fd:'Cabinet Grotesk',system-ui,sans-serif;
+  --fb:'Satoshi',system-ui,sans-serif
+}
+html,body{min-height:100%;background:#050505;color:var(--text);font-family:var(--fb);-webkit-font-smoothing:antialiased}
+body{display:grid;place-items:center;overflow-x:hidden;padding:clamp(12px,2.2vw,36px)}
+
+/* Clip wrapper — trims the transparent PNG padding top and bottom */
+.stage-clip{
+  width:min(1500px,100%);
+  overflow:hidden;
+}
+
+.stage{
+  position:relative;
+  width:100%;
+  aspect-ratio:1/1;
+  margin:-10.5% 0;  /* crops ~10.5% transparent space top & bottom */
+  background:radial-gradient(ellipse at 50% 54%,rgba(216,191,118,.10),transparent 45%),#050505;
+}
+.mac{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:contain;z-index:10;pointer-events:none;user-select:none
+}
+
+/* ── Screen — NO white border, NO box-shadow ── */
+.screen{
+  position:absolute;z-index:5;
+  top:29.18%;left:18.45%;width:63.1%;height:39.2%;
+  overflow:hidden;
+  background:#0f1014;
+  border-radius:2px;
+  display:grid;
+  grid-template-rows:clamp(28px,2.55vw,38px) 1fr;
+}
+
+/* ── Top bar ── */
+.topbar{
+  background:linear-gradient(180deg,#25262b,#191a1f);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;
+  padding:0 clamp(10px,1.25vw,18px);
+  position:relative;min-width:0;
+}
+.dots{display:flex;gap:clamp(4px,.55vw,8px);flex-shrink:0}
+.dots i{width:clamp(7px,.78vw,10px);height:clamp(7px,.78vw,10px);border-radius:99px;display:block}
+.dots i:nth-child(1){background:#ff5f57}
+.dots i:nth-child(2){background:#ffbd2e}
+.dots i:nth-child(3){background:#28c840}
+.bar-title{
+  position:absolute;left:50%;transform:translateX(-50%);
+  font:700 clamp(9px,.95vw,14px)/1 var(--fd);
+  color:rgba(246,244,238,.84);letter-spacing:.01em;
+  white-space:nowrap;max-width:54%;overflow:hidden;text-overflow:ellipsis;text-align:center
+}
+.bar-right{margin-left:auto;display:flex;align-items:center;gap:clamp(7px,.9vw,13px);flex-shrink:0}
+.live{
+  display:inline-flex;align-items:center;gap:5px;
+  border:1px solid rgba(75,222,128,.34);background:rgba(34,197,94,.13);
+  color:#69d883;border-radius:999px;
+  padding:clamp(2px,.35vw,4px) clamp(7px,.7vw,10px);
+  font-size:clamp(7px,.66vw,10px);font-weight:900;letter-spacing:.1em;text-transform:uppercase
+}
+.live:before{
+  content:'';width:5px;height:5px;border-radius:50%;
+  background:#69d883;box-shadow:0 0 8px rgba(105,216,131,.9);
+  animation:gpulse 2s ease-in-out infinite;
+}
+@keyframes gpulse{0%,100%{opacity:1}50%{opacity:.4}}
+.time{font-size:clamp(8px,.82vw,12px);color:rgba(246,244,238,.5);font-weight:600}
+
+/* ── Main UI split ── */
+.ui{
+  display:grid;grid-template-columns:1.04fr 1.06fr;
+  min-height:0;
+  background:
+    radial-gradient(ellipse 74% 64% at 20% 82%,rgba(216,191,118,.12),transparent 55%),
+    linear-gradient(135deg,#17181d 0%,#101115 45%,#17181d 100%);
+}
+.left,.right{min-width:0;min-height:0}
+
+/* ── LEFT panel ── */
+.left{
+  border-right:1px solid rgba(255,255,255,.075);
+  display:flex;flex-direction:column;
+  gap:clamp(6px,.75vw,10px);
+  padding:clamp(13px,1.5vw,22px) clamp(16px,1.7vw,26px) clamp(12px,1.35vw,20px)
+}
+
+/* Eyebrow — updated size */
+.eyebrow{
+  font-size:clamp(10px,.86vw,14px);
+  font-weight:900;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:clamp(4px,.45vw,7px)
+}
+
+/* Title — updated size */
+.title{
+  font-family:var(--fd);
+  font-size:clamp(16px,2.05vw,17px);
+  line-height:.95;font-weight:900;letter-spacing:.02em;
+  color:#fff;margin-bottom:clamp(6px,.65vw,11px)
+}
+
+/* Slider cards */
+.slider{
+  border:1px solid var(--line);border-radius:7px;
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+  padding:clamp(6px,.62vw,9px) clamp(11px,1vw,15px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+  flex:0 0 auto
+}
+.slider-top{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:clamp(5px,.55vw,8px);gap:12px
+}
+.slider-label{font-size:clamp(9px,.94vw,13px);color:rgba(255,255,255,.90);font-weight:600}
+.slider-val{font-size:clamp(9px,.94vw,13px);color:#fff;font-weight:800;white-space:nowrap}
+
+/* Range input — gold fill track */
+input[type=range]{
+  width:100%;height:4px;
+  appearance:none;-webkit-appearance:none;
+  outline:0;border-radius:999px;cursor:pointer;
+  background:linear-gradient(
+    90deg,
+    var(--gold3) 0%,
+    var(--gold) var(--fill,50%),
+    rgba(255,255,255,.16) var(--fill,50%),
+    rgba(255,255,255,.16) 100%
+  )
+}
+/* ── ROUND premium slider thumb ── */
+input[type=range]::-webkit-slider-thumb{
+  appearance:none;-webkit-appearance:none;
+  width:clamp(13px,1.2vw,17px);height:clamp(13px,1.2vw,17px);
+  border-radius:50%;
+  background:radial-gradient(circle at 36% 36%,#f5dfa0,#b89145);
+  border:2px solid rgba(255,255,255,.55);
+  box-shadow:0 2px 10px rgba(216,191,118,.45),0 0 0 1px rgba(216,191,118,.3);
+  transition:transform .15s,box-shadow .15s
+}
+input[type=range]::-webkit-slider-thumb:hover{
+  transform:scale(1.18);
+  box-shadow:0 3px 14px rgba(216,191,118,.6),0 0 0 2px rgba(216,191,118,.4)
+}
+input[type=range]::-moz-range-thumb{
+  width:15px;height:15px;border-radius:50%;
+  background:radial-gradient(circle at 36% 36%,#f5dfa0,#b89145);
+  border:2px solid rgba(255,255,255,.55);
+  box-shadow:0 2px 10px rgba(216,191,118,.45)
+}
+
+/* ── Ava module — bright champagne gradient ── */
+.ava{
+  margin-top:clamp(5px,.55vw,8px);
+  border-radius:9px;
+  padding:clamp(12px,1.15vw,17px) clamp(14px,1.25vw,18px);
+  background:linear-gradient(135deg,#f9da83 0%,#edd283 34%,#ffca6c 100%);
+  color:#080705;
+  box-shadow:0 0 34px rgba(216,191,118,.28),inset 0 1px 0 rgba(255,255,255,.36);
+  position:relative;overflow:hidden;
+  min-height:0;flex:1 1 auto;
+  display:flex;flex-direction:column;justify-content:space-between
+}
+.ava:before{
+  content:'';position:absolute;
+  inset:-40% -25% auto auto;
+  width:60%;height:80%;
+  background:radial-gradient(ellipse,rgba(255,255,255,.46),transparent 65%);
+  filter:blur(10px)
+}
+.ava h3{
+  position:relative;
+  font-family:var(--fd);
+  font-size:clamp(16px,1.65vw,21px);
+  line-height:1.02;margin-bottom:3px
+}
+.ava h3 span{
+  display:block;
+  font-size:clamp(11px,1.45vw,14px);
+  font-weight:500;margin-top:2px
+}
+.ava p{
+  position:relative;
+  font-size:clamp(8px,.82vw,12px);line-height:1.3;
+  margin:clamp(4px,.5vw,8px) 0 clamp(8px,.75vw,11px);
+  color:rgba(0,0,0,.72)
+}
+.ava-row{
+  position:relative;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid rgba(0,0,0,.14);
+  padding-top:clamp(5px,.55vw,8px);
+  font-size:clamp(8px,.88vw,15px);
+  color:rgba(0,0,0,.74);
+  gap:10px;font-weight:bold
+}
+.ava-row strong{
+  font-size:clamp(9px,.95vw,13px);
+  color:#060503;white-space:nowrap
+}
+.ava-row + .ava-row{margin-top:clamp(4px,.45vw,7px)}
+
+/* ── RIGHT panel ── */
+.right{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(14px,1.55vw,23px) clamp(24px,2.5vw,38px);
+  gap:clamp(10px,1.05vw,15px)
+}
+
+/* Hero card */
+.hero-card{
+  border:1px solid rgba(216,191,118,.34);border-radius:8px;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+  padding:clamp(17px,1.8vw,27px) clamp(22px,2.25vw,34px);
+  text-align:center;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 18px 50px rgba(0,0,0,.24);
+  flex:0 0 auto
+}
+.hero-card h2{
+  font-family:var(--fd);
+  font-size:clamp(18px,1.95vw,26px);
+  font-weight:bold;color:var(--gold);
+  letter-spacing:.02em;margin-bottom:clamp(8px,.9vw,12px)
+}
+.big{
+  font-family:var(--fd);
+  font-size:clamp(39px,4.4vw,54px);
+  line-height:.9;font-weight:500;letter-spacing:.02em;
+  color:var(--gold3);
+  text-shadow:0 0 28px rgba(216,191,118,.12);
+  margin-bottom:clamp(11px,1.1vw,16px)
+}
+.sub{font-size:clamp(8px,.8vw,11px);color:rgba(255,255,255,.62)}
+
+/* Row items */
+.rows{
+  border:1px solid rgba(216,191,118,.34);border-radius:7px;
+  overflow:hidden;background:rgba(0,0,0,.10);flex:0 0 auto
+}
+.row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:clamp(8px,.86vw,12px) clamp(13px,1.25vw,18px);
+  border-bottom:1px solid rgba(216,191,118,.32);
+  font-size:clamp(9px,.94vw,13px);color:rgba(255,255,255,.88);gap:16px
+}
+.row:last-child{border-bottom:0}
+.row strong{font-size:clamp(12px,1.18vw,17px);color:#fff;white-space:nowrap}
+
+/* Stat chips */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(7px,.8vw,10px);flex:0 0 auto}
+.stat{
+  border:1px solid rgba(216,191,118,.48);border-radius:7px;
+  text-align:center;
+  padding:clamp(10px,1.02vw,15px) 8px;
+  background:rgba(255,255,255,.018)
+}
+.stat-label{
+  font-size:clamp(7px,.72vw,8px);
+  color:rgb(255,255,255);
+  margin-bottom:clamp(5px,.55vw,7px);line-height:1.15
+}
+.stat-num{
+  font-family:var(--fd);
+  font-size:clamp(22px,2.45vw,34px);
+  line-height:1;color:#fff;font-weight:700
+}
+.stat:nth-child(2) .stat-num{font-size:clamp(19px,2.05vw,29px);color:var(--gold3)}
+
+/* ── Mobile ── */
+@media(max-width:900px){
+  body{padding:10px}
+  .screen{grid-template-rows:28px 1fr}
+  .bar-title{font-size:8px}.time{display:none}
+  .ui{grid-template-columns:1fr}.right{display:none}
+  .left{padding:10px 13px;border:0;gap:5px}
+  .eyebrow{font-size:7px;margin-bottom:2px}
+  .title{font-size:15px;margin-bottom:2px}
+  .slider{padding:5px 8px}.slider-top{margin-bottom:4px}
+  .slider-label,.slider-val{font-size:8px}
+  .ava{padding:8px 10px}
+  .ava h3{font-size:13px}.ava h3 span{font-size:11px}
+  .ava p,.ava-row{font-size:7px}
+}
+</style>
+</head>
+<body>
+<div class="stage-clip">
+<main class="stage" aria-label="Got Stem Cells calculator MacBook mockup">
+  <img class="mac"
+       src="https://raw.githubusercontent.com/PimpMyGHL/GSC/main/images/macbook-shell.png"
+       alt="" aria-hidden="true">
+  <section class="screen">
+    <div class="topbar">
+      <div class="dots"><i></i><i></i><i></i></div>
+      <div class="bar-title">Got Stem Cells — Territory Revenue Model</div>
+      <div class="bar-right">
+        <span class="live">Live</span>
+        <span class="time" id="clock">10:57 AM</span>
+      </div>
+    </div>
+    <div class="ui">
+
+      <!-- LEFT -->
+      <div class="left">
+        <div>
+          <div class="eyebrow">Your Territory</div>
+          <div class="title">Set Your Numbers.</div>
+        </div>
+        <div class="slider">
+          <div class="slider-top"><span class="slider-label">Events / Month</span><span class="slider-val" id="v-events">3</span></div>
+          <input id="events" type="range" min="1" max="8" value="3">
+        </div>
+        <div class="slider">
+          <div class="slider-top"><span class="slider-label">Attendees / Event</span><span class="slider-val" id="v-attendees">25</span></div>
+          <input id="attendees" type="range" min="10" max="60" value="25">
+        </div>
+        <div class="slider">
+          <div class="slider-top"><span class="slider-label">Conversion Rate</span><span class="slider-val" id="v-conversion">30%</span></div>
+          <input id="conversion" type="range" min="10" max="60" value="30">
+        </div>
+        <div class="slider">
+          <div class="slider-top"><span class="slider-label">Avg Treatment Value</span><span class="slider-val" id="v-treatment">$8,500</span></div>
+          <input id="treatment" type="range" min="3000" max="20000" step="500" value="8500">
+        </div>
+        <div class="ava">
+          <div>
+            <h3>Ava AI <span>24/7 Revenue Stream</span></h3>
+            <p>Website, ads, SMS follow-up &amp; reactivation — books while you sleep.</p>
+          </div>
+          <div>
+            <div class="ava-row">
+              <span>Ava Bookings / Month</span>
+              <strong id="v-ava">4</strong>
+            </div>
+            <div class="ava-row">
+              <span>Ava Revenue / Month</span>
+              <strong id="ava-rev">$34,000</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="right">
+        <div class="hero-card">
+          <h2>Projected Annual Revenue</h2>
+          <div class="big" id="annual">$2,856,000</div>
+          <div class="sub">Based on current assumptions</div>
+        </div>
+        <div class="rows">
+          <div class="row"><span>Events Revenue / Month</span><strong id="events-rev">$204,000</strong></div>
+          <div class="row"><span>Ava AI Revenue / Month</span><strong id="ava-rev-row">$34,000</strong></div>
+          <div class="row"><span>Combined Monthly</span><strong id="monthly">$238,000</strong></div>
+          <div class="row"><span>Annual Margin (~40%)</span><strong id="margin">$1,142,400</strong></div>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-label">New Patients / Month</div>
+            <div class="stat-num" id="patients">30</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Revenue / Event</div>
+            <div class="stat-num" id="rev-event">$68,000</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Patients / Event</div>
+            <div class="stat-num" id="patients-event">7</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+</div><!-- /stage-clip -->
+<script>
+const els = {
+  events:     document.getElementById('events'),
+  attendees:  document.getElementById('attendees'),
+  conversion: document.getElementById('conversion'),
+  treatment:  document.getElementById('treatment')
+};
+const avaBookings = 4;
+const $ = id => document.getElementById(id);
+
+function money(n){ return '$' + Math.round(n).toLocaleString('en-US') }
+
+function fill(input){
+  const min=+input.min, max=+input.max, val=+input.value;
+  input.style.setProperty('--fill', ((val-min)/(max-min)*100)+'%');
+}
+
+function recalc(){
+  Object.values(els).forEach(fill);
+  const ev=+els.events.value, at=+els.attendees.value,
+        cv=+els.conversion.value/100, tx=+els.treatment.value;
+  const eventPatients  = Math.round(ev*at*cv);
+  const patientsPerEv  = Math.round(at*cv);
+  const eventsRev      = eventPatients*tx;
+  const avaRev         = avaBookings*tx;
+  const monthly        = eventsRev+avaRev;
+  const annual         = monthly*12;
+  const margin         = annual*.4;
+  const revPerEvent    = ev ? eventsRev/ev : 0;
+
+  $('v-events').textContent    = ev;
+  $('v-attendees').textContent = at;
+  $('v-conversion').textContent= Math.round(cv*100)+'%';
+  $('v-treatment').textContent = money(tx);
+  $('v-ava').textContent       = avaBookings;
+  $('ava-rev').textContent     = money(avaRev);
+  $('ava-rev-row').textContent = money(avaRev);
+  $('events-rev').textContent  = money(eventsRev);
+  $('monthly').textContent     = money(monthly);
+  $('annual').textContent      = money(annual);
+  $('margin').textContent      = money(margin);
+  $('patients').textContent    = eventPatients + avaBookings;
+  $('rev-event').textContent   = money(revPerEvent);
+  $('patients-event').textContent = patientsPerEv;
+}
+
+Object.values(els).forEach(el => el.addEventListener('input', recalc));
+
+function tick(){
+  const n=new Date(); let h=n.getHours()%12||12;
+  let m=String(n.getMinutes()).padStart(2,'0');
+  $('clock').textContent = h+':'+m+' '+(n.getHours()>=12?'PM':'AM');
+}
+tick(); setInterval(tick,15000); recalc();
+</script>
+</body>
+</html>
