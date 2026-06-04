@@ -3368,10 +3368,12 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 .csb-now-label { position: relative; z-index: 1; font-family: var(--fb); font-size: clamp(10px,.82vw,12px); font-weight: 900; letter-spacing: .18em; text-transform: uppercase; color: rgba(232,176,96,.76); margin-top: 11px; white-space: nowrap; }
 
 /* Inner grid */
-.cta-inner { position: relative; z-index: 2; max-width: 1260px; margin: 0 auto; display: grid; grid-template-columns: minmax(0,.92fr) minmax(400px,.78fr); grid-template-rows: auto auto; gap: 68px; align-items: start; padding-top: 55px; }
-.cta-copy-top  { grid-column: 1; grid-row: 1; }
-.cta-ipad-wrap { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
-.cta-copy-bottom { grid-column: 1; grid-row: 2; }
+.cta-inner { position: relative; z-index: 2; max-width: 1260px; margin: 0 auto; display: grid; grid-template-columns: minmax(0,.92fr) minmax(400px,.78fr); grid-template-rows: auto auto auto; column-gap: 68px; row-gap: 0; align-items: start; padding-top: 55px; }
+/* Desktop: left col = top/sub/actions stacked; right col = iPad spanning all rows */
+.cta-copy-top    { grid-column: 1; grid-row: 1; padding-bottom: 28px; }
+.cta-copy-bottom { grid-column: 1; grid-row: 2; padding-bottom: 38px; }
+.cta-actions-wrap{ grid-column: 1; grid-row: 3; }
+.cta-ipad-wrap   { grid-column: 2; grid-row: 1 / span 3; align-self: center; }
 .cta-eyebrow { display: flex; align-items: center; gap: 10px; font-family: var(--fb); font-size: 15px; font-weight: 900; letter-spacing: .28em; text-transform: uppercase; color: #F2C84A; margin-bottom: 24px; }
 .cta-eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: #C8923A; box-shadow: 0 0 10px rgba(200,146,58,.85); animation: pulse-gold 2s ease-in-out infinite; }
 .cta-headline { font-family: var(--fd); font-size: clamp(52px,7vw,88px); font-weight: 900; line-height: .9; letter-spacing: -.055em; color: var(--white); margin: 0 0 28px; }
@@ -3482,15 +3484,16 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
 .cta-final-note-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(200,146,58,.5); flex-shrink: 0; }
 
 @media (max-width: 1100px) {
-  /* Tablet: single column, iPad sits between headline and sub */
-  .cta-inner { grid-template-columns: 1fr; grid-template-rows: auto; gap: 32px; }
-  .cta-copy-top  { grid-column: 1; grid-row: auto; order: 1; }
-  .cta-ipad-wrap { grid-column: 1; grid-row: auto; order: 2; padding: 0; justify-content: center; }
-  .cta-copy-bottom { grid-column: 1; grid-row: auto; order: 3; }
+  /* Tablet: single column — headline → sub → iPad → button+microcopy */
+  .cta-inner { grid-template-columns: 1fr; grid-template-rows: auto; column-gap: 0; row-gap: 28px; }
+  .cta-copy-top    { grid-column: 1; grid-row: auto; order: 1; padding-bottom: 0; }
+  .cta-copy-bottom { grid-column: 1; grid-row: auto; order: 2; padding-bottom: 0; }
+  .cta-ipad-wrap   { grid-column: 1; grid-row: auto; order: 3; padding: 0; justify-content: center; }
+  .cta-actions-wrap{ grid-column: 1; grid-row: auto; order: 4; }
   .cta-headline, .cta-sub { text-align: center; }
   .cta-eyebrow { justify-content: center; }
   .cta-sub { margin-left: auto; margin-right: auto; }
-  /* Stack button above microcopy on tablet */
+  /* Stack button above microcopy */
   .cta-actions { flex-direction: column; align-items: center; gap: 14px; }
   .cta-btn { width: 100%; max-width: 420px; justify-content: center; }
   .cta-microcopy { text-align: center; max-width: none; }
@@ -3513,8 +3516,8 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
   .cta-microcopy { max-width: none; text-align: center; }
   .cta-seq-row { grid-template-columns: 38px 1fr; padding: 15px; }
   .cta-seq-num { width: 38px; height: 38px; }
-  /* iPad: fill the mobile frame, bigger presence */
-  .cta-ipad-floater { max-width: 92vw; }
+  /* iPad: big on mobile */
+  .cta-ipad-floater { max-width: 88vw; }
 }
 
 /* ═══════════ MEET AVA ═══════════ */
@@ -4635,9 +4638,13 @@ html, body { background: #070707; color: #f5f4f0; -webkit-font-smoothing: antial
       </div>
     </div>
 
-    <!-- Bottom: sub + actions -->
+    <!-- Sub copy -->
     <div class="cta-copy-bottom">
       <p class="cta-sub">The operator who moves first in a city becomes the local education authority — the reference point every competitor gets compared against. We confirm whether your market is still open, then walk through the full model before any decision is made.</p>
+    </div>
+
+    <!-- CTA actions — separate so they can reorder independently -->
+    <div class="cta-actions-wrap">
       <div class="cta-actions">
         <a class="cta-btn" href="https://calendly.com/gotstemcells" target="_blank" rel="noopener">
           Book Your Territory Call
